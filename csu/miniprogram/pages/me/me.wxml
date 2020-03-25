@@ -1,0 +1,34 @@
+<!--pages/me/me.wxml-->
+<view id="top">
+  <image src="{{AvatarUrl}}" mode="widthFix"></image>
+  <text id="username">{{username}}</text>
+  <view id="alterinfo">
+    <text space="nbsp">点击修改/编辑个人信息 </text>
+    <image src="/images/me/edit.png" mode="widthFix"></image>
+  </view>
+</view>
+<view id="middle">
+  <view id="score">
+    积分
+    <text>{{score}}</text>
+  </view>
+  <view id="gang"></view>
+  <view id="log">
+    <view class="logitem" wx:for="{{logthree}}">
+      <text>{{item.date}}</text>
+      <text>{{item.proj}}</text>
+      <text>{{item.change}}</text>
+    </view>
+  </view>
+</view>
+<view id="btns">
+  <view class="btnitem">
+    我发起的 >>>
+  </view>
+  <view class="btnitem">
+    我参加的 >>>
+  </view>
+  <view class="btnitem">
+    未完待续 >>>
+  </view>
+</view>
