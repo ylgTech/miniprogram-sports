@@ -43,6 +43,7 @@ page{
   white-space: nowrap;
   line-height: 40rpx;
   height: 40rpx;
+  font-family: SHSCNL;
 }
 #alterinfo image{
   width: 20rpx;
@@ -58,7 +59,7 @@ page{
   justify-content: center;
   flex-wrap: nowrap;
 }
-#score,#log{
+#score{
   width: 45%;
   font-size: 34rpx;
   color: #585858;
@@ -76,6 +77,7 @@ page{
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 1px rgba(155,180,235,0.9);
   text-shadow: 0 5px rgba(140,159,199,0.29);
+  font-family: Tahoma;
 }
 #gang{
   width: 1px;

@@ -154,3 +154,13 @@ page {
   line-height: 36rpx;
   word-break: break-all;
 }
+
+@font-face{
+  font-family: 'SHSCNL';
+  src: url("https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%AD%97%E4%BD%93/%E6%80%9D%E6%BA%90%E9%BB%91%E4%BD%93SourceHanSansCN-Light.otf?sign=d088aed1321bc67b215add56d5558ade&t=1585140636");
+}
+
+@font-face{
+  font-family: 'Roboto';
+  src: url("https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%AD%97%E4%BD%93/Roboto-Bold.ttf?sign=51e6eca0693e8cea328a2a8230412523&t=1585140880");
+}
