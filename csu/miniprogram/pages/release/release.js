@@ -5,16 +5,45 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    //发起运动的文字内容
+    text: ["一段文字一段文字一段文字一段文字","一段文字一段文字一段文字一段文字","一段文字一段文字一段文字一段文字"],
+    //状态栏高度
+    windowHeight: 0,
+    windowWidth:0,
+    //列表中体育项目
+    sportkinds:["球类","田径","武术","游泳","健美操","滑雪","自行车","登山","击剑","轮滑","拔河","瑜伽","棋类","跆拳道"],
+    option1: [
+      { text: '全部商品', value: 0 },
+      { text: '新款商品', value: 1 },
+      { text: '活动商品', value: 2 }
+    ],
+    option2: [
+      { text: '默认排序', value: 'a' },
+      { text: '好评排序', value: 'b' },
+      { text: '销量排序', value: 'c' }
+    ],
+    value1: 0,
+    value2: 'a'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    // console.log(app.globalData)
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log('windowHeight: ' + res.windowHeight)
+        console.log('windowWidith: ' + res.windowWidth)
+        that.setData({
+          windowHeight: res.windowHeight,
+          windowWidth:res.windowWidth
+        })
+      },
+    })
   },
-
+  //获取高度
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

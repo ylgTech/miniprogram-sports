@@ -1,2 +1,94 @@
 <!--pages/release/release.wxml-->
-<text>pages/release/release.wxml</text>
+<view  class= "ColorBackground" style="width:{{ windowWidth}}px;height:{{ windowHeight*0.5}}px;">
+<view class="faqiyundong">
+<image class="fqyd_img" src="../../images/release/fa.png" style="width:{{ windowWidth*0.07}}px;height:{{ windowHeight*0.05}}px;">
+</image>
+<image class="fqyd_img" src="../../images/release/qi.png" style="width:{{ windowWidth*0.07}}px;height:{{ windowHeight*0.05}}px;">
+</image>
+<image class="fqyd_img" src="../../images/release/yun.png" style="width:{{ windowWidth*0.1}}px;height:{{ windowHeight*0.07}}px;">
+</image>
+<image class="fqyd_img" src="../../images/release/dong.png" style="width:{{ windowWidth*0.1}}px;height:{{ windowHeight*0.07}}px;">
+</image>
+</view>
+ <image class="fqyd_xian"src="../../images/release/xian.png" style="width:{{ windowWidth}}px;height:{{ windowHeight*0.004}}px;">
+</image>
+<view class="fqyd_text_view">
+  <text class="fqyd_text" wx:for="{{text}}" style="width:{{ windowWidth*0.6}}px;">{{item}}</text>
+</view>
+</view>
+<text style="width:{{ windowWidth}}px;" class = "SelectTitle">请选择活动类别</text>
+<view > <!-- 整体白色背景 -->
+  
+  <view style="width:{{ windowWidth*0.72}}px;" class="sportslist">
+    <view style="width:{{ item.length*windowWidth*0.065}}px;" wx:for="{{sportkinds }}" >
+      <view  class="sportele" style="height:{{ windowHeight*0.05}}px;">
+         {{item}}
+      </view>
+    </view>
+    <view  class="sportele" style="height:{{ windowHeight*0.05}}px;width:{{ windowWidth*0.65}}px;">
+        +
+    </view>
+  </view>
+</view>
+<view style="width:{{ windowWidth*0.75}}px;" class = "SetTitle">
+  <text style="width:{{ windowWidth*0.40}}px;">活动设置</text>
+      <view  class="setele" style="width:{{ windowWidth*0.31}}px;height:{{ windowHeight*0.035}}px;">
+          点击获取地理位置
+      </view>
+</view>
+<view style="width:{{ windowWidth*0.72}}px;" class="sportslist">
+  <view class="InputView">
+   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动名称*</text>
+   <text class="divLine1" decode="emsp" space="ensp">&ensp;</text>
+     <!-- 为了挤走元素 -->
+  <input class="weui-input InputField" auto-focus placeholder=""/>
+
+     <!-- 分割线 -->
+    <text class="divLine" decode="emsp" space="ensp">&ensp;</text>
+  </view>
+  
+  <view class="InputView">
+   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动发起者*</text>
+    <text class="divLine1" decode="emsp" space="ensp">&ensp;</text>
+    <!-- 为了挤走元素 -->
+  <input class="weui-input InputField" auto-focus placeholder=""/>
+     <!-- 分割线 -->
+   <text class="divLine" decode="emsp" space="ensp">&ensp;</text>
+  </view>
+  <view class="InputView">
+
+   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动人数*</text>
+      <text class="divLine1" decode="emsp" space="ensp">&ensp;</text>
+     <!-- 为了挤走元素 -->
+  <input class="weui-input InputField" auto-focus placeholder=""/>
+     <!-- 分割线 -->
+       <text class="divLine" decode="emsp" space="ensp">&ensp;</text>
+  </view>
+  <view class="InputView">
+
+   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">开始时间——结束时间*</text>
+      <text class="divLine1" decode="emsp" space="ensp">&ensp;</text>
+     <!-- 为了挤走元素 -->
+  <input class="weui-input InputField" auto-focus placeholder=""/>
+   <text class="divLine" decode="emsp" space="ensp">&ensp;</text>
+     <!-- 分割线 -->
+  </view>
+    <view class="InputView">
+
+   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">运动等级*</text>
+     
+   <view  class="leveltag" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.035}}px;">
+          待定
+    </view>
+     </view>
+    <view class="InputView">
+    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">运动简介</text>
+       <text class="divLine1" decode="emsp" space="ensp">&ensp;</text>
+     <!-- 为了挤走元素 -->
+  <input class="weui-input InputField" auto-focus placeholder=""/>
+     <!-- 分割线 -->
+      <text class="divLine" decode="emsp" space="ensp">&ensp;</text>
+  </view>
+
+  </view>
+

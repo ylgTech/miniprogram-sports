@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/release/release",
     "pages/index/index",
     "pages/match/match",
-    "pages/release/release",
     "pages/group/group",
     "pages/me/me"
   ],
