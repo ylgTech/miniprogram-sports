@@ -1,0 +1,7 @@
+忽略字体、psd文件
+*.psd
+*.otf
+
+忽略npm包
+csu/miniprogram/miniprogram_npm/
+csu/miniprogram/node_modules/
