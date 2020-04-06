@@ -32,62 +32,61 @@
 </view>
 <view style="width:{{ windowWidth*0.75}}px;" class = "SetTitle">
   <text style="width:{{ windowWidth*0.40}}px;">活动设置</text>
-      <view  class="setele" style="width:{{ windowWidth*0.31}}px;height:{{ windowHeight*0.035}}px;">
-          点击获取地理位置
+      <view  class="setele" style="width:{{ windowWidth*0.31}}px;height:{{ windowHeight*0.035}}px;" bindtap="setlocation">
+         {{location}}
       </view>
 </view>
 <view style="width:{{ windowWidth*0.72}}px;" class="sportslist">
   <view class="InputView">
    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动名称*</text>
-   <text class="divLine1" decode="emsp" space="ensp">&ensp;</text>
-     <!-- 为了挤走元素 -->
   <input class="weui-input InputField" auto-focus placeholder=""/>
-
-     <!-- 分割线 -->
-    <text class="divLine" decode="emsp" space="ensp">&ensp;</text>
   </view>
   
   <view class="InputView">
    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动发起者*</text>
-    <text class="divLine1" decode="emsp" space="ensp">&ensp;</text>
-    <!-- 为了挤走元素 -->
   <input class="weui-input InputField" auto-focus placeholder=""/>
-     <!-- 分割线 -->
-   <text class="divLine" decode="emsp" space="ensp">&ensp;</text>
   </view>
   <view class="InputView">
-
-   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动人数*</text>
-      <text class="divLine1" decode="emsp" space="ensp">&ensp;</text>
-     <!-- 为了挤走元素 -->
-  <input class="weui-input InputField" auto-focus placeholder=""/>
-     <!-- 分割线 -->
-       <text class="divLine" decode="emsp" space="ensp">&ensp;</text>
+    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动人数*</text>
+    <input class="weui-input InputField" auto-focus placeholder=""/>
   </view>
   <view class="InputView">
 
    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">开始时间——结束时间*</text>
-      <text class="divLine1" decode="emsp" space="ensp">&ensp;</text>
-     <!-- 为了挤走元素 -->
   <input class="weui-input InputField" auto-focus placeholder=""/>
-   <text class="divLine" decode="emsp" space="ensp">&ensp;</text>
-     <!-- 分割线 -->
   </view>
     <view class="InputView">
 
-   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">运动等级*</text>
+   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName" >运动等级*</text>
      
-   <view  class="leveltag" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.035}}px;">
-          待定
+   <view  class="leveltag" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.035}}px;" >
+          <text bindtap="showPopup">{{level}}</text>
+          <van-popup
+          show="{{ show }}"
+          position="bottom"
+          custom-style="height: 20%;"
+          bind:close="onClose"
+          round
+          >
+           <van-cell class='hint'>
+           <view class='view-hint'>选择等级</view>
+          <van-icon catchtap="navigate" slot="right-icon" name="search" color="#1c659c" size="26px" />
+           </van-cell>
+           <scroll-view style="max-height: {{ windowHeight * 0.4 }}px" scroll-y="true"        scroll-with-animation scroll-into-view="{{ toView }}">
+             <van-row  wx:for="{{ listItem }}" wx:key="index" >
+            <van-cell  custom-class="{{ item.id == toView ? 'bgdc' : '' }}" size="large"  clickable="true" data-index="{{ index }}" bindtap='selectlevel'>
+          <view slot="title" class="cell-title">
+          <view class='view-hint'>{{item}}</view>
+          </view>
+            </van-cell>
+      </van-row>
+    </scroll-view>
+          </van-popup>
     </view>
      </view>
     <view class="InputView">
     <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">运动简介</text>
-       <text class="divLine1" decode="emsp" space="ensp">&ensp;</text>
-     <!-- 为了挤走元素 -->
-  <input class="weui-input InputField" auto-focus placeholder=""/>
-     <!-- 分割线 -->
-      <text class="divLine" decode="emsp" space="ensp">&ensp;</text>
+    <input class="weui-input InputField" auto-focus placeholder=""/>
   </view>
 
   </view>

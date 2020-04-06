@@ -3,7 +3,8 @@
     "van-tag": "../../miniprogram_npm/@vant/weapp/tag/index",
     "van-dropdown-menu": "../../miniprogram_npm/@vant/weapp/dropdown-menu/index",
     "van-dropdown-item": "../../miniprogram_npm/@vant/weapp/dropdown-item/index",
-    "van-field": "../../miniprogram_npm/@vant/weapp/field/index",
-    "van-divider": "../../miniprogram_npm/@vant/weapp/divider/index"
+    "van-cell": "../../miniprogram_npm/@vant/weapp/cell/index",
+    "van-divider": "../../miniprogram_npm/@vant/weapp/divider/index",
+    "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index"
   }
 }
