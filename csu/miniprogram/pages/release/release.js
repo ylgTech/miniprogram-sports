@@ -5,7 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    location:"点击获取地理位置",
+    level:'选择等级',
     //发起运动的文字内容
+    toView: '',
+    listItem:["难","中","易"],
+    show:false,
     text: ["一段文字一段文字一段文字一段文字","一段文字一段文字一段文字一段文字","一段文字一段文字一段文字一段文字"],
     //状态栏高度
     windowHeight: 0,
@@ -25,7 +30,36 @@ Page({
     value1: 0,
     value2: 'a'
   },
+  setlocation: function(){
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        console.log(res)
+        const latitude = res.latitude
+        const longitude = res.longitude
+        const speed = res.speed
+        const accuracy = res.accuracy
+      }
+    })
+  },
+  toView: function () {
+    this.setData({
+      toView: view,
+    })
+  },
+  selectlevel:function(e){
+    let i = e.currentTarget.dataset.index
+    this.setData({
+      level:this.data.listItem[i]
+    })
+  },
+  showPopup() {
+    this.setData({ show: true });
+  },
 
+  onClose() {
+    this.setData({ show: false });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
