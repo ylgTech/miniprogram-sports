@@ -64,13 +64,12 @@
           <van-popup
           show="{{ show }}"
           position="bottom"
-          custom-style="height: 20%;"
+          custom-style="height: 40%;"
           bind:close="onClose"
           round
           >
            <van-cell class='hint'>
            <view class='view-hint'>选择等级</view>
-          <van-icon catchtap="navigate" slot="right-icon" name="search" color="#1c659c" size="26px" />
            </van-cell>
            <scroll-view style="max-height: {{ windowHeight * 0.4 }}px" scroll-y="true"        scroll-with-animation scroll-into-view="{{ toView }}">
              <van-row  wx:for="{{ listItem }}" wx:key="index" >
@@ -87,7 +86,18 @@
     <view class="InputView">
     <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">运动简介</text>
     <input class="weui-input InputField" auto-focus placeholder=""/>
-  </view>
+    </view>
+    <view class="checkbox" style="width:{{ windowWidth*0.72}}px;">
+    <view class = "checkbox_item1"style="width:{{ windowWidth*0.30}}px;">
+       <checkbox><view class="ActionName">提供运动场地</view></checkbox>
+    </view>
+    <view  class = "checkbox_item2" style="width:{{ windowWidth*0.30}}px;">
+        <checkbox><view class="ActionName">自带运动装备</view></checkbox>
 
+      </view>
+     </view>
+      <view class="levelsum" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.07}}px;">
+          提交
+      </view>
   </view>
 
