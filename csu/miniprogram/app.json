@@ -1,10 +1,12 @@
 {
   "pages": [
-    "pages/release/release",
     "pages/index/index",
-    "pages/match/match",
+    "pages/me/me",
     "pages/group/group",
-    "pages/me/me"
+    "pages/match/match",
+    "pages/release/release"
+    
+    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
