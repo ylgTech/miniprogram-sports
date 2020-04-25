@@ -95,18 +95,24 @@ page {
 }
 
 .rank-MC {
+  color: #8e9092;
+  font-size: 30rpx;
   align-items: center;
   margin-left: 50rpx;
 }
 
 .rank-ID {
+  color: #8e9092;
+  font-size: 30rpx;
   align-items: center;
   margin-left: 240rpx;
 }
 
 .rank-grade {
+  color: #8e9092;
+  font-size: 30rpx;
   align-items: center;
-  margin-left: 230rpx;
+  margin-left: 280rpx;
 }
 
 .rank-bottom {
@@ -121,14 +127,17 @@ page {
 }
 
 .item-id {
+  font-size: 35rpx;
   margin-left: 60rpx;
 }
 
 .item-name {
-  margin-left: 60rpx;
+  font-size: 35rpx;
+  margin-left: 30rpx;
 }
 
 .item-grade {
+  font-size: 35rpx;
   margin-right: 30rpx;
 }
 
