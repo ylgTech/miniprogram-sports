@@ -1,0 +1,32 @@
+<!--pages/group/group-select-college.wxml-->
+<view class="main-view">
+    <view class="main-opt-box">
+        <view class="create-group-link">
+            创建一个小组
+        </view>
+        <view class="groups-list-box">
+            <view class="groups-column">
+                <view wx:for="{{GroupCollegeList}}" wx:key="GroupID" wx:if="{{index%2==0}}" class="one-group">
+                    <view class="one-group-name">{{item.GroupName}}</view>
+                    <view class="divline-horizontal"></view>
+                    <view class="one-group-littlebox">
+                        <view class="one-group-littletext">{{item.CollegeName}}</view>
+                        |
+                        <view class="one-group-littletext">{{item.SportTypeName}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="groups-column">
+                <view wx:for="{{GroupCollegeList}}" wx:key="GroupID" wx:if="{{index%2==1}}" class="one-group">
+                    <view class="one-group-name">{{item.GroupName}}</view>
+                    <view class="divline-horizontal"></view>
+                    <view class="one-group-littlebox">
+                        <view class="one-group-littletext">{{item.CollegeName}}</view>
+                        |
+                        <view class="one-group-littletext">{{item.SportTypeName}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
