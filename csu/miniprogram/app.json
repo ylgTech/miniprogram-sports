@@ -3,7 +3,6 @@
         "pages/release/release",
         "pages/index/index",
         "pages/match/match",
-        "pages/group/group",
         "pages/me/me",
         "pages/group/group-select-college",
         "pages/group/group-imprv"
