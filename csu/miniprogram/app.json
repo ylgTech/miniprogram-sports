@@ -5,7 +5,8 @@
         "pages/match/match",
         "pages/group/group",
         "pages/me/me",
-        "pages/group/group-select-college"
+        "pages/group/group-select-college",
+        "pages/group/group-imprv"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",
@@ -43,7 +44,7 @@
                 "text": "发起运动"
             },
             {
-                "pagePath": "pages/group/group",
+                "pagePath": "pages/group/group-imprv",
                 "iconPath": "images/tabBar/小组1.png",
                 "selectedIconPath": "images/tabBar/小组2.png",
                 "text": "兴趣小组"

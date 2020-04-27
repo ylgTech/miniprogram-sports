@@ -1,0 +1,18 @@
+<!--pages/group/group-imprv.wxml-->
+<view class="main-view">
+    <view class="group-btn-group">
+        <view class="group-btn-column">
+            <view wx:for="{{GroupToShow}}" wx:key="SportTypeID" wx:if="{{index%2==0}}" class="{{item.IsSelected ? 'group-btn-selected' : 'group-btn'}}" bindtap="gotoGroupCollege">
+                <image src="/images/group/{{item.LogoImageFix}}.png" class="group-btn-img"></image>
+                <view class="group-btn-text">{{item.SportTypeName}}</view>
+            </view>
+        </view>
+        <view class="group-btn-column">
+            <view wx:for="{{GroupToShow}}" wx:key="SportTypeID" wx:if="{{index%2==1}}" class="{{item.IsSelected ? 'group-btn-selected' : 'group-btn'}}" bindtap="gotoGroupCollege">
+                <image src="/images/group/{{item.LogoImageFix}}.png" class="group-btn-img"></image>
+                <view class="group-btn-text">{{item.SportTypeName}}</view>
+            </view>
+        </view>
+    </view>
+    <navigator url="" class="group-change-btn">换一批看看</navigator>
+</view>
