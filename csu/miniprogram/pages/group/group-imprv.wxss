@@ -22,14 +22,16 @@ page {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    width: 100%;
 }
 
 .group-btn-column {
-    width: 50vw;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    padding: 0 6.8vw;
 }
 
 .group-btn {
@@ -39,10 +41,11 @@ page {
     justify-content: flex-start;
     align-items: center;
     background-color: #fff;
-    padding: 8px 10px;
-    border-radius: 8vh;
+    /* padding: 8px 10px; */
+    padding: 1vh;
+    border-radius: 6vh;
     box-shadow: 3px 3px 5px #888;
-    width: 60%;
+    width: 100%;
 }
 
 .group-btn-selected {
@@ -52,10 +55,11 @@ page {
     justify-content: flex-start;
     align-items: center;
     background-color: #e2eaf9;
-    padding: 8px 10px;
-    border-radius: 8vh;
+    /* padding: 8px 10px; */
+    padding: 1vh;
+    border-radius: 6vh;
     box-shadow: 3px 3px 5px #888;
-    width: 60%;
+    width: 100%;
 }
 
 .group-btn-img {
@@ -66,7 +70,7 @@ page {
 
 .group-btn-text {
     margin: 0 2vh;
-    font-size: small;
+    /* font-size: small; */
 }
 
 .group-change-btn {
