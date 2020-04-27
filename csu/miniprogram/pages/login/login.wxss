@@ -1,0 +1,53 @@
+.login{
+  width: 80%;
+  height: 250rpx;
+  position: relative;
+  top: -100rpx;
+  left: 10%;
+  background-color: #fff;
+  border-radius: 30rpx;
+  
+  
+}
+.img-top{
+  
+}
+.input1{
+  width: 300rpx;
+  position: absolute;
+  left: 30%;
+  top: 30%;
+}
+.input1-t{
+  position: absolute;
+  left: 6%;
+  top:30%;
+}
+.container-num{
+  left: 5%;
+  width: 90%;
+  height: 50%;
+  position: relative;
+  border-bottom: 3rpx solid rgb(216, 213, 213);
+  border-radius: 30rpx 30rpx 0 0;
+}
+.input2{
+  width: 300rpx;
+  position: absolute;
+  left: 32.5%;
+  top: 65%;
+}
+.input2-t{
+  position: absolute;
+  left: 10.5%;
+  top:65%;
+}
+.but{
+  margin-top: -50rpx;
+  margin-left: 40%;
+}
+.img2{
+  width: 140rpx;
+  height: 120rpx;
+
+}

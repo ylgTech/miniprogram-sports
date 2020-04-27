@@ -1,2 +1,20 @@
-<!--pages/match/match.wxml-->
-<text>pages/match/match.wxml</text>
+
+  <swiper
+    indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}"
+    interval="{{interval}}"
+    duration="{{duration}}"
+    circular="{{circular}}"
+    previous-margin="20rpx"
+    next-margin="20rpx"
+
+  >
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image style="display:block;width:88%;margin:0 auto;border-radius:20rpx;" src="{{item}}" class="slide-image" mode="widthFix" width="355rpx" height="150rpx" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="container" style="backgroud:url('../../images/match/背景.png')">
+    <view class="time">时间显示，待修改</view>
+  </view>

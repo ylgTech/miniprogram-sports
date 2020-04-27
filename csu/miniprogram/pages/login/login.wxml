@@ -1,0 +1,19 @@
+<image src="/images/login/登录.png" class="img-top"> </image>
+
+<view class="login">
+
+<view class="container-num">
+
+<text class="input1-t">学号：</text>
+<input class="input1" placeholder="请输入学号" value="{{number}}" bindblur="mess_change" type="number"></input>
+
+</view>
+
+<text class="input2-t" >姓名：</text>
+<input class="input2" placeholder="请输入姓名"  value="{{name}}" bindblur="mess_change2"></input>
+
+</view>
+
+<view class="but" bindtap="register">
+<image src="/images/login/登录按钮0.png" class="img2"></image>
+</view>

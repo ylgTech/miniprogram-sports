@@ -53,6 +53,14 @@ page{
   border-color: grey;
   border-radius: 6rpx;
 }
+.checkbox{
+  margin-top: 3%;
+  font-size: 16rpx;
+  display: flex;
+}
+.checkbox_item2{
+  margin-left: 15%;
+}
 .InputField{
   margin-top:5%;
 }
@@ -68,6 +76,20 @@ page{
   flex-wrap: wrap;
   border-bottom: 1px solid#E0E3DA;
   margin-bottom: 5%;
+}
+.levelsum{
+  margin-left: 60%;
+  margin-top: 8%;
+  margin-bottom:8%;
+  font-size: 26rpx;
+  color:black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border:solid 1rpx;
+  border-color: grey;
+  border-radius: 46rpx;
+  background-color: rgb(226, 233, 249)
 }
 .leveltag{
   margin-top: 8%;
