@@ -1,0 +1,167 @@
+/* pages/index/index.wxss */
+
+page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.flex {
+  flex-direction: column;
+}
+
+.slide-image {
+  height: 35vh;
+  width: 90vw;
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  border-radius: 25rpx;
+  justify-content: center;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: 0;
+}
+
+.van {
+  background-color: white;
+}
+
+.active-top {
+  color: #8e9092;
+  font-size: 30rpx;
+}
+
+.active-btn-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.active-btn-column{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 10rx 20rx;
+}
+
+.active-btn{
+    margin: 3vh 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    background-color: #FFF;
+    padding: 8px 10px;
+    box-shadow: 3px 3px 5px #888888;
+    height: 80%;
+}
+
+.active-btn-img{
+    width: 8vh;
+    height: 8vh;
+    margin: 3px;
+}
+
+.active-text-group{
+    flex-direction: column;
+}
+
+.active-btn-text{
+    margin: 0 2vh;
+    font-size: 30rpx;
+}
+
+.active-btn-text_{
+  color: #8e9092;
+  font-size: 20rpx;
+}
+
+.rank {
+  display: flex;
+  flex-direction: column;
+}
+
+.rank-top {
+  flex-direction: center;
+  justify-content: space-around;
+}
+
+.rank-MC {
+  color: #8e9092;
+  font-size: 30rpx;
+  align-items: center;
+  margin-left: 50rpx;
+}
+
+.rank-ID {
+  color: #8e9092;
+  font-size: 30rpx;
+  align-items: center;
+  margin-left: 240rpx;
+}
+
+.rank-grade {
+  color: #8e9092;
+  font-size: 30rpx;
+  align-items: center;
+  margin-left: 280rpx;
+}
+
+.rank-bottom {
+  height: 90rpx;
+  display: flex;
+  flex-direction: center;
+  justify-content: space-between;
+}
+
+.pic {
+  height: 50rpx;
+}
+
+.item-id {
+  font-size: 35rpx;
+  margin-left: 60rpx;
+}
+
+.item-name {
+  font-size: 35rpx;
+  margin-left: 30rpx;
+}
+
+.item-grade {
+  font-size: 35rpx;
+  margin-right: 30rpx;
+}
+
+.van-tab {
+  font-family: SHSCNL !important;
+  font-size: 30rpx !important;
+  width: 70px !important;
+  border-top-left-radius: 25rpx !important;
+  border-top-right-radius: 25rpx !important;
+  background-color: transparent !important;
+  color: #646566 !important;
+  margin-left: 4px !important;
+  margin-right: 4px !important;
+  opacity: 1;
+}
+
+.van-tab--active {
+  font-family: SHSCNL !important;
+  font-size: 30rpx !important;
+  border-top-left-radius: 25rpx !important;
+  border-top-right-radius: 25rpx !important;
+  background-color: white !important;
+  color: #323233 !important;
+  margin-left: 4px !important;
+  margin-right: 4px !important;
+  opacity: 1;
+}

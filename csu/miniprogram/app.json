@@ -59,11 +59,11 @@
     "sitemapLocation": "sitemap.json"
 =======
   "pages": [
-    "pages/release/release",
     "pages/index/index",
-    "pages/match/match",
-    "pages/group/group",
     "pages/me/me",
+    "pages/group/group",
+    "pages/match/match",
+    "pages/release/release",
     "pages/login/login"
   ],
   "window": {
