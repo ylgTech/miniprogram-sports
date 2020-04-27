@@ -1,31 +1,31 @@
 <view class="main-view">
     <view class="group-btn-group">
         <view class="group-btn-column">
-            <view class="group-btn">
+            <view class="{{SelectedGroup[0] ? 'group-btn-selected' : 'group-btn'}}" bindtap="gotoGroupCollege">
                 <image src="/images/group/Marathon.png" class="group-btn-img"></image>
                 <view class="group-btn-text">马拉松</view>
                 <!-- <view><view>马拉松</view></view> -->
             </view>
-            <view class="group-btn">
+            <view class="{{SelectedGroup[1] ? 'group-btn-selected' : 'group-btn'}}">
                 <image src="/images/group/Skateboard.png" class="group-btn-img"></image>
                 <view class="group-btn-text">滑板</view>
             </view>
-            <view class="group-btn">
+            <view class="{{SelectedGroup[2] ? 'group-btn-selected' : 'group-btn'}}">
                 <image src="/images/group/Running.png" class="group-btn-img"></image>
                 <view class="group-btn-text">跑步</view>
             </view>
         </view>
         <view class="group-btn-column">
-            <view class="group-btn">
+            <view class="{{SelectedGroup[3] ? 'group-btn-selected' : 'group-btn'}}">
                 <image src="/images/group/WeightLifting.png" class="group-btn-img"></image>
                 <view class="group-btn-text">举重</view>
             </view>
-            <view class="group-btn">
+            <view class="{{SelectedGroup[4] ? 'group-btn-selected' : 'group-btn'}}">
                 <image src="/images/group/Skating.png" class="group-btn-img"></image>
                 <view class="group-btn-text">滑雪</view>
                 <!-- <view><view>马拉松</view></view> -->
             </view>
-            <view class="group-btn">
+            <view class="{{SelectedGroup[5] ? 'group-btn-selected' : 'group-btn'}}">
                 <image src="/images/group/Biking.png" class="group-btn-img"></image>
                 <view class="group-btn-text">骑行</view>
             </view>
