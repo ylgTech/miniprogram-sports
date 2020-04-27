@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+        "SelectedGroup": [1,0,0,0,1,0]
   },
 
   /**
@@ -62,5 +62,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  gotoGroupCollege: function(event){
+      wx.navigateTo({
+          url: '/pages/group/group-select-college',
+      })
   }
 })
