@@ -77,7 +77,7 @@
             <text class="rank-ID">ID</text>
             <text class="rank-grade">积分</text>
           </view>
-          <view wx:for="{{rank}}" class="rank-bottom">
+          <view wx:for="{{rank_winner}}" class="rank-bottom">
             <view class="item-id">
               {{item.id}}
             </view>
@@ -85,7 +85,19 @@
               {{item.name}}
             </view>
             <view class="item-grade">
-              {{item.grade}}</view>
+              {{item.grade}}
+            </view>
+          </view>
+          <view wx:for="{{rank}}" class="rank-bottom">
+            <view class="item-id">
+              {{item.rank}}
+            </view>
+            <view class="item-name">
+              {{item.name}}
+            </view>
+            <view class="item-grade {{ item.rank < 4 ? 'item-grade-red' : 'item-grade-green' }}">
+              {{item.grade}}
+            </view>
           </view>
         </view>
       </view>

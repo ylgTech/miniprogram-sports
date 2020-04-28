@@ -20,7 +20,7 @@ Page({
       "https://i0.hdslb.com/bfs/sycp/creative_img/202004/f35607c9c112e5934dd45169484053c3.jpg", "https://i0.hdslb.com/bfs/sycp/creative_img/202004/f35607c9c112e5934dd45169484053c3.jpg", "https://i0.hdslb.com/bfs/sycp/creative_img/202004/f35607c9c112e5934dd45169484053c3.jpg"
     ],
     rank: [{
-        id: 1,
+        rank: 1,
         name: '我是谁',
         grade: 9999,
         iconPath: '../../images/touxiang.png',
@@ -29,63 +29,70 @@ Page({
         height: 40,
       },
       {
-        id: 2,
+        rank: 2,
         name: '我是谁',
         grade: 9998,
         iconPath: '../../images/touxiang.png',
         // 控制icon大小
         width: 27,
         height: 40,
-      }, {
-        id: 3,
+      },
+      {
+        rank: 3,
         name: '我是谁',
         grade: 9997,
         iconPath: '../../images/touxiang.png',
         // 控制icon大小
         width: 27,
         height: 40,
-      }, {
-        id: 4,
+      },
+      {
+        rank: 4,
         name: '我是谁',
         grade: 9996,
         iconPath: '../../images/touxiang.png',
         // 控制icon大小
         width: 27,
         height: 40,
-      }, {
-        id: 5,
+      },
+      {
+        rank: 5,
         name: '我是谁',
         grade: 9995,
         iconPath: '../../images/touxiang.png',
         // 控制icon大小
         width: 27,
         height: 40,
-      }, {
-        id: 6,
+      },
+      {
+        rank: 6,
         name: '我是谁',
         grade: 9994,
         iconPath: '../../images/touxiang.png',
         // 控制icon大小
         width: 27,
         height: 40,
-      }, {
-        id: 7,
+      },
+      {
+        rank: 7,
         name: '我是谁',
         grade: 9993,
         iconPath: '../../images/touxiang.png',
         // 控制icon大小
         width: 27,
         height: 40,
-      }, {
-        id: 8,
+      },
+      {
+        rank: 8,
         name: '我是谁',
         grade: 9992,
         iconPath: '../../images/touxiang.png',
         // 控制icon大小
         width: 27,
         height: 40,
-      }, {
-        id: 9,
+      },
+      {
+        rank: 9,
         name: '我是谁',
         grade: 9991,
         iconPath: '../../images/touxiang.png',
@@ -95,7 +102,7 @@ Page({
       },
     ],
   },
-  select: function (e) {
+  select: function(e) {
     this.setData({
       selectVal: e.detail
     })
