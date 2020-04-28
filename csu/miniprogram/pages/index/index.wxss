@@ -141,6 +141,14 @@ page {
   margin-right: 30rpx;
 }
 
+.item-grade-red {
+  color: red;
+}
+
+item-grade-green {
+  color: green;
+}
+
 .van-tab {
   font-family: SHSCNL !important;
   font-size: 30rpx !important;
