@@ -77,23 +77,13 @@
             <text class="rank-ID">ID</text>
             <text class="rank-grade">积分</text>
           </view>
-          <view wx:for="{{rank_winner}}" class="rank-bottom">
-            <view class="item-id">
-              {{item.id}}
-            </view>
-            <view class="item-name">
-              {{item.name}}
-            </view>
-            <view class="item-grade">
-              {{item.grade}}
-            </view>
-          </view>
           <view wx:for="{{rank}}" class="rank-bottom">
-            <view class="item-id">
-              {{item.rank}}
-            </view>
-            <view class="item-name">
-              {{item.name}}
+            <image wx:if="{{item.rank < 4}}" class="item-img" src="../../images/index/{{item.imgSrc}}"></image>
+            <view wx:else class="item-id">{{item.rank}}</view>
+            <view class="item-mid">
+              <van-image lazy-load use-loading-slot round src="{{item.avatar}}" width="40" height="40">
+                <van-loading slot="loading" type="spinner" size="20" vertical/></van-image>
+              <view class="item-name">{{item.name}}</view>
             </view>
             <view class="item-grade {{ item.rank < 4 ? 'item-grade-red' : 'item-grade-green' }}">
               {{item.grade}}

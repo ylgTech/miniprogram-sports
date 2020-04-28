@@ -120,15 +120,33 @@ page {
   display: flex;
   flex-direction: center;
   justify-content: space-between;
+  align-items: center;
+  margin: 10rpx 0;
 }
 
 .pic {
   height: 50rpx;
 }
 
+.item-img {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 60rpx;
+}
+
 .item-id {
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
   font-size: 35rpx;
   margin-left: 60rpx;
+}
+
+.item-mid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .item-name {
@@ -145,7 +163,7 @@ page {
   color: red;
 }
 
-item-grade-green {
+.item-grade-green {
   color: green;
 }
 

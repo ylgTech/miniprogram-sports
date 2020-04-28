@@ -23,34 +23,37 @@ Page({
         rank: 1,
         name: '我是谁',
         grade: 9999,
-        iconPath: '../../images/touxiang.png',
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
         // 控制icon大小
         width: 27,
         height: 40,
+        imgSrc: 'first.png',
       },
       {
         rank: 2,
         name: '我是谁',
         grade: 9998,
-        iconPath: '../../images/touxiang.png',
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
         // 控制icon大小
         width: 27,
         height: 40,
+        imgSrc: 'second.png',
       },
       {
         rank: 3,
         name: '我是谁',
         grade: 9997,
-        iconPath: '../../images/touxiang.png',
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
         // 控制icon大小
         width: 27,
         height: 40,
+        imgSrc: 'third.png',
       },
       {
         rank: 4,
         name: '我是谁',
         grade: 9996,
-        iconPath: '../../images/touxiang.png',
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
         // 控制icon大小
         width: 27,
         height: 40,
@@ -59,7 +62,7 @@ Page({
         rank: 5,
         name: '我是谁',
         grade: 9995,
-        iconPath: '../../images/touxiang.png',
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
         // 控制icon大小
         width: 27,
         height: 40,
@@ -68,7 +71,7 @@ Page({
         rank: 6,
         name: '我是谁',
         grade: 9994,
-        iconPath: '../../images/touxiang.png',
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
         // 控制icon大小
         width: 27,
         height: 40,
@@ -77,7 +80,7 @@ Page({
         rank: 7,
         name: '我是谁',
         grade: 9993,
-        iconPath: '../../images/touxiang.png',
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
         // 控制icon大小
         width: 27,
         height: 40,
@@ -86,7 +89,7 @@ Page({
         rank: 8,
         name: '我是谁',
         grade: 9992,
-        iconPath: '../../images/touxiang.png',
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
         // 控制icon大小
         width: 27,
         height: 40,
@@ -95,7 +98,7 @@ Page({
         rank: 9,
         name: '我是谁',
         grade: 9991,
-        iconPath: '../../images/touxiang.png',
+        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
         // 控制icon大小
         width: 27,
         height: 40,
