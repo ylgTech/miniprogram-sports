@@ -1,5 +1,5 @@
 <view class="flex">
-  <image class='background' src="../../images/index/background.png" mode="aspectFill"></image>
+  <image class='background' src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/background.png?sign=9209779092806cc733c84ee4bfc526cc&t=1588148134" mode="aspectFill"></image>
   <view>
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000">
       <block wx:for="{{imgUrls}}" wx:key="key">
@@ -20,21 +20,21 @@
           <view class="active-btn-group">
             <view class="active-btn-column">
               <view class="active-btn">
-                <image src="../../images/index/huodong-1.png" class="active-btn-img"></image>
+                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-1.png?sign=f1559438966b8d88c5dcf5de4190d1b8&t=1588148160" class="active-btn-img"></image>
                 <view class="active-text-group">
                 <view class="active-btn-text">活动名称</view>
                 <view class="active-btn-text_">简介/标语</view>
                 </view><!-- <view><view>简介/标语</view></view> -->
               </view>
               <view class="active-btn">
-                <image src="../../images/index/huodong-1.png" class="active-btn-img"></image>
+                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-1.png?sign=f1559438966b8d88c5dcf5de4190d1b8&t=1588148160" class="active-btn-img"></image>
                 <view class="active-text-group">
                 <view class="active-btn-text">活动名称</view>
                 <view class="active-btn-text_">简介/标语</view>
                 </view><!-- <view><view>简介/标语</view></view> -->
               </view>
               <view class="active-btn">
-                <image src="../../images/index/huodong-1.png" class="active-btn-img"></image>
+                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-1.png?sign=f1559438966b8d88c5dcf5de4190d1b8&t=1588148160" class="active-btn-img"></image>
                 <view class="active-text-group">
                 <view class="active-btn-text">活动名称</view>
                 <view class="active-btn-text_">简介/标语</view>
@@ -43,21 +43,21 @@
             </view>
             <view class="active-btn-column">
               <view class="active-btn">
-                <image src="../../images/index/huodong-2.png" class="active-btn-img"></image>
+                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-2.png?sign=df376cea557492ad16aaa9a2bb42c752&t=1588148188" class="active-btn-img"></image>
                 <view class="active-text-group">
                 <view class="active-btn-text">活动名称</view>
                 <view class="active-btn-text_">简介/标语</view>
                 </view><!-- <view><view>简介/标语</view></view> -->
               </view>
               <view class="active-btn">
-                <image src="../../images/index/huodong-2.png" class="active-btn-img"></image>
+                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-2.png?sign=df376cea557492ad16aaa9a2bb42c752&t=1588148188" class="active-btn-img"></image>
                 <view class="active-text-group">
                 <view class="active-btn-text">活动名称</view>
                 <view class="active-btn-text_">简介/标语</view>
                 </view><!-- <view><view>简介/标语</view></view> -->
               </view>
               <view class="active-btn">
-                <image src="../../images/index/huodong-2.png" class="active-btn-img"></image>
+                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-2.png?sign=df376cea557492ad16aaa9a2bb42c752&t=1588148188" class="active-btn-img"></image>
                 <view class="active-text-group">
                 <view class="active-btn-text">活动名称</view>
                 <view class="active-btn-text_">简介/标语</view>

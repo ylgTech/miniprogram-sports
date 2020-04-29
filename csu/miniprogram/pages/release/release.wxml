@@ -1,16 +1,16 @@
 <!--pages/release/release.wxml-->
 <view  class= "ColorBackground" style="width:{{ windowWidth}}px;height:{{ windowHeight*0.5}}px;">
 <view class="faqiyundong">
-<image class="fqyd_img" src="../../images/release/fa.png" style="width:{{ windowWidth*0.07}}px;height:{{ windowHeight*0.05}}px;">
+<image class="fqyd_img" src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/fa.png?sign=477a95b934258129b88058eb7154d5c4&t=1588085449" style="width:{{ windowWidth*0.07}}px;height:{{ windowHeight*0.05}}px;">
 </image>
-<image class="fqyd_img" src="../../images/release/qi.png" style="width:{{ windowWidth*0.07}}px;height:{{ windowHeight*0.05}}px;">
+<image class="fqyd_img" src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/qi.png?sign=adaf8d83b5264735e7f7bf9598309953&t=1588085429" style="width:{{ windowWidth*0.07}}px;height:{{ windowHeight*0.05}}px;">
 </image>
-<image class="fqyd_img" src="../../images/release/yun.png" style="width:{{ windowWidth*0.1}}px;height:{{ windowHeight*0.07}}px;">
+<image class="fqyd_img" src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/yun.png?sign=73aa4674b5335c8c43b08db1da97cc37&t=1588085410" style="width:{{ windowWidth*0.1}}px;height:{{ windowHeight*0.07}}px;">
 </image>
-<image class="fqyd_img" src="../../images/release/dong.png" style="width:{{ windowWidth*0.1}}px;height:{{ windowHeight*0.07}}px;">
+<image class="fqyd_img" src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/dong.png?sign=ff2f34c59139ec327a76541f91d1b9b9&t=1588085388" style="width:{{ windowWidth*0.1}}px;height:{{ windowHeight*0.07}}px;">
 </image>
 </view>
- <image class="fqyd_xian"src="../../images/release/xian.png" style="width:{{ windowWidth}}px;height:{{ windowHeight*0.004}}px;">
+ <image class="fqyd_xian"src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/xian.png?sign=b35588c58a041d866fbe8cda91682517&t=1588086110" style="width:{{ windowWidth}}px;height:{{ windowHeight*0.004}}px;">
 </image>
 <view class="fqyd_text_view">
   <text class="fqyd_text" wx:for="{{text}}" style="width:{{ windowWidth*0.6}}px;">{{item}}</text>
@@ -53,7 +53,37 @@
   <view class="InputView">
 
    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">开始时间——结束时间*</text>
-  <input class="weui-input InputField" auto-focus placeholder=""/>
+  <view  class="leveltag" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.035}}px;" >
+          <text bindtap="choose_time">选择时间</text>
+           <van-popup
+          show="{{ time }}"
+          position="bottom"
+          custom-style="height: 70%;"
+          bind:close="onClose"
+          round
+          >
+         <view class='containt'>
+  <scroll-view class="scroll-view_H" scroll-x>
+    <view class='list' style='width:{{ width }}rpx'>
+      <view bindtap="select" wx:for="{{ calendar }}" wx:for-item="item" wx:for-index="index" data-index="{{ index }}" class='listItem {{index==currentIndex? "current":""}}'>
+        <text class='name'>{{ item.week }}</text>
+        <text class='date'>{{ item.date }}</text>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='time'>
+    <view wx:for="{{ timeArr }}" wx:for-item="timeItem" wx:for-index="timeIndex" data-Tindex="{{ timeIndex }}" bindtap='selectTime' class='listItem {{ currentTime==timeIndex? "current":"" }}'>
+      <text>{{ timeItem.time }}</text>
+      <text>{{ timeItem.status }}</text>
+    </view>
+  </view>
+  <view class='operate'>
+   <button class='del'>删除</button>
+   <button class='save'>保存</button>
+  </view>
+</view>
+   </van-popup>
+    </view>
   </view>
     <view class="InputView">
 
@@ -64,7 +94,7 @@
           <van-popup
           show="{{ show }}"
           position="bottom"
-          custom-style="height: 40%;"
+          custom-style="height: 20%;"
           bind:close="onClose"
           round
           >

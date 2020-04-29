@@ -6,9 +6,9 @@ Page({
    */
   data: {
     imgUrls: [
-      '../../images/match/云1.png',
-      '../../images/match/云1.png',
-      '../../images/match/云1.png',
+      'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416',
+      'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416',
+      'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416',
     ],
     indicatorDots: true,//导航点
     autoplay: true,
