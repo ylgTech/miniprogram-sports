@@ -4,7 +4,6 @@
     "van-dropdown-menu": "../../miniprogram_npm/@vant/weapp/dropdown-menu/index",
     "van-dropdown-item": "../../miniprogram_npm/@vant/weapp/dropdown-item/index",
     "van-cell": "../../miniprogram_npm/@vant/weapp/cell/index",
-    "van-divider": "../../miniprogram_npm/@vant/weapp/divider/index",
     "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index"
   }
 }

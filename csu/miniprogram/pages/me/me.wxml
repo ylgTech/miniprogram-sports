@@ -4,7 +4,7 @@
   <text id="username">{{username}}</text>
   <view id="alterinfo">
     <text space="nbsp">点击修改/编辑个人信息 </text>
-    <image src="/images/me/edit.png" mode="widthFix"></image>
+    <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/edit.png?sign=c6e90225a1a1f97229d0d9af430aa900&t=1588086342" mode="widthFix"></image>
   </view>
 </view>
 <view id="middle">

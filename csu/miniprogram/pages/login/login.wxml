@@ -1,4 +1,4 @@
-<image src="/images/login/登录.png" class="img-top"> </image>
+<image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E7%99%BB%E5%BD%95.png?sign=a8f059ecf1931ea27206ad65976bb5bf&t=1588149303" class="img-top"> </image>
 
 <view class="login">
 
@@ -15,5 +15,5 @@
 </view>
 
 <view class="but" bindtap="register">
-<image src="/images/login/登录按钮0.png" class="img2"></image>
+<image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E7%99%BB%E5%BD%95%E6%8C%89%E9%92%AE0.png?sign=83b26a913d84863b91d3afdc6b403de2&t=1588149316" class="img2"></image>
 </view>

@@ -15,6 +15,6 @@
       </swiper-item>
     </block>
   </swiper>
-  <view class="container" style="backgroud:url('../../images/match/背景.png')">
+  <view class="container" style="backgroud:url('https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E8%83%8C%E6%99%AF.png?sign=f711f31663ac95c4171dfc8cf0e19d91&t=1588149728')">
     <view class="time">时间显示，待修改</view>
   </view>
