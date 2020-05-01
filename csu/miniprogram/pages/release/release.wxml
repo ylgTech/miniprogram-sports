@@ -1,133 +1,104 @@
 <!--pages/release/release.wxml-->
-<view  class= "ColorBackground" style="width:{{ windowWidth}}px;height:{{ windowHeight*0.5}}px;">
-<view class="faqiyundong">
-<image class="fqyd_img" src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/fa.png?sign=477a95b934258129b88058eb7154d5c4&t=1588085449" style="width:{{ windowWidth*0.07}}px;height:{{ windowHeight*0.05}}px;">
-</image>
-<image class="fqyd_img" src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/qi.png?sign=adaf8d83b5264735e7f7bf9598309953&t=1588085429" style="width:{{ windowWidth*0.07}}px;height:{{ windowHeight*0.05}}px;">
-</image>
-<image class="fqyd_img" src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/yun.png?sign=73aa4674b5335c8c43b08db1da97cc37&t=1588085410" style="width:{{ windowWidth*0.1}}px;height:{{ windowHeight*0.07}}px;">
-</image>
-<image class="fqyd_img" src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/dong.png?sign=ff2f34c59139ec327a76541f91d1b9b9&t=1588085388" style="width:{{ windowWidth*0.1}}px;height:{{ windowHeight*0.07}}px;">
-</image>
+<view class="ColorBackground" style="width:{{ windowWidth}}px;height:{{ windowHeight*0.5}}px;">
+  <view class="faqiyundong">
+    <image class="fqyd_img" src="../../images/release/fa.png" style="width:{{ windowWidth*0.07}}px;height:{{ windowHeight*0.05}}px;">
+    </image>
+    <image class="fqyd_img" src="../../images/release/qi.png" style="width:{{ windowWidth*0.07}}px;height:{{ windowHeight*0.05}}px;">
+    </image>
+    <image class="fqyd_img" src="../../images/release/yun.png" style="width:{{ windowWidth*0.1}}px;height:{{ windowHeight*0.07}}px;">
+    </image>
+    <image class="fqyd_img" src="../../images/release/dong.png" style="width:{{ windowWidth*0.1}}px;height:{{ windowHeight*0.07}}px;">
+    </image>
+  </view>
+  <image class="fqyd_xian" src="../../images/release/xian.png" style="width:{{ windowWidth}}px;height:{{ windowHeight*0.004}}px;">
+  </image>
+  <view class="fqyd_text_view">
+    <text class="fqyd_text" wx:for="{{text}}" style="width:{{ windowWidth*0.6}}px;">{{item}}</text>
+  </view>
 </view>
- <image class="fqyd_xian"src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/xian.png?sign=b35588c58a041d866fbe8cda91682517&t=1588086110" style="width:{{ windowWidth}}px;height:{{ windowHeight*0.004}}px;">
-</image>
-<view class="fqyd_text_view">
-  <text class="fqyd_text" wx:for="{{text}}" style="width:{{ windowWidth*0.6}}px;">{{item}}</text>
-</view>
-</view>
-<text style="width:{{ windowWidth}}px;" class = "SelectTitle">请选择活动类别</text>
-<view > <!-- 整体白色背景 -->
-  
+<text style="width:{{ windowWidth}}px;" class="SelectTitle">请选择活动类别</text>
+<view>
+  <!-- 整体白色背景 -->
+
   <view style="width:{{ windowWidth*0.72}}px;" class="sportslist">
-    <view style="width:{{ item.length*windowWidth*0.065}}px;" wx:for="{{sportkinds }}" >
-      <view  class="sportele" style="height:{{ windowHeight*0.05}}px;">
-         {{item}}
+    <view style="width:{{ item.length*windowWidth*0.065}}px;" wx:for="{{sportkinds }}">
+      <view class="sportele" style="height:{{ windowHeight*0.05}}px;">
+        {{item}}
       </view>
     </view>
-    <view  class="sportele" style="height:{{ windowHeight*0.05}}px;width:{{ windowWidth*0.65}}px;">
-        +
+    <view class="sportele" style="height:{{ windowHeight*0.05}}px;width:{{ windowWidth*0.65}}px;">
+      +
     </view>
   </view>
 </view>
-<view style="width:{{ windowWidth*0.75}}px;" class = "SetTitle">
+<view style="width:{{ windowWidth*0.75}}px;" class="SetTitle">
   <text style="width:{{ windowWidth*0.40}}px;">活动设置</text>
-      <view  class="setele" style="width:{{ windowWidth*0.31}}px;height:{{ windowHeight*0.035}}px;" bindtap="setlocation">
-         {{location}}
-      </view>
+  <view class="setele" style="width:{{ windowWidth*0.31}}px;height:{{ windowHeight*0.035}}px;" bindtap="setlocation">
+    {{location}}
+  </view>
 </view>
 <view style="width:{{ windowWidth*0.72}}px;" class="sportslist">
   <view class="InputView">
-   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动名称*</text>
-  <input class="weui-input InputField" auto-focus placeholder=""/>
+    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动名称*</text>
+    <input bindblur="sport_title_change" class="weui-input InputField" auto-focus placeholder="" />
   </view>
-  
+
   <view class="InputView">
-   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动发起者*</text>
-  <input class="weui-input InputField" auto-focus placeholder=""/>
+    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动发起者*</text>
+    <input bindblur="name_change" class="weui-input InputField" auto-focus placeholder="" />
   </view>
   <view class="InputView">
     <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动人数*</text>
-    <input class="weui-input InputField" auto-focus placeholder=""/>
+    <input class="weui-input InputField" auto-focus placeholder="" />
   </view>
   <view class="InputView">
 
-   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">开始时间——结束时间*</text>
-  <view  class="leveltag" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.035}}px;" >
-          <text bindtap="choose_time">选择时间</text>
-           <van-popup
-          show="{{ time }}"
-          position="bottom"
-          custom-style="height: 70%;"
-          bind:close="onClose"
-          round
-          >
-         <view class='containt'>
-  <scroll-view class="scroll-view_H" scroll-x>
-    <view class='list' style='width:{{ width }}rpx'>
-      <view bindtap="select" wx:for="{{ calendar }}" wx:for-item="item" wx:for-index="index" data-index="{{ index }}" class='listItem {{index==currentIndex? "current":""}}'>
-        <text class='name'>{{ item.week }}</text>
-        <text class='date'>{{ item.date }}</text>
-      </view>
-    </view>
-  </scroll-view>
-  <view class='time'>
-    <view wx:for="{{ timeArr }}" wx:for-item="timeItem" wx:for-index="timeIndex" data-Tindex="{{ timeIndex }}" bindtap='selectTime' class='listItem {{ currentTime==timeIndex? "current":"" }}'>
-      <text>{{ timeItem.time }}</text>
-      <text>{{ timeItem.status }}</text>
-    </view>
+    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">开始时间——结束时间*</text>
+    <input class="weui-input InputField" auto-focus placeholder="" />
   </view>
-  <view class='operate'>
-   <button class='del'>删除</button>
-   <button class='save'>保存</button>
-  </view>
-</view>
-   </van-popup>
-    </view>
-  </view>
-    <view class="InputView">
+  <view class="InputView">
 
-   <text style="width:{{ windowWidth*0.72}}px;" class="ActionName" >运动等级*</text>
-     
-   <view  class="leveltag" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.035}}px;" >
-          <text bindtap="showPopup">{{level}}</text>
-          <van-popup
-          show="{{ show }}"
-          position="bottom"
-          custom-style="height: 20%;"
-          bind:close="onClose"
-          round
-          >
-           <van-cell class='hint'>
-           <view class='view-hint'>选择等级</view>
-           </van-cell>
-           <scroll-view style="max-height: {{ windowHeight * 0.4 }}px" scroll-y="true"        scroll-with-animation scroll-into-view="{{ toView }}">
-             <van-row  wx:for="{{ listItem }}" wx:key="index" >
-            <van-cell  custom-class="{{ item.id == toView ? 'bgdc' : '' }}" size="large"  clickable="true" data-index="{{ index }}" bindtap='selectlevel'>
-          <view slot="title" class="cell-title">
-          <view class='view-hint'>{{item}}</view>
-          </view>
+    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">运动等级*</text>
+
+    <view class="leveltag" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.035}}px;">
+      <text bindtap="showPopup">{{level}}</text>
+      <van-popup show="{{ show }}" position="bottom" custom-style="height: 40%;" bind:close="onClose" round>
+        <van-cell class='hint'>
+          <view class='view-hint'>选择等级</view>
+        </van-cell>
+        <scroll-view style="max-height: {{ windowHeight * 0.4 }}px" scroll-y="true" scroll-with-animation scroll-into-view="{{ toView }}">
+          <van-row wx:for="{{ listItem }}" wx:key="index">
+            <van-cell custom-class="{{ item.id == toView ? 'bgdc' : '' }}" size="large" clickable="true" data-index="{{ index }}" bindtap='selectlevel'>
+              <view slot="title" class="cell-title">
+                <view class='view-hint'>{{item}}</view>
+              </view>
             </van-cell>
-      </van-row>
-    </scroll-view>
-          </van-popup>
+          </van-row>
+        </scroll-view>
+      </van-popup>
     </view>
-     </view>
-    <view class="InputView">
-    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">运动简介</text>
-    <input class="weui-input InputField" auto-focus placeholder=""/>
-    </view>
-    <view class="checkbox" style="width:{{ windowWidth*0.72}}px;">
-    <view class = "checkbox_item1"style="width:{{ windowWidth*0.30}}px;">
-       <checkbox><view class="ActionName">提供运动场地</view></checkbox>
-    </view>
-    <view  class = "checkbox_item2" style="width:{{ windowWidth*0.30}}px;">
-        <checkbox><view class="ActionName">自带运动装备</view></checkbox>
-
-      </view>
-     </view>
-      <view class="levelsum" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.07}}px;">
-          提交
-      </view>
   </view>
+  <view class="InputView">
+    <text style="width:{{ windowWidth*0.72}}px;" class="ActionName">运动简介</text>
+    <input class="weui-input InputField" auto-focus placeholder="" bindblur="intro_change"/>
+  </view>
+  <view class="checkbox" style="width:{{ windowWidth*0.72}}px;">
+    <view class="checkbox_item1" style="width:{{ windowWidth*0.30}}px;">
+      <checkbox>
+        <view class="ActionName">提供运动场地</view>
+      </checkbox>
+    </view>
+    <view class="checkbox_item2" style="width:{{ windowWidth*0.30}}px;">
+      <checkbox>
+        <view class="ActionName">自带运动装备</view>
+      </checkbox>
 
+    </view>
+  </view>
+  <view class="levelsum" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.07}}px;" bindtap="submit">
+    提交
+  </view>
+  <loading hidden="{{loadingHidden}}">
+    提交中...
+  </loading>
+</view>
