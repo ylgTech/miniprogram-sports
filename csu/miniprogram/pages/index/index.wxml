@@ -1,4 +1,8 @@
 <view class="flex">
+<view class="pop_detail" wx:if="{{pop_detail}}">
+<view style="width:100%;text-align: center;">活动详情</view>
+<image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/xueshan.jpg?sign=479889dcfd5d1b0ec705f12800aeb774&t=1588413106" style="width:200rpx;height:200rpx;"></image>
+</view>
   <image class='background' src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/background.png?sign=9209779092806cc733c84ee4bfc526cc&t=1588148134" mode="aspectFill"></image>
   <view>
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000">

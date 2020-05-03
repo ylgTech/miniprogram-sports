@@ -1,34 +1,36 @@
-// pages/match/match.js
+// pages/test/test.js
 Page({
 
   /**
    * 页面的初始数据
    */
+  /**
+ * 页面的初始数据
+ */
   data: {
-    imgUrls: [
-      'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416',
-      'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416',
-      'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416',
-    ],
-    indicatorDots: true,//导航点
-    autoplay: true,
-    circular: true, //衔接滑动
-    interval: 5000,
-    duration: 1000,
-    pop_detail:false,
-    
+    degs: 0,
+    degss: 0,
+    degsss: 0,
+    subords: [
+      { name: '张三', pay: '300.00' },
+      { name: '李四', pay: '400.00' },
+      { name: 'Marry', pay: '200.00' },
+      { name: '龙霸天', pay: '300.00' },
+    ]
   },
-  match_detail:function(e){
+
+  /**
+   * 折叠展开动画
+   */
+  rotateAnim: function () {
+    let deg = this.data.degs;
+    deg = deg == 0 ? 90 : 0;
     this.setData({
-      pop_detail:true
+      degs: deg
     })
   },
-  pop_fade:function(e){
-    
-    this.setData({
-      pop_detail: false
-    })
-  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */

@@ -1,20 +1,50 @@
+<image class='background' src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/background.png?sign=9209779092806cc733c84ee4bfc526cc&t=1588148134" mode="aspectFill" bindtap="pop_fade"></image>
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" previous-margin="20rpx" next-margin="20rpx">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image style="display:block;width:92%;margin:0 auto;border-radius:20rpx;" src="{{item}}" class="slide-image" mode="widthFix" width="355rpx" height="150rpx" />
+    </swiper-item>
+  </block>
+</swiper>
+<view class="container">
+  <view class="time" style="margin-top:16rpx;">时间显示，待修改</view>
+  <view class="each-mes" wx:for="match_all" bindtap="match_detail">
+    <view class="pop_detail" wx:if="{{pop_detail}}">
+      <view style="width:100%;text-align: center;font-size:40rpx;color: rgb(167, 164, 164);margin-top:30rpx;">活动详情</view>
+      <view class="match_detail_1">
+        <view class="match_detail_2">
 
-  <swiper
-    indicator-dots="{{indicatorDots}}"
-    autoplay="{{autoplay}}"
-    interval="{{interval}}"
-    duration="{{duration}}"
-    circular="{{circular}}"
-    previous-margin="20rpx"
-    next-margin="20rpx"
+          <image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/xueshan.jpg?sign=479889dcfd5d1b0ec705f12800aeb774&t=1588413106" style="width:160rpx;height:160rpx;"></image>
+          <view style="width:50%;">活动名称</view>
+        </view>
+        <view class="match_detail_3">
+          <view class="match_detail_3_left">发起者</view>
+          <view class="match_detail_3_right">AAA</view>
+        </view>
+        <view class="match_detail_3">
+          <view class="match_detail_3_left">时间</view>
+          <view class="match_detail_3_right">AAA</view>
+        </view>
+        <view class="match_detail_3">
+          <view class="match_detail_3_left">地点</view>
+          <view class="match_detail_3_right">AAA</view>
+        </view>
+        <view class="match_detail_3">
+          <view class="match_detail_3_left">参与人数</view>
+          <view class="match_detail_3_right">AAA</view>
+        </view>
+        <view class="match_detail_4">
+          <view class="match_detail_4_left">活动描述</view>
+          <view class="match_detail_4_right">AAA</view>
+        </view>
+      </view>
+      <button style="width:250rpx;height:90rpx;border-radius:40px;background-color: rgb(252, 229, 247);">参与活动</button>
+    </view>
 
-  >
-    <block wx:for="{{imgUrls}}">
-      <swiper-item>
-        <image style="display:block;width:88%;margin:0 auto;border-radius:20rpx;" src="{{item}}" class="slide-image" mode="widthFix" width="355rpx" height="150rpx" />
-      </swiper-item>
-    </block>
-  </swiper>
-  <view class="container" style="backgroud:url('https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E8%83%8C%E6%99%AF.png?sign=f711f31663ac95c4171dfc8cf0e19d91&t=1588149728')">
-    <view class="time">时间显示，待修改</view>
+    <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
+    <view class="content">
+      <view style="font-weight:bold">比赛名称</view>
+      <view>简介</view>
+    </view>
   </view>
+</view>
