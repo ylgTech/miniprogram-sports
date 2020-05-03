@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pop_detail:false,
     active: 1,
     value: '2018-11-11',
     week: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -17,7 +18,7 @@ Page({
     nextMonth: 'nextMonth',
     selectVal: '',
     imgUrls: [
-      "https://i0.hdslb.com/bfs/sycp/creative_img/202004/f35607c9c112e5934dd45169484053c3.jpg", "https://i0.hdslb.com/bfs/sycp/creative_img/202004/f35607c9c112e5934dd45169484053c3.jpg", "https://i0.hdslb.com/bfs/sycp/creative_img/202004/f35607c9c112e5934dd45169484053c3.jpg"
+      "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/paobu.jpg?sign=e3e5e5d7d1b2bd9227eb91fe7ba99a98&t=1588412928", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/zuqiu1.jpg?sign=313bafac7d572f421d2d9450342626ec&t=1588412797", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/huaban.jpg?sign=999f817b770ec9ed0ab71373ce216f4a&t=1588412853", 
     ],
     rank: [{
         rank: 1,

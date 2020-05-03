@@ -1,12 +1,115 @@
 /* pages/match/match.wxss */
-
-.container{
-  width: 100%;
-  height: 750rpx;
-  background-color: #fff;
-  border-radius: 100rpx 0 0 0;
+page {
+  background: #fff;
   
+}
+.pop_detail{
+  width: 90%;
+  height: 1100rpx;
+  background: #fff;
+  position: fixed;
+  top: 7%;
+  left: 5%;
+  z-index: 10;
+  box-shadow: 0px 3px 3px #888888;
+}
+.match_detail_1{
+  margin-left: 7%;
+  width: 86%;
+  height: 70%;
+  background-color: rgb(245, 245, 245);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  text-align: center;
+}
+.match_detail_2{
+  margin-top: 30rpx;
+  width: 80%;
+  height: 200rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.match_detail_3{
+  width: 100%;
+  height: 50rpx;
+  position: relative;
+  margin-top: 30rpx;
+}
+.match_detail_4{
+  width: 100%;
+  height: 220rpx;
+  position: relative;
+  margin-top: 30rpx;
+}
+.match_detail_4_left{
+  position: absolute;
+  left: 0%;
+  top:0;
+  color: rgb(167, 164, 164);
+}
+.match_detail_4_right{
+  word-wrap: break-word;
+  position: absolute;
+  left: 10%;
+  top: 28%;
+}
+.match_detail_3_left{
+  position: absolute;
+  left: 0%;
+  color: rgb(167, 164, 164);
+}
+.match_detail_3_right{
+  position: absolute;
+  right: 0%;
+}
+.btn{
+  width: 250rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  background-color: rgb(252, 229, 247);
+  border-radius: 25rpx;
+  margin-left: 50%;
+}
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: 0;
+}
+.container{
+  margin-top: 50rpx;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(249,249,249);
+  border-radius: 100rpx 0 0 0;
+  z-index: 5;
 }
 .time{
   color: rgb(182, 178, 178);
+  height: 60rpx;
+}
+.each-mes{
+  width: 88%;
+  background-color: #fff;
+  height: 250rpx;
+  margin-top: 50rpx;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  flex-direction: row;
+  box-shadow: 3px 3px 5px #888888;
+  
+}
+.content{
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  flex-direction: column;
+  width: 350rpx;
+  height: 200rpx;
+  margin-left: 20rpx;
 }

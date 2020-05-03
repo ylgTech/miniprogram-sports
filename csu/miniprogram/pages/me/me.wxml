@@ -22,8 +22,17 @@
   </view>
 </view>
 <view id="btns">
-  <view class="btnitem">
+  <view class="btnitem" bindtap="release_hidden_change">
     我发起的 >>>
+  </view>
+  <view wx:if="{{my_release}}" style="width:100%;">
+    <view wx:for="{{my_release_detail}}" class="each-mes" bindtap="release_hidden_change2">
+      <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416" style="width:220rpx;height:120rpx;margin-left:30rpx;"></image>
+      <view class="content">
+        <view style="font-weight:bold">比赛名称{{item._name}}</view>
+        <view>简介</view>
+      </view>
+    </view>
   </view>
   <view class="btnitem">
     我参加的 >>>

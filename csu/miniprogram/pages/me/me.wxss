@@ -1,6 +1,6 @@
 /* pages/me/me.wxss */
 page{
-  height: 100%;
+  
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -101,6 +101,7 @@ page{
 }
 #btns{
   width: 100%;
+  
 }
 .btnitem{
   color: #343434;
@@ -111,4 +112,25 @@ page{
   margin: 10rpx 0;
   background-image: linear-gradient(to right, rgba(245, 251, 254),#ffffff);
   padding-left: 60rpx;
+}
+.each-mes{
+  width: 82%;
+  background-color: #fff;
+  height: 180rpx;
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  flex-direction: row;
+  box-shadow: 3px 3px 5px #888888;
+  margin-left: 9%;
+}
+.content{
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  flex-direction: column;
+  width: 350rpx;
+  height: 200rpx;
+  margin-left: 20rpx;
 }
