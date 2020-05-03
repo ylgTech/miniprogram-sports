@@ -27,7 +27,7 @@ Page({
       score: 100,
       logthree: [{'date':'2.30','proj':'步行10公里','change':'+10'},{'date':'3.32','proj':'长跑5公里','change':'+15'},{'date':'4.31','proj':'步行10公里','change':'+10'}]
     })
-    db.collection('person_login').get({
+    db.collection('sport').get({
       success:res =>{
         console.log(res.data)
         that.setData({
