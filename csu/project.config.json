@@ -81,12 +81,26 @@
 					"id": -1,
 					"name": "pages/me/me",
 					"pathName": "pages/me/me",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "pages/test/test",
 					"pathName": "pages/test/test",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/release/release",
+					"pathName": "pages/release/release",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/group-detail/group-detail",
+					"pathName": "pages/group-detail/group-detail",
 					"scene": null
 				}
 			]

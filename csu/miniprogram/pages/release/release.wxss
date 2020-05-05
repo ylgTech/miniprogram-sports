@@ -20,6 +20,10 @@ page{
   border-color: grey;
   border-radius: 6rpx;
 }
+.selected{
+  background-color: #e2eaf9;
+  
+}
 .sportslist{
   display: flex;
   display: -webkit-flex;

@@ -1,0 +1,54 @@
+<!--pages/group-detail/group-detail.wxml-->
+<view class="container">
+
+  <scroll-view scroll-y="true" class="con-scroll">
+    <view class="container">
+      <view class="back" bindtap="back">返回</view>
+      <view style="margin-top:40rpx;">{{group_name}}牛拉松</view>
+      <view>{{group_istu}}计算机学院</view>
+      <view class="summary">
+        <view>{{group-summary}}一段简介</view>
+      </view>
+      <view style="margin-top:40rpx;">活动日程</view>
+      <view class="schedule">
+        <view class="schedule-1">活动日程！！！！</view>
+      </view>
+      <view style="margin-top:40rpx;">相册</view>
+      <view class="album">
+        <view class="album-1">
+          <image src="{{img_test}}"></image>
+        </view>
+        <view class="album-2">
+          <image src="{{img_test}}"></image>
+        </view>
+        <view class="album-3">
+          <image src="{{img_test}}"></image>
+        </view>
+      </view>
+      <view style="margin-top:40rpx;">成员</view>
+      <view class="person1">
+        <view class="person1-1">
+          <image src="{{img_test}}" style="width:100%;height:100%;border-radius:50%;"></image>
+        </view>
+        <view>我是谁</view>
+        <view class="chairman" style="font-size:25rpx;">(组长)</view>
+      </view>
+      <view class="person2">
+        <scroll-view scroll-x="true" style="width:88%;">
+          <!-- 以下是小组各个成员排列，需要改成wx：for形式 -->
+          <view class="person2-flex">
+            <view class="person2-1">
+              <image src="{{img_test}}" style="width:100%;height:100%;border-radius:50%;"></image>
+            </view>
+            <view class="person2-1">
+              <image src="{{img_test}}" style="width:100%;height:100%;border-radius:50%;"></image>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+      <view style="margin-top:80rpx;"></view>
+      <image src="/images/match/圆角矩形6.png" style="width:300rpx;height:120rpx;"></image>
+      <view style="margin-top:120rpx;"></view>
+    </view>
+  </scroll-view>
+</view>

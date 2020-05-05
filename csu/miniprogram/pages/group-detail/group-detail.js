@@ -1,29 +1,19 @@
-// pages/test/test.js
+// pages/group-detail/group-detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
-  /**
- * 页面的初始数据
- */
   data: {
-    degs: 0,
-    degss: 0,
-    degsss: 0,
-    subords: [
-      { name: '张三', pay: '300.00' },
-      { name: '李四', pay: '400.00' },
-      { name: 'Marry', pay: '200.00' },
-      { name: '龙霸天', pay: '300.00' },
-    ],
-    show: true
+    group_name:'',
+    group_istu:'',
+    img_test:'https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/%E4%BA%911.png?sign=cf71382a83772f66fd949cdb60f08461&t=1588076072',
   },
-  onClose() {
-    this.setData({ close: false });
+  back:function(e){
+    wx.switchTab({
+      url: '/pages/group/group-imprv',
+    })
   },
-  
-
   /**
    * 生命周期函数--监听页面加载
    */

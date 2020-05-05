@@ -26,16 +26,59 @@
     我发起的 >>>
   </view>
   <view wx:if="{{my_release}}" style="width:100%;">
-    <view wx:for="{{my_release_detail}}" class="each-mes" bindtap="release_hidden_change2">
+    <view wx:for="{{my_release_detail}}" class="each-mes-1" bindtap="match_detail">
+
+      <view class="pop_detail" wx:if="{{pop_detail}}" bindtap="pop_fade2">
+        <view style="width:100%;text-align: center;font-size:40rpx;color: rgb(167, 164, 164);margin-top:30rpx;">活动详情</view>
+        <view class="match_detail_1">
+          <view class="match_detail_2">
+
+            <image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/xueshan.jpg?sign=479889dcfd5d1b0ec705f12800aeb774&t=1588413106" style="width:160rpx;height:160rpx;"></image>
+            <view class="match_detail_2_title">{{item._sport_title}}</view>
+            <view class="match_detail_2_intro">{{item._introduction}}</view>
+          </view>
+          <view class="match_detail_3">
+            <view class="match_detail_3_left">发起者</view>
+            <view class="match_detail_3_right">{{item._name}}</view>
+          </view>
+          <view class="match_detail_3">
+            <view class="match_detail_3_left">时间</view>
+            <view class="match_detail_3_right">{{item._time}}</view>
+          </view>
+          <view class="match_detail_3">
+            <view class="match_detail_3_left">地点</view>
+            <view class="match_detail_3_right">{{item._destination}}</view>
+          </view>
+          <view class="match_detail_3">
+            <view class="match_detail_3_left">参与人数</view>
+            <view class="match_detail_3_right">{{item._number}}</view>
+          </view>
+          <view class="match_detail_4">
+            <view class="match_detail_4_left">活动描述</view>
+            <view class="match_detail_4_right">{{item._introduction_detail}}</view>
+          </view>
+        </view>
+        
+      </view>
+
       <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416" style="width:220rpx;height:120rpx;margin-left:30rpx;"></image>
-      <view class="content">
+      <view class="content-1">
         <view style="font-weight:bold">{{item._sport_title}}</view>
         <view>{{item._introduction}}</view>
       </view>
     </view>
   </view>
-  <view class="btnitem">
+  <view class="btnitem" bindtap="release_hidden_change">
     我参加的 >>>
+  </view>
+  <view wx:if="{{my_release}}" style="width:100%;">
+    <view wx:for="{{my_release_detail}}" class="each-mes-1" bindtap="match_detail">
+    <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416" style="width:220rpx;height:120rpx;margin-left:30rpx;"></image>
+      <view class="content-1">
+        <view style="font-weight:bold">{{item._sport_title}}</view>
+        <view>{{item._introduction}}</view>
+      </view>
+    </view>
   </view>
   <view class="btnitem">
     未完待续 >>>

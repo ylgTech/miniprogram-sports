@@ -1,4 +1,5 @@
 // pages/release/release.js
+const db = wx.cloud.database()
 Page({
 
   /**
@@ -12,48 +13,9 @@ Page({
     width: 0,
     currentIndex: 0,
     currentTime: 0,
-    timeArr: [{
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }, {
-      "time": "8:00-10:00",
-      "status": "约满"
-    }],
-    location: "点击获取地理位置",
-    level: '选择等级',
+    timeArr: [{ "time": "8:00-10:00", "status": "约满" }, { "time": "10:00-12:00", "status": "约满" }, { "time": "12:00-14:00", "status": "未满" }, { "time": "14:00-16:00", "status": "约满" },  { "time": "16:00-18:00", "status": "约满" }, { "time": "18:00-20:00", "status": "约满" }, { "time": "20:00-22:00", "status": "约满" }, { "time": "22:00-24:00", "status": "约满" },  ],
+    location: '',
+    level:'选择等级',
     //发起运动的文字内容
     toView: '',
     listItem: ["难", "中", "易"],
@@ -93,7 +55,85 @@ Page({
     value1: 0,
     value2: 'a'
   },
-  setlocation: function () {
+
+  kind_select:function(e){
+    this.setData({
+      kind: e.currentTarget.dataset.kind,
+      current_item: e.currentTarget.dataset.key
+    })
+  },
+  submit: function (e) {
+    var that = this
+    that.setData({
+      loadingHidden: false
+    })
+    setTimeout(function () {
+      that.setData({
+        loadingHidden: true
+      })
+      db.collection('sport').add({
+        data: {
+          _sport_title: that.data.sport_title,
+          _introduction: that.data.introduction,
+          _name: that.data.name,
+          _number: that.data.number,
+          _introduction_detail:'5.10号晚19点在南校操场集合跑步',
+          _destination:'南校操场',
+          _time: that.data.time,
+        },
+        success: res => {
+          console.log("成功添加运动信息！")
+
+        }
+      })
+      wx.showToast({
+        title: '提交成功', //提示文字
+        duration: 1000, //显示时长
+        mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
+        icon: 'success', //图标，支持"success"、"loading"  
+        success: function () {
+          setTimeout(function () {
+            wx.reLaunch({
+              url: '/pages/index/index',
+            })
+          }, 1000)
+        }, //接口调用成功
+        fail: function () { }, //接口调用失败的回调函数  
+        complete: function () { } //接口调用结束的回调函数  
+      })
+      
+
+    }, 1000)
+  },
+  inputTitle(e) {
+    // this.data.error.title = e.detail == "" ? true : false
+    this.setData({
+      error: this.data.error,
+      title: e.detail
+    })
+  },
+  inputAuthor(e) {
+    // this.data.error.author = e.detail == "" ? true : false
+    this.setData({
+      error: this.data.error,
+      author: e.detail
+    })
+  },
+  inputIntro(e) {
+    // this.data.error.intro = e.detail == "" ? true : false
+    this.setData({
+      error: this.data.error,
+      intro: e.detail
+    })
+  },
+  inputDetail(e) {
+    // this.data.error.detail = e.detail == "" ? true : false
+    this.setData({
+      error: this.data.error,
+      detail: e.detail
+    })
+  },
+  setlocation: function(){
     wx.getLocation({
       type: 'wgs84',
       success(res) {
@@ -240,11 +280,14 @@ Page({
   },
   selectTime: function (event) {
     //为下半部分的点击事件
+    var that = this
     this.setData({
       currentTime: event.currentTarget.dataset.tindex
     })
+    setTimeout(function () {
+      that.setData({
+        time:that.data.calendar[that.data.currentIndex].date + '/' + that.data.timeArr[that.data.currentTime].time
+      })
+    },500)
   },
-  submit: function () {
-    
-  }
 })

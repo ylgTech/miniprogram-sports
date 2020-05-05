@@ -31,12 +31,7 @@
 		</view>
 	</view>
 </view>
-<!-- <view style="width:{{ windowWidth*0.75}}px;" class="SetTitle">
-	<text style="width:{{ windowWidth*0.40}}px;">活动设置</text>
-	<view class="setele" style="width:{{ windowWidth*0.31}}px;height:{{ windowHeight*0.035}}px;" bindtap="setlocation">
-		{{location}}
-	</view>
-</view> -->
+<!-- <<<<<<< HEAD -->
 
 <view class="form">
 	<van-cell-group>
@@ -47,6 +42,7 @@
 		<van-field label="时间" value="{{ time }}" bind:tap="onPickTime" required is-link readonly />
 		<van-field label="运动等级" value="{{ grade }}" bind:tap="onPickGrade" required is-link readonly />
 		<van-field label="运动简介" value="{{ intro }}" bind:change="inputIntro" type="textarea" autosize clearable placeholder="" />
+		<van-field label="运动描述" value="{{ detail }}" bind:change="inputDetail" type="textarea" autosize clearable placeholder="" />
 	</van-cell-group>
 
 	<button class="cu-btn line-blue round lg shadow button" bind:click="submit">提交</button>
@@ -84,90 +80,3 @@
 	</van-popup>
 
 </view>
-
-<!-- <view style="width:{{ windowWidth*0.72}}px;" class="sportslist">
-	<view class="InputView">
-		<text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动名称*</text>
-		<input class="weui-input InputField" auto-focus placeholder="" />
-	</view>
-
-	<view class="InputView">
-		<text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动发起者*</text>
-		<input class="weui-input InputField" auto-focus placeholder="" />
-	</view>
-	<view class="InputView">
-		<text style="width:{{ windowWidth*0.72}}px;" class="ActionName">活动人数*</text>
-		<input class="weui-input InputField" auto-focus placeholder="" />
-	</view>
-	<view class="InputView">
-
-		<text style="width:{{ windowWidth*0.72}}px;" class="ActionName">开始时间——结束时间*</text>
-		<view class="leveltag" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.035}}px;">
-			<text bindtap="onPickTime">选择时间</text>
-			<van-popup show="{{ showTime }}" position="bottom" custom-style="height: 70%;" bind:close="onClose" round>
-				<view class='containt'>
-					<scroll-view class="scroll-view_H" scroll-x>
-						<view class='list' style='width:{{ width }}rpx'>
-							<view bindtap="select" wx:for="{{ calendar }}" wx:for-item="item" wx:for-index="index" data-index="{{ index }}" class='listItem {{index==currentIndex? "current":""}}'>
-								<text class='name'>{{ item.week }}</text>
-								<text class='date'>{{ item.date }}</text>
-							</view>
-						</view>
-					</scroll-view>
-					<view class='time'>
-						<view wx:for="{{ timeArr }}" wx:for-item="timeItem" wx:for-index="timeIndex" data-Tindex="{{ timeIndex }}" bindtap='selectTime' class='listItem {{ currentTime==timeIndex? "current":"" }}'>
-							<text>{{ timeItem.time }}</text>
-							<text>{{ timeItem.status }}</text>
-						</view>
-					</view>
-					<view class='operate'>
-						<button class='del'>删除</button>
-						<button class='save'>保存</button>
-					</view>
-				</view>
-			</van-popup>
-		</view>
-	</view>
-	<view class="InputView">
-
-		<text style="width:{{ windowWidth*0.72}}px;" class="ActionName" >运动等级*</text>
-
-		<view class="leveltag" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.035}}px;">
-			<text bindtap="showPopup">{{level}}</text>
-			<van-popup show="{{ show }}" position="bottom" custom-style="max-height: 40%;" bind:close="onClose" round>
-				<van-cell class='hint'>
-					<view class='view-hint'>选择等级</view>
-				</van-cell>
-				<scroll-view style="max-height: {{ windowHeight * 0.4 }}px" scroll-y="true" scroll-with-animation scroll-into-view="{{ toView }}">
-					<van-row wx:for="{{ listItem }}" wx:key="index">
-						<van-cell custom-class="{{ item.id == toView ? 'bgdc' : '' }}" size="large" clickable="true" data-index="{{ index }}" bindtap='selectlevel'>
-							<view slot="title" class="cell-title">
-								<view class='view-hint'>{{item}}</view>
-							</view>
-						</van-cell>
-					</van-row>
-				</scroll-view>
-			</van-popup>
-		</view>
-	</view>
-	<view class="InputView">
-		<text style="width:{{ windowWidth*0.72}}px;" class="ActionName">运动简介</text>
-		<input class="weui-input InputField" auto-focus placeholder="" />
-	</view>
-	<view class="checkbox" style="width:{{ windowWidth*0.72}}px;">
-		<view class="checkbox_item1" style="width:{{ windowWidth*0.30}}px;">
-			<checkbox>
-				<view class="ActionName">提供运动场地</view>
-			</checkbox>
-		</view>
-		<view class="checkbox_item2" style="width:{{ windowWidth*0.30}}px;">
-			<checkbox>
-				<view class="ActionName">自带运动装备</view>
-			</checkbox>
-
-		</view>
-	</view>
-	<view class="levelsum" style="width:{{ windowWidth*0.20}}px;height:{{ windowHeight*0.07}}px;">
-		提交
-	</view>
-</view> -->
