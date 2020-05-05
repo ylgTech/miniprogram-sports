@@ -6,7 +6,9 @@
         "pages/me/me",
         "pages/group/group-select-college",
         "pages/group/group-imprv",
-        "pages/test/test"
+        "pages/test/test",
+        "pages/login/login",
+        "pages/group-detail/group-detail"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",

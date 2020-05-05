@@ -113,7 +113,7 @@ page{
   background-image: linear-gradient(to right, rgba(245, 251, 254),#ffffff);
   padding-left: 60rpx;
 }
-.each-mes{
+.each-mes-1{
   width: 82%;
   background-color: #fff;
   height: 180rpx;
@@ -125,6 +125,28 @@ page{
   box-shadow: 3px 3px 5px #888888;
   margin-left: 9%;
 }
+.content-1{
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  flex-direction: column;
+  width: 350rpx;
+  height: 200rpx;
+  margin-left: 20rpx;
+}
+/*移植内容*/
+.each-mes{
+  width: 100%;
+  background-color: #fff;
+  height: 220rpx;
+  margin-top: 50rpx;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  flex-direction: row;
+  box-shadow: 3px 3px 5px #888888;
+  
+}
 .content{
   display: flex;
   align-items: center; 
@@ -133,4 +155,98 @@ page{
   width: 350rpx;
   height: 200rpx;
   margin-left: 20rpx;
+}
+.pop_detail{
+  width: 90%;
+  height: 1100rpx;
+  background: #fff;
+  position: fixed;
+  top: 7%;
+  left: 5%;
+  z-index: 10;
+  box-shadow: 0px 3px 3px #888888;
+}
+.match_detail_1{
+  margin-left: 7%;
+  width: 86%;
+  height: 70%;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  text-align: center;
+}
+.match_detail_2{
+  margin-top: 30rpx;
+  width: 100%;
+  height: 200rpx;
+ position: relative;
+}
+.match_detail_2 image{
+  position: absolute;
+  left: 0;
+}
+.match_detail_2_title{
+  width: 50%;
+  text-align: center;
+  position: absolute;
+  right: 8%;
+  top: 0;
+  font-weight: bold;
+  font-size: 40rpx;
+}
+.match_detail_2_intro{
+  width: 50%;
+  height: 80%;
+  text-align: center;
+  position: absolute;
+  right: 8%;
+  top: 28%;
+  color: rgb(167, 164, 164);
+  font-size: 30rpx;
+  word-wrap: break-word;
+}
+.match_detail_3{
+  width: 100%;
+  height: 50rpx;
+  position: relative;
+  margin-top: 30rpx;
+}
+.match_detail_4{
+  width: 100%;
+  height: 220rpx;
+  position: relative;
+  margin-top: 30rpx;
+}
+.match_detail_4_left{
+  position: absolute;
+  left: 0%;
+  top:0;
+  color: rgb(167, 164, 164);
+}
+.match_detail_4_right{
+  word-wrap: break-word;
+  position: absolute;
+  left: 10%;
+  top: 28%;
+}
+.match_detail_3_left{
+  position: absolute;
+  left: 0%;
+  color: rgb(167, 164, 164);
+}
+.match_detail_3_right{
+  position: absolute;
+  right: 0%;
+}
+.pop_btn{
+  width:250rpx;
+  height:90rpx;
+  border-radius:40px;
+  background-color: #e2eaf9;
+  border:solid 1px #cfcfcf;
+  color: rgb(49, 49, 49);
+  position: absolute;
+  right: 7%;
 }

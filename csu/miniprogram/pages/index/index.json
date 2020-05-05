@@ -6,6 +6,7 @@
     "van-tabs": "../../miniprogram_npm/@vant/weapp/tabs/index",
     "van-cell": "../../miniprogram_npm/@vant/weapp/cell/index",
     "van-cell-group": "../../miniprogram_npm/@vant/weapp/cell-group/index",
+    
     "Calendar": "/components/calendar/calendar"
   }
 }
