@@ -11,6 +11,9 @@ Page({
     showTime: false,
     calendar: [],
     width: 0,
+    kind:'',
+    current_item:0,
+    time:'',
     currentIndex: 0,
     currentTime: 0,
     timeArr: [{ "time": "8:00-10:00", "status": "约满" }, { "time": "10:00-12:00", "status": "约满" }, { "time": "12:00-14:00", "status": "未满" }, { "time": "14:00-16:00", "status": "约满" },  { "time": "16:00-18:00", "status": "约满" }, { "time": "18:00-20:00", "status": "约满" }, { "time": "20:00-22:00", "status": "约满" }, { "time": "22:00-24:00", "status": "约满" },  ],
@@ -80,6 +83,7 @@ Page({
           _introduction_detail:'5.10号晚19点在南校操场集合跑步',
           _destination:'南校操场',
           _time: that.data.time,
+          _kind: that.data.kind,
         },
         success: res => {
           console.log("成功添加运动信息！")
