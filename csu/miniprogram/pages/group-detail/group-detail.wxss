@@ -1,0 +1,112 @@
+/* pages/group-detail/group-detail.wxss */
+.container{
+  background-color: #fff;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.con-scroll{
+  height: 100vh;
+}
+.back{
+  width: 80rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color:  rgb(49, 49, 49);
+  border: solid 1px  #cfcfcf;
+  position: absolute;
+  left: 6%;
+  top: 5%;
+}
+.summary{
+  width: 88%;
+  height: 150rpx;
+  background-color: #f5f7fd;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin-top: 40rpx;
+}
+.schedule{
+  width: 88%;
+  height: 300rpx;
+  background-color: #f5f7fd;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin-top: 40rpx;
+}
+.album{
+  width: 660rpx;
+  height: 400rpx;
+  position: relative;
+  margin-top: 40rpx;
+}
+.album-1{
+  width: 329rpx;
+  height: 400rpx;
+  
+}
+.album-2{
+  width: 325rpx;
+  height: 195rpx;
+  position: absolute;
+  top:0;
+  right: 0;
+}
+.album-3{
+  width: 325rpx;
+  height: 195rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.album-3 image{
+  width: 100%;
+  height: 100%;
+}
+.album-1 image{
+  width: 100%;
+  height: 100%;
+}
+.album-2 image{
+  width: 100%;
+  height: 100%;
+}
+.person1{
+  width: 88%;
+  height: 200rpx;
+  background-color: #f5f7fd;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin-top: 40rpx;
+  flex-direction: column;
+}
+.person1-1{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.person2-1{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  margin-left: 30rpx;
+}
+.person2{
+  width: 88%;
+  height: 300rpx;
+  background-color: #f5f7fd;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin-top: 40rpx;
+  flex-direction: column;
+}
+.person2-flex{
+  display: flex;
+}

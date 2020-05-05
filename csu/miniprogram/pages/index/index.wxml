@@ -1,8 +1,5 @@
 <view class="flex">
-<view class="pop_detail" wx:if="{{pop_detail}}">
-<view style="width:100%;text-align: center;">活动详情</view>
-<image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/xueshan.jpg?sign=479889dcfd5d1b0ec705f12800aeb774&t=1588413106" style="width:200rpx;height:200rpx;"></image>
-</view>
+
   <image class='background' src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/background.png?sign=9209779092806cc733c84ee4bfc526cc&t=1588148134" mode="aspectFill"></image>
   <view>
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000">
@@ -19,54 +16,48 @@
         <Calendar id="Calendar" bind:select="select"></Calendar>
         <view style='width:90%;margin:0 auto;text-align:center;padding:30rpx 20rpx;border:1rpx dashed #fff;'>
           <!--<button type='default' bindtap='toggleType'>切换周视图</button>-->
+          <!-- 出bug了 -->
+          <text class="active-top" >-推荐活动-</text>
+          <view class="each-mes" wx:for="{{match_all}}" bindtap="match_detail">
+            <view class="pop_detail" wx:if="{{pop_detail}}" bindtap="pop_fade2">
+              <view style="width:100%;text-align: center;font-size:40rpx;color: rgb(167, 164, 164);margin-top:30rpx;">活动详情</view>
+              <view class="match_detail_1">
+                <view class="match_detail_2">
 
-          <text class="active-top">-推荐活动-</text>
-          <view class="active-btn-group">
-            <view class="active-btn-column">
-              <view class="active-btn">
-                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-1.png?sign=f1559438966b8d88c5dcf5de4190d1b8&t=1588148160" class="active-btn-img"></image>
-                <view class="active-text-group">
-                <view class="active-btn-text">活动名称</view>
-                <view class="active-btn-text_">简介/标语</view>
-                </view><!-- <view><view>简介/标语</view></view> -->
+                  <image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/xueshan.jpg?sign=479889dcfd5d1b0ec705f12800aeb774&t=1588413106" style="width:160rpx;height:160rpx;" bindtap="pop_fade"></image>
+                  <view class="match_detail_2_title">{{item._sport_title}}</view>
+                  <view class="match_detail_2_intro">{{item._introduction}}</view>
+                </view>
+                <view class="match_detail_3">
+                  <view class="match_detail_3_left">发起者</view>
+                  <view class="match_detail_3_right">{{item._name}}</view>
+                </view>
+                <view class="match_detail_3">
+                  <view class="match_detail_3_left">时间</view>
+                  <view class="match_detail_3_right">{{item._time}}</view>
+                </view>
+                <view class="match_detail_3">
+                  <view class="match_detail_3_left">地点</view>
+                  <view class="match_detail_3_right">{{item._destination}}</view>
+                </view>
+                <view class="match_detail_3">
+                  <view class="match_detail_3_left">参与人数</view>
+                  <view class="match_detail_3_right">{{item._number}}</view>
+                </view>
+                <view class="match_detail_4">
+                  <view class="match_detail_4_left">活动描述</view>
+                  <view class="match_detail_4_right">{{item._introduction_detail}}</view>
+                </view>
               </view>
-              <view class="active-btn">
-                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-1.png?sign=f1559438966b8d88c5dcf5de4190d1b8&t=1588148160" class="active-btn-img"></image>
-                <view class="active-text-group">
-                <view class="active-btn-text">活动名称</view>
-                <view class="active-btn-text_">简介/标语</view>
-                </view><!-- <view><view>简介/标语</view></view> -->
-              </view>
-              <view class="active-btn">
-                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-1.png?sign=f1559438966b8d88c5dcf5de4190d1b8&t=1588148160" class="active-btn-img"></image>
-                <view class="active-text-group">
-                <view class="active-btn-text">活动名称</view>
-                <view class="active-btn-text_">简介/标语</view>
-                </view><!-- <view><view>简介/标语</view></view> -->
-              </view>
+              <button wx:if="{{pop_btn}}" class="pop_btn" bindtap="pop_fade">报名参加</button>
+              <button wx:if="{{pop_btn_in}}" class="pop_btn" bindtap="mark">打卡</button>
+              <van-loading wx:if="{{load_show}}" type="spinner" color="#1989fa" />
             </view>
-            <view class="active-btn-column">
-              <view class="active-btn">
-                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-2.png?sign=df376cea557492ad16aaa9a2bb42c752&t=1588148188" class="active-btn-img"></image>
-                <view class="active-text-group">
-                <view class="active-btn-text">活动名称</view>
-                <view class="active-btn-text_">简介/标语</view>
-                </view><!-- <view><view>简介/标语</view></view> -->
-              </view>
-              <view class="active-btn">
-                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-2.png?sign=df376cea557492ad16aaa9a2bb42c752&t=1588148188" class="active-btn-img"></image>
-                <view class="active-text-group">
-                <view class="active-btn-text">活动名称</view>
-                <view class="active-btn-text_">简介/标语</view>
-                </view><!-- <view><view>简介/标语</view></view> -->
-              </view>
-              <view class="active-btn">
-                <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/huodong-2.png?sign=df376cea557492ad16aaa9a2bb42c752&t=1588148188" class="active-btn-img"></image>
-                <view class="active-text-group">
-                <view class="active-btn-text">活动名称</view>
-                <view class="active-btn-text_">简介/标语</view>
-                </view><!-- <view><view>简介/标语</view></view> -->
-              </view>
+
+            <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
+            <view class="content">
+              <view style="font-weight:bold">{{item._sport_title}}</view>
+              <view>{{item._introduction}}</view>
             </view>
           </view>
           <!--<view>Selected:{{selectVal}}</view>-->

@@ -1,4 +1,5 @@
 const db = wx.cloud.database()
+const app = getApp()
 Page({
 
   /**
@@ -20,6 +21,7 @@ Page({
   },
   register: function (e) {
     var that = this
+    
     setTimeout(function () {
       db.collection('person_login').add({
         data: {
@@ -28,18 +30,28 @@ Page({
         },
         success: res => {
           console.log("成功注册！")
+          console.log(app.appData.user_openid)
           wx.reLaunch({
             url: '../index/index',
           })
         }
-      });
+      })
     }, 500);
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var that = this
+    wx.cloud.callFunction({
+      // 需调用的云函数名
+      name: 'login',
+
+      // 成功回调
+      complete: res => {
+        app.appData.user_openid = res.result.openid
+      }
+    })
   },
 
   /**

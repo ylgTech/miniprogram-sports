@@ -43,7 +43,11 @@ Page({
             "SportTypeName": "马拉松"
         }]
     },
-
+  test_nav:function(e){
+    wx.navigateTo({
+      url: '../../pages/group-detail/group-detail',
+    })
+  },
     /**
      * 生命周期函数--监听页面加载
      */

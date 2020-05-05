@@ -1,10 +1,11 @@
-<import src='/template/subordinate/subordinate.wxml' />
-<view class='title' catchtap='rotateAnim'>
-  <text>一级直属下级</text>
-  <view style='transform:rotate({{degs}}deg);transition:all 0.4s;'></view>
-</view>
-<view hidden='{{degs==0}}'>
-  <block wx:for="{{subords}}">
-    <template is='subordinate' data='{{...item}}'></template>
-  </block>
-</view>
+<van-dialog
+  use-slot
+  title="标题"
+  show="{{ show }}"
+  show-cancel-button
+  
+  bind:close="onClose"
+  bind:getuserinfo="getUserInfo"
+>
+  <image src="https://img.yzcdn.cn/1.jpg" />
+</van-dialog>
