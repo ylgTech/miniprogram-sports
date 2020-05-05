@@ -28,9 +28,8 @@ page{
   flex-wrap: wrap;
 }
 .SelectTitle{
-  margin-left: 15%;
-  margin-top: 10%;
-  margin-bottom: 8%;
+  width: 100%;
+  padding: 25rpx 0 30rpx 60rpx;
 }
 .SetTitle{
   margin-left: -12%;
@@ -402,4 +401,15 @@ scroll-view .current text{
   background-color: #fff;
   position: fixed;
   bottom: 0;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  margin: 20px auto;
+  width: 40%;
 }

@@ -5,38 +5,95 @@ Page({
    * 页面的初始数据
    */
   data: {
-    time:false,
+    peopleColumns: ['1-5人', '6-10人', '10-20人', '20人以上'],
+    gradeColumns: ['易', '中', '难'],
+    showTime: false,
     calendar: [],
     width: 0,
     currentIndex: 0,
     currentTime: 0,
-    timeArr: [{ "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }, { "time": "8:00-10:00", "status": "约满" }],
-    location:"点击获取地理位置",
-    level:'选择等级',
+    timeArr: [{
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "8:00-10:00",
+      "status": "约满"
+    }],
+    location: "点击获取地理位置",
+    level: '选择等级',
     //发起运动的文字内容
     toView: '',
-    listItem:["难","中","易"],
-    show:false,
-    text: ["一段文字一段文字一段文字一段文字","一段文字一段文字一段文字一段文字","一段文字一段文字一段文字一段文字"],
+    listItem: ["难", "中", "易"],
+    show: false,
+    text: ["一段文字一段文字一段文字一段文字", "一段文字一段文字一段文字一段文字", "一段文字一段文字一段文字一段文字"],
     //状态栏高度
     windowHeight: 0,
-    windowWidth:0,
+    windowWidth: 0,
     //列表中体育项目
-    sportkinds:["球类","田径","武术","游泳","健美操","滑雪","自行车","登山","击剑","轮滑","拔河","瑜伽","棋类","跆拳道"],
-    option1: [
-      { text: '全部商品', value: 0 },
-      { text: '新款商品', value: 1 },
-      { text: '活动商品', value: 2 }
+    sportkinds: ["球类", "田径", "武术", "游泳", "健美操", "滑雪", "自行车", "登山", "击剑", "轮滑", "拔河", "瑜伽", "棋类", "跆拳道"],
+    option1: [{
+        text: '全部商品',
+        value: 0
+      },
+      {
+        text: '新款商品',
+        value: 1
+      },
+      {
+        text: '活动商品',
+        value: 2
+      }
     ],
-    option2: [
-      { text: '默认排序', value: 'a' },
-      { text: '好评排序', value: 'b' },
-      { text: '销量排序', value: 'c' }
+    option2: [{
+        text: '默认排序',
+        value: 'a'
+      },
+      {
+        text: '好评排序',
+        value: 'b'
+      },
+      {
+        text: '销量排序',
+        value: 'c'
+      }
     ],
     value1: 0,
     value2: 'a'
   },
-  setlocation: function(){
+  setlocation: function () {
     wx.getLocation({
       type: 'wgs84',
       success(res) {
@@ -53,26 +110,63 @@ Page({
       toView: view,
     })
   },
-  selectlevel:function(e){
+  selectlevel: function (e) {
     let i = e.currentTarget.dataset.index
     this.setData({
-      level:this.data.listItem[i]
+      level: this.data.listItem[i]
     })
   },
   showPopup() {
-    this.setData({ show: true });
+    this.setData({
+      show: true
+    });
   },
-  choose_time(){
-    this.setData({ time: true });
+  onPickTime() {
+    this.setData({
+      showTime: true
+    });
+  },
+  onPickPeople() {
+    this.setData({
+      showPeople: true
+    })
+  },
+  onPickGrade() {
+    this.setData({
+      showGrade: true
+    })
+  },
+  onConfirmPeople(e) {
+    this.setData({
+      people: e.detail.value,
+      showPeople: false
+    })
+  },
+  onConfirmGrade(e) {
+    this.setData({
+      grade: e.detail.value,
+      showGrade: false
+    })
+  },
+  onConfirmTime(e) {
+    this.setData({
+      time: '2020/5/5/8:00-10:00',
+      showTime: false,
+    })
   },
   onClose() {
-    this.setData({ show: false, time: false });
+    this.setData({
+      showPeople: false,
+      showGrade: false,
+      showTime: false
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+
     function getThisMonthDays(year, month) {
       return new Date(year, month, 0).getDate();
     }
@@ -88,27 +182,27 @@ Page({
     //利用构造函数创建对象
     console.log(date);
     var monthLength = getThisMonthDays(cur_year, cur_month)
+
     function calendar(date, week) {
-      if (i > monthLength){
+      if (i > monthLength) {
         this.date = cur_year + '-' + (parseInt(cur_month) + 1) + '-' + date % monthLength;
-      }
-      else{
+      } else {
         this.date = cur_year + '-' + cur_month + '-' + date;
       }
-      if(date==cur_date){
+      if (date == cur_date) {
         this.week = "今天";
-      }else if(date==cur_date+1){
+      } else if (date == cur_date + 1) {
         this.week = "明天";
-      }else{
+      } else {
         this.week = '星期' + week;
       }
     }
     //当前月份的天数
-   
+
     //当前月份的第一天是星期几
     var week = getFirstDayOfWeek(cur_year, cur_month)
     var x = week;
-    for (var i = 1; i <= monthLength+7; i++) {
+    for (var i = 1; i <= monthLength + 7; i++) {
       //当循环完一周后，初始化再次循环
       if (x > 6) {
         x = 0;
@@ -133,59 +227,10 @@ Page({
         console.log('windowWidith: ' + res.windowWidth)
         that.setData({
           windowHeight: res.windowHeight,
-          windowWidth:res.windowWidth
+          windowWidth: res.windowWidth
         })
       },
     })
-  },
-  //获取高度
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   },
   select: function (event) {
     //为上半部分的点击事件
@@ -198,5 +243,8 @@ Page({
     this.setData({
       currentTime: event.currentTarget.dataset.tindex
     })
+  },
+  submit: function () {
+    
   }
 })
