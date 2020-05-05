@@ -22,7 +22,7 @@
 
 	<view style="width:{{ windowWidth*0.72}}px;" class="sportslist">
 		<view style="width:{{ item.length*windowWidth*0.065}}px;" wx:for="{{sportkinds }}">
-			<view class="sportele" style="height:{{ windowHeight*0.05}}px;">
+			<view class="sportele {{current_item === index?'selected':' '}}" style="height:{{ windowHeight*0.05}}px;" bindtap="kind_select" data-kind="{{item}}" data-key="{{index}}">
 				{{item}}
 			</view>
 		</view>
