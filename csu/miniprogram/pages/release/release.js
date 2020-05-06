@@ -6,19 +6,47 @@ Page({
    * 页面的初始数据
    */
   data: {
+    location: "",
+    title: "",
+    intro: "",
+    author: "",
+    people: "",
+    detail: "",
+    time: "",
+    kind: "球类",
     peopleColumns: ['1-5人', '6-10人', '10-20人', '20人以上'],
     gradeColumns: ['易', '中', '难'],
     showTime: false,
     calendar: [],
     width: 0,
-    kind:'',
-    current_item:0,
-    time:'',
+    current_item: 0,
     currentIndex: 0,
     currentTime: 0,
-    timeArr: [{ "time": "8:00-10:00", "status": "约满" }, { "time": "10:00-12:00", "status": "约满" }, { "time": "12:00-14:00", "status": "未满" }, { "time": "14:00-16:00", "status": "约满" },  { "time": "16:00-18:00", "status": "约满" }, { "time": "18:00-20:00", "status": "约满" }, { "time": "20:00-22:00", "status": "约满" }, { "time": "22:00-24:00", "status": "约满" },  ],
-    location: '',
-    level:'选择等级',
+    timeArr: [{
+      "time": "8:00-10:00",
+      "status": "约满"
+    }, {
+      "time": "10:00-12:00",
+      "status": "约满"
+    }, {
+      "time": "12:00-14:00",
+      "status": "未满"
+    }, {
+      "time": "14:00-16:00",
+      "status": "约满"
+    }, {
+      "time": "16:00-18:00",
+      "status": "约满"
+    }, {
+      "time": "18:00-20:00",
+      "status": "约满"
+    }, {
+      "time": "20:00-22:00",
+      "status": "约满"
+    }, {
+      "time": "22:00-24:00",
+      "status": "约满"
+    }, ],
     //发起运动的文字内容
     toView: '',
     listItem: ["难", "中", "易"],
@@ -29,62 +57,57 @@ Page({
     windowWidth: 0,
     //列表中体育项目
     sportkinds: ["球类", "田径", "武术", "游泳", "健美操", "滑雪", "自行车", "登山", "击剑", "轮滑", "拔河", "瑜伽", "棋类", "跆拳道"],
-    option1: [{
-        text: '全部商品',
-        value: 0
-      },
-      {
-        text: '新款商品',
-        value: 1
-      },
-      {
-        text: '活动商品',
-        value: 2
-      }
-    ],
-    option2: [{
-        text: '默认排序',
-        value: 'a'
-      },
-      {
-        text: '好评排序',
-        value: 'b'
-      },
-      {
-        text: '销量排序',
-        value: 'c'
-      }
-    ],
     value1: 0,
     value2: 'a'
   },
 
-  kind_select:function(e){
+  kind_select: function (e) {
     this.setData({
       kind: e.currentTarget.dataset.kind,
       current_item: e.currentTarget.dataset.key
     })
   },
   submit: function (e) {
+    console.log('click submit')
     var that = this
     that.setData({
-      loadingHidden: false
+      loading: true
     })
+    let postData = {
+      _sport_title: that.data.title,
+      _introduction: that.data.intro,
+      _name: that.data.author,
+      _number: that.data.people,
+      _introduction_detail: that.data.detail,
+      _destination: '南校操场',
+      _time: that.data.time,
+      _kind: that.data.kind,
+    }
+    // 检查是否所有必需信息已填
+    if (postData._sport_title == "" ||
+      postData._introduction == "" ||
+      postData._name == "" ||
+      postData._number == "" ||
+      postData._introduction_detail == "" ||
+      postData._destination == "" ||
+      postData._time == "" ||
+      postData._kind == "") {
+      wx.showToast({
+        title: '请填写必要信息',
+        icon: 'none',
+        duration: 2000
+      })
+      this.setData({
+        loading: false
+      })
+      return
+    }
     setTimeout(function () {
       that.setData({
-        loadingHidden: true
+        loading: false
       })
       db.collection('sport').add({
-        data: {
-          _sport_title: that.data.sport_title,
-          _introduction: that.data.introduction,
-          _name: that.data.name,
-          _number: that.data.number,
-          _introduction_detail:'5.10号晚19点在南校操场集合跑步',
-          _destination:'南校操场',
-          _time: that.data.time,
-          _kind: that.data.kind,
-        },
+        data: postData,
         success: res => {
           console.log("成功添加运动信息！")
 
@@ -101,11 +124,9 @@ Page({
               url: '/pages/index/index',
             })
           }, 1000)
-        }, //接口调用成功
-        fail: function () { }, //接口调用失败的回调函数  
-        complete: function () { } //接口调用结束的回调函数  
+        }
       })
-      
+
 
     }, 1000)
   },
@@ -137,7 +158,7 @@ Page({
       detail: e.detail
     })
   },
-  setlocation: function(){
+  setlocation: function () {
     wx.getLocation({
       type: 'wgs84',
       success(res) {
@@ -164,6 +185,43 @@ Page({
     this.setData({
       show: true
     });
+  },
+  onPickLocation() {
+    let that = this
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userLocation']) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success() {}
+          })
+        }
+        wx.chooseLocation({
+          success: res => {
+            console.log(res.name)
+            console.log(res.address)
+            console.log(res.latitude)
+            console.log(res.longitude)
+            that.setData({
+              location: res.name
+            })
+          },
+          fail: res => {
+            console.log(res)
+          },
+          complete: res => {
+            console.log('chooseLocation complete')
+            console.log(res)
+          }
+        })
+      },
+      fail: res => {
+        console.log(res)
+      },
+      complete: res => {
+        console.log('click get location')
+      }
+    })
   },
   onPickTime() {
     this.setData({
@@ -290,8 +348,8 @@ Page({
     })
     setTimeout(function () {
       that.setData({
-        time:that.data.calendar[that.data.currentIndex].date + '/' + that.data.timeArr[that.data.currentTime].time
+        time: that.data.calendar[that.data.currentIndex].date + '/' + that.data.timeArr[that.data.currentTime].time
       })
-    },500)
+    }, 500)
   },
 })

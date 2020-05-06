@@ -6,12 +6,15 @@
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
+		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"autoAudits": false,
+		"nodeModules": true,
+		"autoAudits": true,
 		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
+		"scopeDataCheck": true,
+		"uglifyFileName": true,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -19,12 +22,11 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"nodeModules": true
+		}
 	},
 	"appid": "wx03d0c975f9351179",
 	"projectname": "energycsu-1",
-	"libVersion": "2.8.1",
+	"libVersion": "2.11.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {

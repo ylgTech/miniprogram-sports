@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/index/index",
         "pages/release/release",
+        "pages/index/index",
         "pages/match/match",
         "pages/me/me",
         "pages/group/group-select-college",
@@ -9,13 +9,11 @@
         "pages/test/test",
         "pages/login/login",
         "pages/group-detail/group-detail"
-    ],
-    "window": {
-        "backgroundColor": "#F6F6F6",
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#F6F6F6",
-        "navigationBarTitleText": "活力中南",
-        "navigationBarTextStyle": "black"
+    ],"window": {
+        "navigationStyle": "custom"
+    },
+    "usingComponents": {
+        "cu-custom":"/colorui/components/cu-custom"
     },
     "permission": {
         "scope.userLocation": {

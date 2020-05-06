@@ -1,6 +1,6 @@
 /* pages/release/release.wxss */
 
-page{
+.body {
   font-family: SHSCNL;
   height: 100%;
   width: 100%;
@@ -9,33 +9,43 @@ page{
   align-items: center;
   background-color: white;
 }
-.sportele{
+
+.sportele {
   font-size: 23rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 4%;
   margin-bottom: 4%;
-  border:solid 1rpx;
+  border: solid 1rpx;
   border-color: grey;
   border-radius: 6rpx;
 }
-.selected{
+
+.selected {
   background-color: #e2eaf9;
-  
 }
-.sportslist{
+
+.van-cell-group__title {
+  color: black !important;
+}
+
+.sportslist {
+  margin: 0 auto;
   display: flex;
   display: -webkit-flex;
-  justify-content: space-start;/*防止出现空格*/
+  justify-content: space-start;
+  /*防止出现空格*/
   flex-direction: row;
   flex-wrap: wrap;
 }
-.SelectTitle{
-  width: 100%;
-  padding: 25rpx 0 30rpx 60rpx;
+
+.SelectTitle {
+  width: 690rpx;
+  margin: 25rpx 0 30rpx 60rpx;
 }
-.SetTitle{
+
+.SetTitle {
   margin-left: -12%;
   margin-top: 10%;
   margin-bottom: 8%;
@@ -46,33 +56,38 @@ page{
   align-items: center;
   justify-content: center;
 }
-.setele{
+
+.setele {
   font-size: 16rpx;
-  color:grey;
+  color: grey;
   display: flex;
   align-items: center;
   justify-content: center;
-  border:solid 1rpx;
+  border: solid 1rpx;
   border-color: grey;
   border-radius: 6rpx;
 }
-.checkbox{
+
+.checkbox {
   margin-top: 3%;
   font-size: 16rpx;
   display: flex;
 }
-.checkbox_item2{
+
+.checkbox_item2 {
   margin-left: 15%;
 }
-.InputField{
-  margin-top:5%;
-}
-.ActionName{
-  font-size: 10px;
-  margin-top:5%;
+
+.InputField {
+  margin-top: 5%;
 }
 
-.InputView{
+.ActionName {
+  font-size: 10px;
+  margin-top: 5%;
+}
+
+.InputView {
   display: flex;
   display: -webkit-flex;
   flex-direction: row;
@@ -80,40 +95,45 @@ page{
   border-bottom: 1px solid#E0E3DA;
   margin-bottom: 5%;
 }
-.levelsum{
+
+.levelsum {
   margin-left: 60%;
   margin-top: 8%;
-  margin-bottom:8%;
+  margin-bottom: 8%;
   font-size: 26rpx;
-  color:black;
+  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
-  border:solid 1rpx;
+  border: solid 1rpx;
   border-color: grey;
   border-radius: 46rpx;
   background-color: rgb(226, 233, 249)
 }
-.leveltag{
+
+.leveltag {
   margin-top: 8%;
-  margin-bottom:8%;
+  margin-bottom: 8%;
   font-size: 16rpx;
-  color:black;
+  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
-  border:solid 1rpx;
+  border: solid 1rpx;
   border-color: grey;
   border-radius: 6rpx;
   background-color: rgb(226, 233, 249)
 }
-.fqyd_img{
+
+.fqyd_img {
   margin-right: 5%;
 }
-.fayd_xian{
+
+.fayd_xian {
   margin-top: -8%;
 }
-.fqyd_text{
+
+.fqyd_text {
   margin-right: 5%;
   margin-bottom: 2%;
   font-size: 20rpx;
@@ -123,7 +143,8 @@ page{
   display: flex;
   justify-content: flex-end;
 }
-.fqyd_text_view{
+
+.fqyd_text_view {
   margin-top: 5%;
   margin-bottom: 5%;
   flex-direction: row;
@@ -131,56 +152,24 @@ page{
   display: flex;
   justify-content: flex-end;
 }
-.faqiyundong{
-  margin-top:10%;
-  margin-left:5%;
+
+.faqiyundong {
+  margin-top: 10%;
+  margin-left: 5%;
   display: flex;
   align-items: flex-end;
 }
-.ColorBackground{
-  background-size:100% 100%;
+
+.ColorBackground {
+  background-size: 100% 100%;
   display: flex;
   display: -webkit-flex;
   flex-direction: row;
   flex-wrap: wrap;
   height: auto;
-  background-image:url("https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/background.jpg?sign=b121293cda1ad34975eb70713dfc8e10&t=1586101722");
+  background-image: url("https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/background.jpg?sign=b121293cda1ad34975eb70713dfc8e10&t=1586101722");
   margin-top: 5%;
   margin-bottom: 5%;
-}
-.hint {
-  z-index: 999;
-  width: 100%;
-  border-radius: 20px 20px 0 0;
-  background-color: white;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-  font-size: 30rpx;
-  text-align: center !important;
-  padding: 28rpx 0 28rpx 0;
-  color: #1c659c;
-  border-bottom: 1px solid #beb6b6;
-}
-.view-hint {
-  z-index: 999;
-  width: 100%;
-  background-color: white;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-  font-size: 30rpx;
-  text-align: center !important;
-  color: #1c659c;
-
-}
-/* pages/home/home.wxss */
-
-.bg-img {
-  position: fixed;
-  width: 200px;
-  opacity: 0.8;
-  right: 32px;
 }
 
 .head {
@@ -192,68 +181,6 @@ page{
 .head-item {
   color: #fff;
   font-size: 37rpx;
-}
-
-.menu {
-  /* 如果要实现滑动则要添加下面这两行代码 */
-  overflow: hidden;
-  white-space: nowrap;
-  height: 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
-}
-
-/* 隐藏滚动条 */
-
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
-}
-
-.menu-item {
-  height: 28px;
-  margin: 2px 0;
-  /* 如果要实现滑动则要添加下面这行代码 */
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  font-size: 30rpx;
-  color: #fff;
-  padding: 0 30rpx 0 30rpx;
-}
-
-.menu-item-select {
-  background-image: url('https://7265-release-rr1dn-1301509296.tcb.qcloud.la/circle.jpg?sign=7223a8ea913b36b8e62e0b81e89ee766&t=1583757187');
-  background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-}
-
-.map-wrapper {
-  width: 100%;
-  position: relative;
-}
-
-.map {
-  height: 100%;
-  width: 100%;
-}
-
-.hint {
-  z-index: 999;
-  width: 100%;
-  border-radius: 20px 20px 0 0;
-  background-color: white;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-  font-size: 30rpx;
-  text-align: center !important;
-  padding: 28rpx 0 28rpx 0;
-  color: #1c659c;
-  border-bottom: 1px solid #beb6b6;
 }
 
 .bgdc {
@@ -272,56 +199,21 @@ page{
   opacity: 0.9;
 }
 
-.btn {
-  position: absolute;
-  top: 77%;
-  left: 83%;
-}
-
-.icons {
-  position: absolute;
-  top: 50rpx;
-  right: 50rpx;
-  color: #1c659c;
-  display: flex;
-  flex-direction: column;
-  padding: 20rpx 10rpx;
-  border-radius: 50rpx;
-  background: rgba(0, 0, 0, 0.3);
-}
-.cell-title {
-  color: #1c659c !important;
-  margin-left: 2rpx !important;
-  display: flex!important;
-  align-items: center!important;
-}
-
-
-.view-hint {
-  z-index: 999;
-  width: 100%;
-  background-color: white;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-  font-size: 30rpx;
-  text-align: center !important;
-  color: #1c659c;
-
-}
 /* pages/orderTime/index.wxss */
-scroll-view{
+scroll-view {
   height: 128rpx;
- 
+
   width: 100%;
 }
-scroll-view .list{
+
+scroll-view .list {
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
-    width: 1302rpx; 
+  width: 1302rpx;
 }
-scroll-view .listItem{
+
+scroll-view .listItem {
   text-align: center;
   width: 186rpx;
   height: 128rpx;
@@ -331,23 +223,29 @@ scroll-view .listItem{
   /* float: left; */
   display: inline-block;
 }
-scroll-view .listItem text{
+
+scroll-view .listItem text {
   display: block;
 }
-scroll-view .listItem .name{
+
+scroll-view .listItem .name {
   font-size: 21rpx;
 }
-scroll-view .listItem .date{
+
+scroll-view .listItem .date {
   font-size: 21rpx;
 }
-scroll-view .current{
+
+scroll-view .current {
   background-color: #76aef8;
 
 }
-scroll-view .current text{
+
+scroll-view .current text {
   color: #fff;
 }
-.time{
+
+.time {
   width: 95%;
   display: flex;
   flex-wrap: wrap;
@@ -355,7 +253,8 @@ scroll-view .current text{
   margin: 0 auto;
   margin-top: 30rpx;
 }
-.time .listItem{
+
+.time .listItem {
   width: 25%;
   height: 135rpx;
   text-align: center;
@@ -364,42 +263,52 @@ scroll-view .current text{
   padding-top: 35rpx;
   border: 1px solid #b9c1c8;
 }
-.time .listItem text{
+
+.time .listItem text {
   display: block;
   font-size: 21rpx;
 }
-.time .current{
+
+.time .current {
   border: 1px solid #76aef8;
 }
-.time .current text{
+
+.time .current text {
   color: #76aef8;
 }
-.operate button{
-  width:300rpx;
+
+.operate button {
+  width: 300rpx;
   height: 88rpx;
   background-color: #fff;
 }
-.operate .del{
-  
-   color: #e54449; 
+
+.operate .del {
+
+  color: #e54449;
 }
-.operate button::after{
+
+.operate button::after {
   border: 2px solid #e54449;
 }
-.operate{
+
+.operate {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
 }
-.operate button:nth-child(2):after{
+
+.operate button:nth-child(2):after {
   border: 2px solid #e54449;
 }
-.operate .save{
+
+.operate .save {
   color: #fff;
-  background-color: #e54449; 
-  
+  background-color: #e54449;
+
 }
-.operate{
+
+.operate {
   width: 100%;
   padding: 30rpx 0;
   background-color: #fff;
@@ -415,5 +324,5 @@ scroll-view .current text{
 
 .button {
   margin: 20px auto;
-  width: 40%;
+  width: 60%;
 }
