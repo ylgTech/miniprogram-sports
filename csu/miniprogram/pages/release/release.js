@@ -9,6 +9,7 @@ Page({
     location: "",
     title: "",
     intro: "",
+    addkind: "",
     author: "",
     people: "",
     detail: "",
@@ -61,13 +62,14 @@ Page({
     value2: 'a'
   },
 
-  kind_select: function (e) {
+  kind_select: function(e) {
     this.setData({
       kind: e.currentTarget.dataset.kind,
-      current_item: e.currentTarget.dataset.key
+      current_item: e.currentTarget.dataset.key,
+      showKind: false
     })
   },
-  submit: function (e) {
+  submit: function(e) {
     console.log('click submit')
     var that = this
     that.setData({
@@ -102,7 +104,7 @@ Page({
       })
       return
     }
-    setTimeout(function () {
+    setTimeout(function() {
       that.setData({
         loading: false
       })
@@ -118,8 +120,8 @@ Page({
         duration: 1000, //显示时长
         mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
         icon: 'success', //图标，支持"success"、"loading"  
-        success: function () {
-          setTimeout(function () {
+        success: function() {
+          setTimeout(function() {
             wx.reLaunch({
               url: '/pages/index/index',
             })
@@ -129,6 +131,13 @@ Page({
 
 
     }, 1000)
+  },
+  inputKind(e) {
+    // this.data.error.title = e.detail == "" ? true : false
+    this.setData({
+      error: this.data.error,
+      addkind: e.detail
+    })
   },
   inputTitle(e) {
     // this.data.error.title = e.detail == "" ? true : false
@@ -158,7 +167,7 @@ Page({
       detail: e.detail
     })
   },
-  setlocation: function () {
+  setlocation: function() {
     wx.getLocation({
       type: 'wgs84',
       success(res) {
@@ -170,12 +179,12 @@ Page({
       }
     })
   },
-  toView: function () {
+  toView: function() {
     this.setData({
       toView: view,
     })
   },
-  selectlevel: function (e) {
+  selectlevel: function(e) {
     let i = e.currentTarget.dataset.index
     this.setData({
       level: this.data.listItem[i]
@@ -223,6 +232,29 @@ Page({
       }
     })
   },
+  showPlus(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hidePlus(e) {
+    this.setData({
+      addkind: null,
+      modalName: null
+    })
+  },
+  addPlus(e) {
+    var _this = this;
+    var sportkinds = _this.data.sportkinds;
+    var addkind = _this.data.addkind;
+    sportkinds.push(addkind);
+    this.setData({
+      addkind: null,
+      modalName: null,
+      sportkinds: sportkinds,
+    })
+    this.onLoad()
+  },
   onPickTime() {
     this.setData({
       showTime: true
@@ -231,6 +263,11 @@ Page({
   onPickPeople() {
     this.setData({
       showPeople: true
+    })
+  },
+  onPickKind() {
+    this.setData({
+      showKind: true
     })
   },
   onPickGrade() {
@@ -242,6 +279,12 @@ Page({
     this.setData({
       people: e.detail.value,
       showPeople: false
+    })
+  },
+  onConfirmKind(e) {
+    this.setData({
+      kind: e.detail.value,
+      showKind: false
     })
   },
   onConfirmGrade(e) {
@@ -260,13 +303,14 @@ Page({
     this.setData({
       showPeople: false,
       showGrade: false,
-      showTime: false
+      showTime: false,
+      showKind: false
     });
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
 
     function getThisMonthDays(year, month) {
@@ -324,7 +368,7 @@ Page({
     })
     // console.log(app.globalData)
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         console.log('windowHeight: ' + res.windowHeight)
         console.log('windowWidith: ' + res.windowWidth)
         that.setData({
@@ -334,19 +378,19 @@ Page({
       },
     })
   },
-  select: function (event) {
+  select: function(event) {
     //为上半部分的点击事件
     this.setData({
       currentIndex: event.currentTarget.dataset.index
     })
   },
-  selectTime: function (event) {
+  selectTime: function(event) {
     //为下半部分的点击事件
     var that = this
     this.setData({
       currentTime: event.currentTarget.dataset.tindex
     })
-    setTimeout(function () {
+    setTimeout(function() {
       that.setData({
         time: that.data.calendar[that.data.currentIndex].date + '/' + that.data.timeArr[that.data.currentTime].time
       })
