@@ -125,6 +125,21 @@ Page({
     this.selectComponent('#Calendar').toggleType();
   },
   match_detail: function(e) {
+    var that = this
+    db.collection('Participate').where({
+        _sport_id: that.data.match_all[e.currentTarget.id]._id,
+        _openid: app.appData.user_openid
+      })
+      .get({
+        success: res => {
+          if (res.data.length != 0) {
+
+            that.setData({
+              pop_btn_in: true
+            })
+          }
+        }
+      })
     console.log(e)
     this.setData({
       pop_detail: true,
@@ -134,6 +149,17 @@ Page({
   },
   pop_fade: function(e) {
     var that = this
+    var detailIndex = that.data.detailIndex
+    var match_all = that.data.match_all
+    db.collection('Participate').add({
+      data: {
+        _if_finished: false,
+        _sport_id: match_all[detailIndex]._id,
+        _sport_title: match_all[detailIndex]._sport_title,
+        _sport_introduction: match_all[detailIndex]._introduction
+      },
+      success: {}
+    })
     wx.showToast({
       title: '参加成功', //提示文字
       duration: 2000, //显示时长
@@ -151,12 +177,12 @@ Page({
       fail: function() {}, //接口调用失败的回调函数  
       complete: function() {} //接口调用结束的回调函数  
     })
-    
+
     console.log('关闭')
   },
-  pop_fade2: function (e) {
+  pop_fade2: function(e) {
     var that = this
-    setTimeout(function () {
+    setTimeout(function() {
       that.setData({
         pop_detail: false
       })
@@ -168,12 +194,9 @@ Page({
     this.setData({
       load_show: true
     })
-
-    
-
     setTimeout(function() {
       that.setData({
-        
+
         load_show: false
       })
       wx.showToast({
@@ -181,16 +204,16 @@ Page({
         duration: 800, //显示时长
         mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
         icon: 'success', //图标，支持"success"、"loading"  
-        success: function () {
-          setTimeout(function () {
+        success: function() {
+          setTimeout(function() {
             that.setData({
               pop_detail: false,
-              
+
             })
           }, 800)
         }, //接口调用成功
-        fail: function () { }, //接口调用失败的回调函数  
-        complete: function () { } //接口调用结束的回调函数  
+        fail: function() {}, //接口调用失败的回调函数  
+        complete: function() {} //接口调用结束的回调函数  
       })
     }, 1500)
   },
@@ -206,7 +229,30 @@ Page({
           match_all: res.data
         })
       }
+    })
+    wx.cloud.callFunction({
+      // 需调用的云函数名
+      name: 'login',
 
+      // 成功回调
+      complete: res => {
+        app.appData.user_openid = res.result.openid
+        console.log(app.appData.user_openid)
+        db.collection('person_login').where({
+          _openid: res.result.openid
+        }).get({
+          success: res => {
+            if (res.data.length != '0') {
+
+              console.log('已经注册')
+            } else {
+              wx.navigateTo({
+                url: '../login/login',
+              })
+            }
+          }
+        })
+      }
     })
   },
 
@@ -259,9 +305,10 @@ Page({
 
   },
 
-  onClose(){
+  onClose() {
     this.setData({
-      pop_detail: false
+      pop_detail: false,
+      pop_btn_in: false
     })
   }
 })
