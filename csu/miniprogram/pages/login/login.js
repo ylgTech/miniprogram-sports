@@ -9,20 +9,20 @@ Page({
     name: '',
     number: '',
   },
-  mess_change: function (e) {
+  mess_change: function(e) {
     this.setData({
       number: e.detail.value
     })
   },
-  mess_change2: function (e) {
+  mess_change2: function(e) {
     this.setData({
       name: e.detail.value
     })
   },
-  register: function (e) {
+  register: function(e) {
     var that = this
-    
-    setTimeout(function () {
+
+    setTimeout(function() {
       db.collection('person_login').add({
         data: {
           _number: that.data.number,
@@ -41,7 +41,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this
     wx.cloud.callFunction({
       // 需调用的云函数名
@@ -50,6 +50,17 @@ Page({
       // 成功回调
       complete: res => {
         app.appData.user_openid = res.result.openid
+        console.log(app.appData.user_openid)
+        db.collection('person_login').where({
+          _openid: res.result.openid
+        }).get({
+          success: res => {
+            if (res.data.length != '0') {
+
+              console.log('已经注册')
+            }
+          }
+        })
       }
     })
   },
@@ -57,49 +68,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-    
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-    
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-    
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-    
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    
+  onShareAppMessage: function() {
+
   }
 })
