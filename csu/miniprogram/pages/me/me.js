@@ -1,7 +1,7 @@
 // pages/me/me.js
 const db = wx.cloud.database()
 const app = getApp()
-const user_openid = app.appData.user_openid
+
 Page({
   data: {
     AvatarUrl: 'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/avademo.png?sign=032b26657afd1c64dd19a5798feab256&t=1588086418',
@@ -101,7 +101,7 @@ Page({
     })
   //这里你要加个初始化join的
     db.collection('sport').where({
-      _openid: user_openid
+      _openid: app.appData.user_openid
     })
     .get({
       success:res =>{
@@ -111,6 +111,17 @@ Page({
         })
       }
     })
+    db.collection('Participate').where({
+      _openid: app.appData.user_openid
+    })
+      .get({
+        success: res => {
+          console.log(res.data)
+          that.setData({
+            my_participate_detail: res.data
+          })
+        }
+      })
   },
   onShow: function (options) {
     db.collection('person_message').doc('19762d645eae6142004ed6e32b6e4da4').get({
@@ -121,6 +132,9 @@ Page({
         console.log('成功更新')
       }
     })
+    console.log('切换成功')
+    console.log(app.appData.user_openid)
   },
+  
   
 })

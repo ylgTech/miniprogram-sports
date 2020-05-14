@@ -77,7 +77,7 @@
       <view class="content-1">
       <view class="pop_detail" wx:if="{{pop_detail_join}}" bindtap="pop_fade2_join">
         <view style="font-weight:bold">{{item._sport_title}}</view>
-        <view>{{item._introduction}}</view>
+        <view>{{item._sport_introduction}}</view>
       </view>
     </view>
     </view>
