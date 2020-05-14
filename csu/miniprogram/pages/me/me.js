@@ -8,20 +8,40 @@ Page({
     username: '加载中',
     score: 0,
     logthree: [],
-    my_release:false,
-    my_release_detail: [],
-    my_participate_detail: [],
-    touch_times:1,
-    pop_detail: false,
+    my_release:false,//控制我发起的
+    my_release_detail: ["try"],//控制我发起的
+    my_join: false,//控制我我参加的
+    my_join_detail: ["try","try"],//控制我我参加的
+    touch_times_release: 1,//控制我发起的
+    touch_times_join: 1,//控制我参加的
+    pop_detail_release: false,//控制我发起
+    pop_detail_join: false,//控制我参加
   },
-
-  release_hidden_change:function(e){
+  join_hidden_change: function (e) {//控制我参加
     var that = this
-    var touch_times = that.data.touch_times
+    var touch_times_join = that.data.touch_times_join
     that.setData({
-      touch_times: touch_times + 1
+      touch_times_join: touch_times_join + 1
     })
-    if (that.data.touch_times % 2 == 0) {
+    if (that.data.touch_times_join % 2 == 0) {
+      that.setData({
+        my_join: true
+      })
+
+
+    } else {
+      this.setData({
+        my_join: false
+      })
+    }
+  },
+  release_hidden_change: function (e) {//控制我发起的
+    var that = this
+    var touch_times_release = that.data.touch_times_release
+    that.setData({
+      touch_times_release: touch_times_release + 1
+    })
+    if (that.data.touch_times_release % 2 == 0) {
       that.setData({
         my_release: true
       })
@@ -33,22 +53,36 @@ Page({
       })
     }
   },
-  match_detail: function (e) {
+  match_detail_release: function (e) {//控制release
     this.setData({
-      pop_detail: true
+      pop_detail_release: true
     })
     console.log('开启')
   },
-  pop_fade2: function (e) {
+  pop_fade2_release: function (e) {//控制release
     var that = this
     setTimeout(function () {
       that.setData({
-        pop_detail: false
+        pop_detail_release: false
       })
     }, 100)
     console.log('关闭')
   },
-
+  match_detail_join: function (e) {//控制join
+    this.setData({
+      pop_detail_join: true
+    })
+    console.log('开启')
+  },
+  pop_fade2_join: function (e) {//控制join
+    var that = this
+    setTimeout(function () {
+      that.setData({
+        pop_detail_join: false
+      })
+    }, 100)
+    console.log('关闭')
+  },
 
 
   onLoad: function (options) {
@@ -65,7 +99,7 @@ Page({
         })
       }
     })
-    
+  //这里你要加个初始化join的
     db.collection('sport').where({
       _openid: app.appData.user_openid
     })

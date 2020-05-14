@@ -1,19 +1,19 @@
-<image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E7%99%BB%E5%BD%95.png?sign=a8f059ecf1931ea27206ad65976bb5bf&t=1588149303" class="img-top"> </image>
+<image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E7%99%BB%E5%BD%95.png?sign=a8f059ecf1931ea27206ad65976bb5bf&t=1588149303" style="height:{{windowHeight*0.45}}px;width:{{windowWidth}}px"> </image>
 
-<view class="login">
+<view class="login" style="height:{{windowHeight*0.18}}px;width:{{windowWidth*0.8}}px;top:{{-windowHeight*0.1}}px">
 
 <view class="container-num">
 
-<text class="input1-t">学号：</text>
-<input class="input1" placeholder="请输入学号" value="{{number}}" bindblur="mess_change" type="number"></input>
+<text  style="width:{{windowWidth*0.2}}px;">学号：</text>
+<input  style="width:{{windowWidth*0.4}}px;height:{{windowHeight*0.09}}px;" placeholder="请输入学号" value="{{number}}" bindblur="mess_change" type="number"></input>
 
 </view>
-
-<text class="input2-t" >姓名：</text>
-<input class="input2" placeholder="请输入姓名"  value="{{name}}" bindblur="mess_change2"></input>
-
+<view class="container-num">
+<text style="width:{{windowWidth*0.2}}px;">姓名：</text>
+<input  style="width:{{windowWidth*0.4}}px;height:{{windowHeight*0.09}}px;" placeholder="请输入姓名"  value="{{name}}" bindblur="mess_change2"></input>
+</view>
 </view>
 
-<view class="but" bindtap="register">
-<image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E7%99%BB%E5%BD%95%E6%8C%89%E9%92%AE0.png?sign=83b26a913d84863b91d3afdc6b403de2&t=1588149316" class="img2"></image>
+<view style="height:{{windowHeight*0.1}}px;width:{{windowWidth}}px" class ="submit" >
+<image bindtap="register" src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E7%99%BB%E5%BD%95%E6%8C%89%E9%92%AE0.png?sign=83b26a913d84863b91d3afdc6b403de2&t=1588149316" style="height:{{windowHeight*0.1}}px;width:{{windowWidth*0.2}}px"></image>
 </view>
