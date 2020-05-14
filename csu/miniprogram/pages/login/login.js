@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    windowHeight:0,
+    windowWidth:0,
     name: '',
     number: '',
   },
@@ -43,6 +45,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log('windowHeight: ' + res.windowHeight)
+        console.log('windowWidith: ' + res.windowWidth)
+        that.setData({
+          windowHeight: res.windowHeight,
+          windowWidth: res.windowWidth
+        })
+      },
+    })
     wx.cloud.callFunction({
       // 需调用的云函数名
       name: 'login',
