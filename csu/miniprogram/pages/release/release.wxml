@@ -29,14 +29,14 @@
       <view>
         <view style="width:{{ windowWidth*0.72}}px;" class="sportslist">
           <view style="width:{{ item.length*windowWidth*0.065}}px;" wx:for="{{ sportkinds }}" wx:key="sportKinds">
-            <view class="sportele {{current_item === index?'bg-gradual-blue shadow-blur light':' '}}" style="height:{{ windowHeight*0.05}}px;" bindtap="kind_select" data-kind="{{item}}" data-key="{{index}}">
+            <view class="sportele {{current_item === index?'bg-blue light':'bg-gray'}}" style="height:{{ windowHeight*0.05}}px;" bindtap="kind_select" data-kind="{{item}}" data-key="{{index}}">
               {{item}}
             </view>
           </view>
           <!-- <view class="sportele" style="height:{{ windowHeight*0.05}}px;width:{{ windowWidth*0.65}}px;">
             +
           </view> -->
-          <button class="sportele" style="height:{{ windowHeight*0.05}}px;width:{{ windowWidth*0.65}}px;" bindtap="showPlus" data-target="DialogPlus">+</button>
+          <button class="sportele bg-gray" style="height:{{ windowHeight*0.05}}px;width:{{ windowWidth*0.65}}px;" bindtap="showPlus" data-target="DialogPlus">+</button>
         </view>
       </view>
       <van-field label="活动地点" value="{{ location }}" bind:tap="onPickLocation" placeholder="点击获取地理位置" clickable required readonly use-button-slot>
