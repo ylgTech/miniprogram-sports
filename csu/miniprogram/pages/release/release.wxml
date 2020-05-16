@@ -24,7 +24,8 @@
   <!-- <text class = "SelectTitle">请选择活动类别</text> -->
 
   <view class="form">
-    <van-cell-group title="请选择活动类别">
+    <van-cell-group>
+    <view class="toptitle">请选择活动类别</view>
       <view>
         <view style="width:{{ windowWidth*0.72}}px;" class="sportslist">
           <view style="width:{{ item.length*windowWidth*0.065}}px;" wx:for="{{ sportkinds }}" wx:key="sportKinds">
