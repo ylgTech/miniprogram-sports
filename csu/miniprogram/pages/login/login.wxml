@@ -1,16 +1,16 @@
-<image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E7%99%BB%E5%BD%95.png?sign=a8f059ecf1931ea27206ad65976bb5bf&t=1588149303" style="height:{{windowHeight*0.45}}px;width:{{windowWidth}}px"> </image>
+<image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E7%99%BB%E5%BD%95.png?sign=a8f059ecf1931ea27206ad65976bb5bf&t=1588149303" style="height:{{windowHeight*0.4}}px;width:{{windowWidth}}px" class = "bk"> </image>
 
 <view class="login" style="height:{{windowHeight*0.18}}px;width:{{windowWidth*0.8}}px;top:{{-windowHeight*0.1}}px">
 
 <view class="container-num">
 
 <text  style="width:{{windowWidth*0.2}}px;">学号：</text>
-<input  style="width:{{windowWidth*0.4}}px;height:{{windowHeight*0.09}}px;" placeholder="请输入学号" value="{{number}}" bindblur="mess_change" type="number"></input>
+<input  style="width:{{windowWidth*0.4}}px;height:{{windowHeight*0.09}}px;" placeholder="请输入学号(数字部分)" value="{{number}}" bindblur="mess_change" type="number"></input>
 
 </view>
-<view class="container-num">
+<view class="container-name">
 <text style="width:{{windowWidth*0.2}}px;">姓名：</text>
-<input  style="width:{{windowWidth*0.4}}px;height:{{windowHeight*0.09}}px;" placeholder="请输入姓名"  value="{{name}}" bindblur="mess_change2"></input>
+<input  style="width:{{windowWidth*0.4}}px;height:{{windowHeight*0.09}}px;" placeholder="姓名"  value="{{name}}" bindblur="mess_change2"></input>
 </view>
 </view>
 

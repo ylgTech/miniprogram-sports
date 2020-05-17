@@ -21,6 +21,18 @@
   justify-content: center;
   align-items: center;
 }
+.container-name{
+  left: 5%;
+  width: 90%;
+  height: 50%;
+  position: relative;
+  border-radius: 30rpx 30rpx 0 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
 
 .submit{
   align-items: center;
