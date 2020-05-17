@@ -1,6 +1,8 @@
 // pages/me/me.js
 const db = wx.cloud.database()
 const app = getApp()
+//用于获取屏幕信息 适配屏幕大小
+var windowHeight = 0;
 
 Page({
   data: {
@@ -8,6 +10,10 @@ Page({
     username: '加载中',
     score: 0,
     logthree: [],
+    //状态栏和标题栏的高度
+    windowHeight: 0,
+    statusBarHeight: 0,
+    titleBarHeight: 0,
     my_release: false, //控制我发起的
     my_release_detail: ["try"], //控制我发起的
     my_join: false, //控制我我参加的
@@ -16,10 +22,21 @@ Page({
     touch_times_join: 1, //控制我参加的
     pop_detail_release: false, //控制我发起
     pop_detail_join: false, //控制我参加
+    join_height: '', //我参加的需要移动距离
+    none_height: '', //未完待续需要移动距离
   },
   join_hidden_change: function(e) { //控制我参加
     var that = this
     var touch_times_join = that.data.touch_times_join
+    let query = wx.createSelectorQuery()
+    query.select('#join').boundingClientRect((rect) => {
+      let top = rect.top
+      this.setData({
+        join_height: top,
+      })
+    }).exec()
+    var join_height = -this.data.join_height + this.data.titleBarHeight
+    console.log(join_height)
     var animation_join = wx.createAnimation({
       duration: 1000,
       timingFunction: 'ease',
@@ -40,15 +57,15 @@ Page({
       timingFunction: 'ease',
       delay: 0
     });
-    animation_join.translateY(-443).step();
+    animation_join.translateY(-428).step();
     animation_join1.translateY(0).step();
-    animation_join2.translateY(-130).step();
-    animation_join3.translateY(0).step();
+    animation_join2.translateY(-70).opacity(0).step();
+    animation_join3.translateY(0).opacity(1).step();
     that.setData({
       touch_times_join: touch_times_join + 1
     })
     if (that.data.touch_times_join % 2 == 0) {
-      setTimeout(function () {
+      setTimeout(function() {
         that.setData({
           my_join: true
         })
@@ -59,9 +76,9 @@ Page({
       })
     } else {
 
-        that.setData({
-          my_join: false
-        })
+      that.setData({
+        my_join: false
+      })
 
       that.setData({
         ani_join: animation_join1.export(),
@@ -180,7 +197,33 @@ Page({
     })
     console.log('切换成功')
     console.log(app.appData.user_openid)
+    this.getWindowHeight();
   },
-
+  /** 
+   * 获取用户设备屏幕高度
+   */
+  getWindowHeight: function() {
+    var that = this
+    wx.getSystemInfo({
+      success: function(res) {
+        var statusBarHeight = res.statusBarHeight;
+        var titleBarHeight;
+        // 确定titleBar高度（区分安卓和苹果
+        if (wx.getSystemInfoSync().system.indexOf('iOS') > -1) {
+          titleBarHeight = 44
+        } else {
+          titleBarHeight = 48
+        }
+        windowHeight = res.windowHeight - statusBarHeight - titleBarHeight
+        console.log('windowHeight: ' + res.windowHeight)
+        that.setData({
+          windowHeight: res.windowHeight,
+          statusBarHeight: statusBarHeight,
+          titleBarHeight: titleBarHeight,
+          mapHeight: windowHeight - 32,
+        })
+      },
+    })
+  },
 
 })
