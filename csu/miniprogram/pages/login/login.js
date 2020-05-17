@@ -12,18 +12,51 @@ Page({
     number: '',
   },
   mess_change: function(e) {
+  
+    console.log(e.detail.value)
     this.setData({
       number: e.detail.value
     })
   },
   mess_change2: function(e) {
+    console.log(e.detail.value)
     this.setData({
       name: e.detail.value
     })
   },
   register: function(e) {
     var that = this
-
+    var regLowerCase = new RegExp('[a-z]', 'g');//判断用户输入的是否为小写字母
+    var regCapitalLetter = new RegExp('[A-Z]', 'g');//判断用户输入的是否为大写字母
+    var regNum = new RegExp('[0-9]', 'g');//判断用户输入的是否为数字
+    var rsLowerCase = regLowerCase.exec(that.data.number);
+    var rsCapitalLetter = regCapitalLetter.exec(that.data.number);
+    var rsNum = regNum.exec(that.data.number);
+    console.log(that.data.number.length)
+    if (!rsNum){
+      wx.showToast({
+        title: '学号不为数字!',
+        icon: 'loading',
+      })
+      return
+    }
+    if (that.data.number.length != 10 && that.data.number.length != 9){
+      wx.showToast({
+        title: '学号位数有误!',
+        icon:'loading',
+      })
+      return
+    }
+    if (that.data.name=='') {
+      wx.showToast({
+        title: '用户名为空!',
+        icon: 'loading',
+      })
+      return
+    }
+    wx.showToast({
+      title: '注册成功!',
+    })
     setTimeout(function() {
       db.collection('person_login').add({
         data: {
@@ -31,7 +64,6 @@ Page({
           _name: that.data.name,
         },
         success: res => {
-          console.log("成功注册！")
           console.log(app.appData.user_openid)
           wx.reLaunch({
             url: '../index/index',
