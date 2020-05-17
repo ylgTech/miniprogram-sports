@@ -21,17 +21,29 @@ Page({
     var that = this
     var touch_times_join = that.data.touch_times_join
     var animation_join = wx.createAnimation({
-      duration: 400,
+      duration: 1000,
       timingFunction: 'ease',
       delay: 0
     });
     var animation_join1 = wx.createAnimation({
-      duration: 400,
+      duration: 1000,
       timingFunction: 'ease',
       delay: 0
     });
-    animation_join.translateY(-385).step();
+    var animation_join2 = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+      delay: 0
+    });
+    var animation_join3 = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+      delay: 0
+    });
+    animation_join.translateY(-443).step();
     animation_join1.translateY(0).step();
+    animation_join2.translateY(-130).step();
+    animation_join3.translateY(0).step();
     that.setData({
       touch_times_join: touch_times_join + 1
     })
@@ -40,9 +52,10 @@ Page({
         that.setData({
           my_join: true
         })
-      }, 400)
+      }, 1000)
       that.setData({
         ani_join: animation_join.export(),
+        ani_join1: animation_join2.export()
       })
     } else {
 
@@ -52,6 +65,7 @@ Page({
 
       that.setData({
         ani_join: animation_join1.export(),
+        ani_join1: animation_join3.export(),
       })
     }
   },

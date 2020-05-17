@@ -82,7 +82,7 @@
     </view>
     </view>
   </view>
-  <view class="btnitem" animation="{{ani_join}}">
+  <view class="btnitem" animation="{{ani_join1}}">
     未完待续 >>>
   </view>
 </view>
