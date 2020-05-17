@@ -30,7 +30,7 @@ Page({
       timingFunction: 'ease',
       delay: 0
     });
-    animation_join.translateY(-335).step();
+    animation_join.translateY(-385).step();
     animation_join1.translateY(0).step();
     that.setData({
       touch_times_join: touch_times_join + 1

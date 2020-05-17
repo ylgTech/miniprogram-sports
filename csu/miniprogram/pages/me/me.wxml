@@ -1,5 +1,5 @@
 <!--pages/me/me.wxml-->
-<view id="top">
+<view id="top" animation="{{ani_join}}">
   <image src="{{AvatarUrl}}" mode="widthFix"></image>
   <text id="username">{{username}}</text>
   <view id="alterinfo">
@@ -7,7 +7,7 @@
     <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/edit.png?sign=c6e90225a1a1f97229d0d9af430aa900&t=1588086342" mode="widthFix"></image>
   </view>
 </view>
-<view id="middle">
+<view id="middle" animation="{{ani_join}}">
   <view id="score">
     积分
     <text>{{score}}</text>
@@ -82,7 +82,7 @@
     </view>
     </view>
   </view>
-  <view class="btnitem" animation="{{ani_other}}">
+  <view class="btnitem" animation="{{ani_join}}">
     未完待续 >>>
   </view>
 </view>
