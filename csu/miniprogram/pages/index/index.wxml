@@ -1,5 +1,5 @@
 <view class="flex">
-<cu-custom bgImage="https://image.weilanwl.com/color2.0/plugin/cjkz2329.jpg">
+<cu-custom bgImage="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/jason-leung-Xaanw0s0pMk-unsplash.jpg?sign=168a1ba13d531cf147c740ac0d9ffaf2&t=1589678124">
 	<view slot="content">发起运动</view>
 </cu-custom>
 

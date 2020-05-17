@@ -1,33 +1,37 @@
 <!--pages/group/group-select-college.wxml-->
+<cu-custom bgImage="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/renee-fisher-esKpVtcVIso-unsplash.jpg?sign=e1ac00f0c7ff11ea88fc5b767e0eab40&t=1589678546" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">兴趣小组</view>
+</cu-custom>
 <view class="main-view">
-    <view class="main-opt-box">
-        <view class="create-group-link">
-            创建一个小组
-        </view>
-        <!-- 测试用，记得改掉这个bindtap -->
-        <view class="groups-list-box" bindtap="test_nav">
-            <view class="groups-column">
-                <view wx:for="{{GroupCollegeList}}" wx:key="GroupID" wx:if="{{index%2==0}}" class="one-group">
-                    <view class="one-group-name">{{item.GroupName}}</view>
-                    <view class="divline-horizontal"></view>
-                    <view class="one-group-littlebox">
-                        <view class="one-group-littletext">{{item.CollegeName}}</view>
-                        |
-                        <view class="one-group-littletext">{{item.SportTypeName}}</view>
-                    </view>
-                </view>
-            </view>
-            <view class="groups-column">
-                <view wx:for="{{GroupCollegeList}}" wx:key="GroupID" wx:if="{{index%2==1}}" class="one-group">
-                    <view class="one-group-name">{{item.GroupName}}</view>
-                    <view class="divline-horizontal"></view>
-                    <view class="one-group-littlebox">
-                        <view class="one-group-littletext">{{item.CollegeName}}</view>
-                        |
-                        <view class="one-group-littletext">{{item.SportTypeName}}</view>
-                    </view>
-                </view>
-            </view>
-        </view>
+  <view class="main-opt-box">
+    <view class="create-group-link">
+      创建一个小组
     </view>
+    <!-- 测试用，记得改掉这个bindtap -->
+    <view class="groups-list-box" bindtap="test_nav">
+      <view class="groups-column">
+        <view wx:for="{{GroupCollegeList}}" wx:key="GroupID" wx:if="{{index%2==0}}" class="one-group">
+          <view class="one-group-name">{{item.GroupName}}</view>
+          <view class="divline-horizontal"></view>
+          <view class="one-group-littlebox">
+            <view class="one-group-littletext">{{item.CollegeName}}</view>
+            |
+            <view class="one-group-littletext">{{item.SportTypeName}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="groups-column">
+        <view wx:for="{{GroupCollegeList}}" wx:key="GroupID" wx:if="{{index%2==1}}" class="one-group">
+          <view class="one-group-name">{{item.GroupName}}</view>
+          <view class="divline-horizontal"></view>
+          <view class="one-group-littlebox">
+            <view class="one-group-littletext">{{item.CollegeName}}</view>
+            |
+            <view class="one-group-littletext">{{item.SportTypeName}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

@@ -1,5 +1,5 @@
 <!--pages/release/release.wxml-->
-<cu-custom bgColor="bg-gradual-blue">
+<cu-custom bgImage="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/clem-onojeghuo--YMhg0KYgVc-unsplash.jpg?sign=4859d1228316a0416bb4eb9ed09afffa&t=1589677703">
   <view slot="content">发起运动</view>
 </cu-custom>
 <view class="body">
