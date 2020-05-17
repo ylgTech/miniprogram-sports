@@ -156,7 +156,7 @@ page {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 102rpx;
+  width: 136rpx;
 }
 
 .item-grade {
