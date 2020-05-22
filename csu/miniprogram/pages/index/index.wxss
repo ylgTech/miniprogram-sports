@@ -319,3 +319,51 @@ page {
   position: absolute;
   right: 7%;
 }
+/*以下为打卡详情页wxss*/
+.clocked{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5%;
+}
+.clocking{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5%;
+}
+.clo-man{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;  
+  margin-left: 3%;
+}
+.text-middle{
+  width: 100rpx;
+  height: 50rpx;
+  margin-top: 7%;
+}
+.text-top{
+  height: 50rpx;
+  width: 150rpx;
+  text-align: center;
+  margin-left: 39%;
+  margin-top: 5%;
+}
+.number{
+  font-size: 40rpx;
+  height: 50rpx;
+  width: 150rpx;
+  text-align: center;
+  margin-left: 39%;
+  margin-top: 5%;
+}
+.btn{
+  width: 250rpx;
+  height: 90rpx;
+  border-radius: 40px;
+  background-color: #e2eaf9;
+  border: solid 1px #cfcfcf;
+  color: rgb(49, 49, 49);
+  position: absolute;
+  right: 7%;
+  bottom: 5%;
+}
