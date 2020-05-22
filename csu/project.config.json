@@ -97,12 +97,20 @@
 					"id": -1,
 					"name": "pages/release/release",
 					"pathName": "pages/release/release",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "pages/group-detail/group-detail",
 					"pathName": "pages/group-detail/group-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/clockIn/clockIn",
+					"pathName": "pages/clockIn/clockIn",
 					"scene": null
 				}
 			]

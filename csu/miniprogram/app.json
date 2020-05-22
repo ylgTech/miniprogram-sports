@@ -9,6 +9,7 @@
         "pages/test/test",
         "pages/login/login",
         "pages/group-detail/group-detail"
+        
     ],"window": {
         "navigationStyle": "custom"
     },

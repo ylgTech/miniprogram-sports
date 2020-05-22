@@ -103,6 +103,28 @@
 		</view>
 		<button wx:if="{{pop_btn}}" class="pop_btn" bindtap="pop_fade">报名参加</button>
 		<button wx:if="{{pop_btn_in}}" class="pop_btn" bindtap="mark">打卡</button>
+    <button wx:if="{{pop_btn_start}}" class="pop_btn" bindtap="startMark">发起打卡</button>
 		<van-loading wx:if="{{load_show}}" type="spinner" color="#1989fa" />
 	</view>
+</van-popup>
+
+<van-popup round show="{{clockDetail}}" bind:close="onClose2">
+  <view style="width:{{ windowWidth*0.86}}px;height:{{ windowHeight*0.72}}px;">
+    <view class="text-top">打卡详情</view>
+    <view class="number">{{clockedNum}}/{{totalNum}}</view>
+    <view class="text-middle">已打卡</view>
+    <view class="clocked">
+      <view class="clo-man" wx:for="{{clockedMan}}">
+        <image src="{{item._avaurl}}" style="width:100%;height:100%;border-radius:50%;"></image>
+      </view>
+    </view>
+    <view>未打卡</view>
+    <view class="clocking">
+      <view class="clo-man" wx:for="{{clockingMan}}">
+        <image src="{{item._avaurl}}" style="width:100%;height:100%;border-radius:50%;"></image>
+      </view>
+    </view>
+  </view>
+  
+  <button class="btn" bindtap="finish">完成</button>
 </van-popup>
