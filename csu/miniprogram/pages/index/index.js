@@ -443,6 +443,33 @@ Page({
     })
   },
 
+	//获取积分排行榜
+    getScoreRank:async function(e){
+        const rc = await db.collection('person_login').limit(10)
+            .orderBy('_rewardpoint', 'asc')
+            .get()
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    },
+
+    //获取我的积分排名，需要接受一个参数，内含一个uid，指示用户的_id
+    getMyScoreRank: async function(usrinfo){
+        const rc = await db.collection('person_login')
+        .where({
+            "_id": usrinfo.uid,
+        })
+        .get()
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch(err => {
+            console.error(err)
+        })
+    },
 
   //页面数据更新
   refresh: function(e) {
