@@ -64,6 +64,11 @@ Page({
     that.setData({
       touch_times_join: touch_times_join + 1
     })
+    if (that.data.my_release==true){
+      that.setData({
+        my_release:false
+      })
+    }
     if (that.data.touch_times_join % 2 == 0) {
       setTimeout(function() {
         that.setData({
