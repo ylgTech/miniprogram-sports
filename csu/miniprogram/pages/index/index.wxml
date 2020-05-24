@@ -56,7 +56,7 @@
         </view>
       </view>
     </van-tab>
-    <van-tab title="未完待续...">
+    <!-- <van-tab title="未完待续...">
       <view class="van">
         <text>页面3</text>
       </view>
@@ -65,7 +65,7 @@
       <view class="van">
         <text>页面4</text>
       </view>
-    </van-tab>
+    </van-tab> -->
   </van-tabs>
 </view>
 
