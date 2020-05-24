@@ -12,8 +12,7 @@
       </swiper-item>
     </block>
   </swiper>
-
-  <van-tabs active="{{ active }}" color="transparent" bind:change="onChange" bindtap="switchNav" custom-class="custom" class="tab-item">
+  <van-tabs active="{{ active }}" bind:change="onChange" bindtap="switchNav" class="tab-item" color="var(--blue)" swipeable="true">
     <van-tab title="发布活动">
       <view class="van">
         <Calendar id="Calendar" bind:select="select"></Calendar>

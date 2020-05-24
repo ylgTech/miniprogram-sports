@@ -20,7 +20,8 @@ page {
   border-radius: 25rpx;
   justify-content: center;
 }
-.swiper{
+
+.swiper {
   height: 40vh;
 }
 
@@ -183,8 +184,8 @@ page {
   border-top-right-radius: 25rpx !important;
   background-color: transparent !important;
   color: #646566 !important;
-  margin-left: 4px !important;
-  margin-right: 4px !important;
+  /* margin-left: 4px !important;
+  margin-right: 4px !important; */
   opacity: 1;
 }
 
@@ -195,8 +196,8 @@ page {
   border-top-right-radius: 25rpx !important;
   background-color: white !important;
   color: #323233 !important;
-  margin-left: 4px !important;
-  margin-right: 4px !important;
+  /* margin-left: 4px !important;
+  margin-right: 4px !important; */
   opacity: 1;
 }
 
@@ -228,7 +229,6 @@ page {
   width: 675rpx;
   background: #fff;
 }
-
 
 .match_detail_1 {
   margin-left: 7%;
@@ -328,36 +328,43 @@ page {
   align-items: center;
   text-align: center;
 }
+
 /*以下为打卡详情页wxss*/
-.clocked{
+
+.clocked {
   display: flex;
   flex-wrap: wrap;
   margin-top: 5%;
 }
-.clocking{
+
+.clocking {
   display: flex;
   flex-wrap: wrap;
   margin-top: 5%;
 }
-.clo-man{
+
+.clo-man {
   width: 100rpx;
   height: 100rpx;
-  border-radius: 50%;  
+  border-radius: 50%;
   margin-left: 3%;
 }
-.text-middle{
+
+.text-middle {
   width: 100rpx;
   height: 50rpx;
   margin-top: 7%;
 }
-.text-top{
+
+.text-top {
   height: 50rpx;
   width: 150rpx;
   text-align: center;
   margin-left: 39%;
   margin-top: 5%;
 }
-.number{
+
+.number {
   font-size: 40rpx;
   height: 50rpx;
   width: 150rpx;
@@ -365,7 +372,8 @@ page {
   margin-left: 39%;
   margin-top: 5%;
 }
-.btn{
+
+.btn {
   width: 573rpx;
   height: 90rpx;
   border-radius: 40px;
@@ -381,10 +389,10 @@ page {
   text-align: center;
 }
 
-.tab-item{
+.tab-item {
   top: 25rpx !important;
 }
 
-.van-popup--center.van-popup--round{
-  margin-top:65rpx !important;
+.van-popup--center.van-popup--round {
+  margin-top: 65rpx !important;
 }
