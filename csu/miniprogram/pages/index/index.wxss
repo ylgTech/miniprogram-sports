@@ -20,6 +20,9 @@ page {
   border-radius: 25rpx;
   justify-content: center;
 }
+.swiper{
+  height: 40vh;
+}
 
 .background {
   width: 100%;
@@ -226,6 +229,7 @@ page {
   background: #fff;
 }
 
+
 .match_detail_1 {
   margin-left: 7%;
   width: 86%;
@@ -310,14 +314,19 @@ page {
 }
 
 .pop_btn {
-  width: 250rpx;
+  width: 580rpx;
   height: 90rpx;
   border-radius: 40px;
-  background-color: #e2eaf9;
+  margin-bottom: 30rpx;
+  background-color: var(--blue);
   border: solid 1px #cfcfcf;
-  color: rgb(49, 49, 49);
+  color: white;
   position: absolute;
   right: 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 /*以下为打卡详情页wxss*/
 .clocked{
@@ -357,7 +366,7 @@ page {
   margin-top: 5%;
 }
 .btn{
-  width: 250rpx;
+  width: 573rpx;
   height: 90rpx;
   border-radius: 40px;
   background-color: #e2eaf9;
@@ -366,4 +375,16 @@ page {
   position: absolute;
   right: 7%;
   bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tab-item{
+  top: 25rpx !important;
+}
+
+.van-popup--center.van-popup--round{
+  margin-top:65rpx !important;
 }
