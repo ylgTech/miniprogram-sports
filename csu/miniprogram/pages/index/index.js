@@ -328,7 +328,7 @@ Page({
                   console.log('打卡失败')
                   wx.showToast({
                     title: '失败，请重试',
-
+                    icon: 'none',
                     duration: 1000
                   })
                 }
