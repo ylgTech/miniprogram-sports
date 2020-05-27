@@ -71,7 +71,7 @@
 
 
 <van-popup round show="{{ pop_detail }}" bind:close="onClose">
-	<view class="pop_detail" bindtap="pop_fade2">
+	<view class="pop_detail" >
 		<view style="width:100%;text-align: center;font-size:40rpx;color: rgb(167, 164, 164);margin-top:30rpx;">活动详情</view>
 		<view class="match_detail_1">
 			<view class="match_detail_2">

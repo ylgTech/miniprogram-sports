@@ -2,6 +2,13 @@
 const db = wx.cloud.database()
 const app = getApp()
 const _ = db.command
+var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
+
+var qqmapsdk = new QQMapWX({
+
+  key: 'ZVDBZ-VBUHQ-CRJ55-GRU7W-FDACJ-B4BMW'
+
+});
 Page({
   onLoad: function() {
 
@@ -45,7 +52,7 @@ Page({
     ],
     rank: [{
         rank: 1,
-        name: '陈平安',
+        name: '陈平安啊啊啊啊',
         grade: 9999,
         avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
         // 控制icon大小
@@ -220,18 +227,45 @@ Page({
 
     console.log('关闭')
   },
-  pop_fade2: function(e) {
-    var that = this
-    setTimeout(function() {
-      that.setData({
-        pop_detail: false
-      })
-    }, 100)
-    console.log('关闭')
-  },
+
 
   //距离运算
+  distance2: function(lat1, lng1, lat2, lng2) {
+    var _this = this;
+    //调用距离计算接口
+    qqmapsdk.calculateDistance({
+      mode: 'straight', //可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
+      //from参数不填默认当前地址
+      //获取表单提交的经纬度并设置from和to参数（示例为string格式）
+      from: {
+        latitude: lat1,
+        longitude: lng1
+      }, //若起点有数据则采用起点坐标，若为空默认当前地址
+      to: [{
+        latitude: lat2,
+        longitude: lng2
+      }], //终点坐标
+      success: function(res) { //成功后的回调
+        console.log(res);
+        var res = res.result;
+        var dis = [];
+        for (var i = 0; i < res.elements.length; i++) {
+          dis.push(res.elements[i].distance); //将返回数据存入dis数组，
+        }
+        _this.setData({ //设置并更新distance数据
+          distance: dis
+        });
+        console.log(dis)
+      },
+      fail: function(error) {
+        console.error(error);
+      },
+      complete: function(res) {
+        console.log(res);
+      }
+    });
 
+  },
   distance: function(lat1, lng1, lat2, lng2) {
     lat1 = lat1 || 0;
     lng1 = lng1 || 0;
@@ -286,11 +320,10 @@ Page({
           longitude2 = res.data[0]._longitude
           console.log('发起者位置', latitude2, longitude2)
           console.log('参与者位置', latitude1, longitude1)
-          distance = that.distance(latitude1, longitude1, latitude2, longitude2)
+          that.distance2(latitude1, longitude1, latitude2, longitude2)
+          distance = that.data.distance[0]
           console.log("当前距离", distance)
-          that.setData({
-            distance: distance
-          })
+
           wx.showLoading({
             title: '打卡中',
             mask: true,
@@ -376,7 +409,8 @@ Page({
     var that = this
     this.onWatch()
     this.setData({
-      clockDetail: true
+      clockDetail: true,
+      pop_detail: false
     })
     this.setlocationS()
 
@@ -507,6 +541,7 @@ Page({
    */
   onLoad: function(options) {
     var that = this
+    this.distance2(25.303650, 118.796950, 25.304098, 118.793869)
     wx.getSystemInfo({
       success: function(res) {
         console.log('windowHeight: ' + res.windowHeight)
