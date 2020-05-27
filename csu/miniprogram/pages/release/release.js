@@ -248,6 +248,12 @@ Page({
     var sportkinds = _this.data.sportkinds;
     var addkind = _this.data.addkind;
     sportkinds.push(addkind);
+    console.log('fuck'+sportkinds.length)
+    this.setData({
+      kind: addkind,
+      current_item:sportkinds.length-1,
+      showKind: false,
+    })
     this.setData({
       addkind: null,
       modalName: null,

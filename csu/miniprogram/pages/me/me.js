@@ -77,7 +77,12 @@ Page({
     that.setData({
       touch_times_join: touch_times_join + 1
     })
-    if (that.data.touch_times_join % 2 == 0) {
+    if (that.data.my_release==true){
+      that.setData({
+        my_release:false
+      })
+    }
+    if (that.data.my_join == false) {
       setTimeout(function() {
         that.setData({
           my_join: true
@@ -105,7 +110,7 @@ Page({
     that.setData({
       touch_times_release: touch_times_release + 1
     })
-    if (that.data.touch_times_release % 2 == 0) {
+    if (that.data.my_release == false) {
       that.setData({
         my_release: true
       })

@@ -48,7 +48,7 @@ Page({
     nextMonth: 'nextMonth',
     selectVal: '',
     imgUrls: [
-      "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/paobu.jpg?sign=e3e5e5d7d1b2bd9227eb91fe7ba99a98&t=1588412928", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/zuqiu1.jpg?sign=313bafac7d572f421d2d9450342626ec&t=1588412797", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/paobu.jpg?sign=e3e5e5d7d1b2bd9227eb91fe7ba99a98&t=1588412928",
+      "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kalen-emsley-kGSapVfg8Kw-unsplash.jpg?sign=a076fa7a17b73ee4650a83c5244efbe9&t=1590280808", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/noah-buscher-jyQChhw-WbI-unsplash.jpg?sign=62de79f3fcb38cbc26c355f330d1a9af&t=1590280867", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kate-m-O0x4a5pJP0M-unsplash.jpg?sign=9404a6f424e10025bb52163812cbe87e&t=1590308897",
     ],
     rank: [{
         rank: 1,
@@ -361,7 +361,7 @@ Page({
                   console.log('打卡失败')
                   wx.showToast({
                     title: '失败，请重试',
-
+                    icon: 'none',
                     duration: 1000
                   })
                 }
@@ -477,6 +477,33 @@ Page({
     })
   },
 
+	//获取积分排行榜
+    getScoreRank:async function(e){
+        const rc = await db.collection('person_login').limit(10)
+            .orderBy('_rewardpoint', 'asc')
+            .get()
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    },
+
+    //获取我的积分排名，需要接受一个参数，内含一个uid，指示用户的_id
+    getMyScoreRank: async function(usrinfo){
+        const rc = await db.collection('person_login')
+        .where({
+            "_id": usrinfo.uid,
+        })
+        .get()
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch(err => {
+            console.error(err)
+        })
+    },
 
   //页面数据更新
   refresh: function(e) {
