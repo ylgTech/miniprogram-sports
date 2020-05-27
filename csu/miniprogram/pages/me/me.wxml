@@ -26,40 +26,8 @@
     我发起的 >>>
   </view>
   <view wx:if="{{my_release}}" style="width:100%;">
-    <view wx:for="{{my_release_detail}}" class="each-mes-1" bindtap="match_detail_release">
 
-      <view class="pop_detail" wx:if="{{pop_detail_release}}" bindtap="pop_fade2_release">
-        <view style="width:100%;text-align: center;font-size:40rpx;color: rgb(167, 164, 164);margin-top:30rpx;">活动详情</view>
-        <view class="match_detail_1">
-          <view class="match_detail_2">
-            <image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/xueshan.jpg?sign=479889dcfd5d1b0ec705f12800aeb774&t=1588413106" style="width:160rpx;height:160rpx;"></image>
-            <view class="match_detail_2_title">{{item._sport_title}}</view>
-            <view class="match_detail_2_intro">{{item._introduction}}</view>
-          </view>
-          <view class="match_detail_3">
-            <view class="match_detail_3_left">发起者</view>
-            <view class="match_detail_3_right">{{item._name}}</view>
-          </view>
-          <view class="match_detail_3">
-            <view class="match_detail_3_left">时间</view>
-            <view class="match_detail_3_right">{{item._time}}</view>
-          </view>
-          <view class="match_detail_3">
-            <view class="match_detail_3_left">地点</view>
-            <view class="match_detail_3_right">{{item._destination}}</view>
-          </view>
-          <view class="match_detail_3">
-            <view class="match_detail_3_left">参与人数</view>
-            <view class="match_detail_3_right">{{item._number}}</view>
-          </view>
-          <view class="match_detail_4">
-            <view class="match_detail_4_left">活动描述</view>
-            <view class="match_detail_4_right">{{item._introduction_detail}}</view>
-          </view>
-        </view>
-        
-      </view>
-
+    <view wx:for="{{my_release_detail}}" class="each-mes-1" id="{{index}}" bindtap="match_detail_release">
       <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416" style="width:220rpx;height:120rpx;margin-left:30rpx;"></image>
       <view class="content-1">
         <view style="font-weight:bold">{{item._sport_title}}</view>
@@ -71,18 +39,115 @@
     我参加的 >>>
   </view>
   <view wx:if="{{my_join}}" style="width:100%;">
-    <view wx:for="{{my_join_detail}}" class="each-mes-1" bindtap="match_detail_join"  animation="{{ani_join}}">
-    <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416" style="width:220rpx;height:120rpx;margin-left:30rpx;"></image>
-       
+    <view wx:for="{{my_join_detail}}" class="each-mes-1" id="{{index}}" bindtap="match_detail_join" animation="{{ani_join}}">
+      <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416" style="width:220rpx;height:120rpx;margin-left:30rpx;"></image>
+
       <view class="content-1">
-      <view class="pop_detail" wx:if="{{pop_detail_join}}" bindtap="pop_fade2_join">
-        <view style="font-weight:bold">{{item._sport_title}}</view>
-        <view>{{item._sport_introduction}}</view>
+       
+          <view style="font-weight:bold">{{item._sport_title}}</view>
+          <view>{{item._sport_introduction}}</view>
+        
       </view>
-    </view>
     </view>
   </view>
   <view class="btnitem" animation="{{ani_join1}}">
     未完待续 >>>
   </view>
 </view>
+
+<van-popup round show="{{ pop_detail_release }}" bind:close="onClose">
+  <view class="pop_detail">
+    <view style="width:100%;text-align: center;font-size:40rpx;color: rgb(167, 164, 164);margin-top:30rpx;">活动详情</view>
+    <view class="match_detail_1">
+      <view class="match_detail_2">
+
+        <image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/xueshan.jpg?sign=479889dcfd5d1b0ec705f12800aeb774&t=1588413106" style="width:160rpx;height:160rpx;" bindtap="pop_fade"></image>
+        <view class="match_detail_2_title">{{my_release_detail[detailIndex]._sport_title}}</view>
+        <view class="match_detail_2_intro">{{my_release_detail[detailIndex]._introduction}}</view>
+      </view>
+      <view class="match_detail_3">
+        <view class="match_detail_3_left">发起者</view>
+        <view class="match_detail_3_right">{{my_release_detail[detailIndex]._name}}</view>
+      </view>
+      <view class="match_detail_3">
+        <view class="match_detail_3_left">时间</view>
+        <view class="match_detail_3_right">{{my_release_detail[detailIndex]._time}}</view>
+      </view>
+      <view class="match_detail_3">
+        <view class="match_detail_3_left">地点</view>
+        <view class="match_detail_3_right">{{my_release_detail[detailIndex]._destination}}</view>
+      </view>
+      <view class="match_detail_3">
+        <view class="match_detail_3_left">参与人数</view>
+        <view class="match_detail_3_right">{{my_release_detail[detailIndex]._number}}</view>
+      </view>
+      <view class="match_detail_4">
+        <view class="match_detail_4_left">活动描述</view>
+        <view class="match_detail_4_right">{{my_release_detail[detailIndex]._introduction_detail}}</view>
+      </view>
+    </view>
+    <button wx:if="{{pop_btn}}" class="pop_btn" bindtap="pop_fade">报名参加</button>
+    <button wx:if="{{pop_btn_in}}" class="pop_btn" bindtap="mark">打卡</button>
+    <button wx:if="{{pop_btn_start}}" class="pop_btn" bindtap="startMark">发起打卡</button>
+    <van-loading wx:if="{{load_show}}" type="spinner" color="#1989fa" />
+  </view>
+</van-popup>
+
+<van-popup round show="{{ pop_detail_join }}" bind:close="onClose">
+  <view class="pop_detail">
+    <view style="width:100%;text-align: center;font-size:40rpx;color: rgb(167, 164, 164);margin-top:30rpx;">活动详情</view>
+    <view class="match_detail_1">
+      <view class="match_detail_2">
+
+        <image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/xueshan.jpg?sign=479889dcfd5d1b0ec705f12800aeb774&t=1588413106" style="width:160rpx;height:160rpx;" bindtap="pop_fade"></image>
+        <view class="match_detail_2_title">{{my_join_detail[detailIndex]._sport_title}}</view>
+        <view class="match_detail_2_intro">{{my_join_detail[detailIndex]._sport_introduction}}</view>
+      </view>
+      <view class="match_detail_3">
+        <view class="match_detail_3_left">发起者</view>
+        <view class="match_detail_3_right">{{my_join_detail2._name}}</view>
+      </view>
+      <view class="match_detail_3">
+        <view class="match_detail_3_left">时间</view>
+        <view class="match_detail_3_right">{{my_join_detail2._time}}</view>
+      </view>
+      <view class="match_detail_3">
+        <view class="match_detail_3_left">地点</view>
+        <view class="match_detail_3_right">{{my_join_detail2._destination}}</view>
+      </view>
+      <view class="match_detail_3">
+        <view class="match_detail_3_left">参与人数</view>
+        <view class="match_detail_3_right">{{my_join_detail2._number}}</view>
+      </view>
+      <view class="match_detail_4">
+        <view class="match_detail_4_left">活动描述</view>
+        <view class="match_detail_4_right">{{my_join_detail2._introduction_detail}}</view>
+      </view>
+    </view>
+    <button wx:if="{{pop_btn}}" class="pop_btn" bindtap="pop_fade">报名参加</button>
+    <button wx:if="{{pop_btn_in}}" class="pop_btn" bindtap="mark">打卡</button>
+    <button wx:if="{{pop_btn_start}}" class="pop_btn" bindtap="startMark">发起打卡</button>
+    <van-loading wx:if="{{load_show}}" type="spinner" color="#1989fa" />
+  </view>
+</van-popup>
+
+<van-popup round show="{{clockDetail}}" bind:close="onClose2">
+  <view style="width:{{ windowWidth*0.86}}px;height:{{ windowHeight*0.72}}px;">
+    <view class="text-top">打卡详情</view>
+    <view class="number">{{clockedNum}}/{{totalNum}}</view>
+    <view class="text-middle">已打卡</view>
+    <view class="clocked">
+      <view class="clo-man" wx:for="{{clockedMan}}">
+        <image src="{{item._avaurl}}" style="width:100%;height:100%;border-radius:50%;"></image>
+      </view>
+    </view>
+    <view>未打卡</view>
+    <view class="clocking">
+      <view class="clo-man" wx:for="{{clockingMan}}">
+        <image src="{{item._avaurl}}" style="width:100%;height:100%;border-radius:50%;"></image>
+      </view>
+    </view>
+  </view>
+
+  <button class="btn" bindtap="finish">完成</button>
+</van-popup>

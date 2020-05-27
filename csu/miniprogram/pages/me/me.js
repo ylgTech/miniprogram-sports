@@ -3,6 +3,13 @@ const db = wx.cloud.database()
 const app = getApp()
 //用于获取屏幕信息 适配屏幕大小
 var windowHeight = 0;
+var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
+
+var qqmapsdk = new QQMapWX({
+
+  key: 'ZVDBZ-VBUHQ-CRJ55-GRU7W-FDACJ-B4BMW'
+
+});
 
 Page({
   data: {
@@ -14,6 +21,8 @@ Page({
     windowHeight: 0,
     statusBarHeight: 0,
     titleBarHeight: 0,
+    detailIndex: 0,
+    sportId:'',
     my_release: false, //控制我发起的
     my_release_detail: ["try"], //控制我发起的
     my_join: false, //控制我我参加的
@@ -24,6 +33,10 @@ Page({
     pop_detail_join: false, //控制我参加
     join_height: '', //我参加的需要移动距离
     none_height: '', //未完待续需要移动距离
+    clockDetail:false,//控制打卡详情页
+    pop_btn_in: false,//控制打卡按钮
+    pop_btn_start: false,//控制发起打卡按钮
+    distance:[],
   },
   join_hidden_change: function(e) { //控制我参加
     var that = this
@@ -110,36 +123,310 @@ Page({
     }
   },
   match_detail_release: function(e) { //控制release
-    this.setData({
-      pop_detail_release: true
-    })
-    console.log('开启')
-  },
-  pop_fade2_release: function(e) { //控制release
     var that = this
-    setTimeout(function() {
-      that.setData({
-        pop_detail_release: false
-      })
-    }, 100)
-    console.log('关闭')
-  },
-  match_detail_join: function(e) { //控制join
+    console.log(e)
     this.setData({
-      pop_detail_join: true
+      pop_btn_start: true,
+      pop_detail_release: true,
+      detailIndex: e.currentTarget.id
     })
+    this.setData({
+      sportId: that.data.my_release_detail[e.currentTarget.id]._id
+    })
+
+    
     console.log('开启')
-  },
-  pop_fade2_join: function(e) { //控制join
-    var that = this
-    setTimeout(function() {
-      that.setData({
-        pop_detail_join: false
-      })
-    }, 100)
-    console.log('关闭')
   },
 
+  match_detail_join: function(e) { //控制join
+    var that = this
+    console.log(e)
+    this.setData({
+      pop_btn_in: true,
+      pop_detail_join: true,
+      detailIndex: e.currentTarget.id
+    })
+    this.setData({
+      sportId: that.data.my_join_detail[e.currentTarget.id]._sport_id
+    })
+    db.collection('sport').doc(that.data.sportId)
+      .get({
+        success: res => {
+          console.log(res.data)
+          that.setData({
+            my_join_detail2: res.data
+          })
+        },
+        fail: res => {
+          console.log('查无数据')
+        }
+      })
+    console.log('开启')
+  },
+  //距离运算
+  distance2: function (lat1, lng1, lat2, lng2) {
+    var _this = this;
+    //调用距离计算接口
+    qqmapsdk.calculateDistance({
+      mode: 'straight', //可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
+      //from参数不填默认当前地址
+      //获取表单提交的经纬度并设置from和to参数（示例为string格式）
+      from: {
+        latitude: lat1,
+        longitude: lng1
+      }, //若起点有数据则采用起点坐标，若为空默认当前地址
+      to: [{
+        latitude: lat2,
+        longitude: lng2
+      }], //终点坐标
+      success: function (res) { //成功后的回调
+        console.log(res);
+        var res = res.result;
+        var dis = [];
+        for (var i = 0; i < res.elements.length; i++) {
+          dis.push(res.elements[i].distance); //将返回数据存入dis数组，
+        }
+        _this.setData({ //设置并更新distance数据
+          distance: dis
+        });
+        console.log(dis)
+      },
+      fail: function (error) {
+        console.error(error);
+      },
+      complete: function (res) {
+        console.log(res);
+      }
+    });
+
+  },
+  //获取参与者地理位置,进行打卡运算
+  setlocationP: function (e) {
+    var that = this
+    var latitude1, latitude2, longitude1, longitude2
+    var distance
+    //四个var 进行运算
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        console.log(res)
+
+        latitude1 = res.latitude,
+          longitude1 = res.longitude
+        db.collection('sport').where({
+          _id: that.data.sportId
+        }).get().then(res => {
+          latitude2 = res.data[0]._latitude
+          longitude2 = res.data[0]._longitude
+          console.log('发起者位置', latitude2, longitude2)
+          console.log('参与者位置', latitude1, longitude1)
+          that.distance2(latitude1, longitude1, latitude2, longitude2)
+          distance = that.data.distance[0]
+          console.log("当前距离", distance)
+
+          wx.showLoading({
+            title: '打卡中',
+            mask: true,
+            success: function () {
+              setTimeout(function () {
+                if (distance < 200) {
+                  wx.hideLoading()
+
+                  db.collection('Participate').where({
+                    _sport_id: that.data.sportId,
+                    _openid: app.appData.user_openid
+                  }).get({
+                    success: function (res) {
+                      var participateId = res.data[0]._id
+                      console.log(participateId)
+
+                      db.collection('Participate').doc(participateId).update({
+                        data: {
+                          _if_finished: true
+                        },
+                        success: res => {
+                          console.log('打卡成功')
+                        }
+                      })
+
+                    }
+                  })
+
+                  wx.showToast({
+                    title: '打卡成功！',
+                    icon: 'success',
+                    duration: 1000
+                  })
+                } else {
+                  console.log('打卡失败')
+                  wx.showToast({
+                    title: '失败，请重试',
+
+                    duration: 1000
+                  })
+                }
+              }, 1000)
+            }
+          })
+        })
+
+      }
+    })
+
+  },
+  //获取发起人地理位置
+  setlocationS: function () {
+    var that = this
+
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        console.log(res)
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+
+      }
+    })
+    setTimeout(function () {
+      db.collection('sport').doc(that.data.sportId).update({
+        data: {
+          _latitude: that.data.latitude,
+          _longitude: that.data.longitude
+        },
+        success: res => {
+          console.log('经纬度插入成功')
+        }
+      })
+    }, 1000)
+  },
+  //页面数据更新
+  refresh: function (e) {
+    console.log('数据更新')
+    var that = this
+    db.collection('Participate').where({
+      _sport_id: that.data.sportId,
+      _if_finished: true
+    }).get({
+      success: res => {
+        that.setData({
+          clockedMan: res.data,
+          clockedNum: res.data.length
+        })
+      }
+    })
+    db.collection('Participate').where({
+      _sport_id: that.data.sportId,
+      _if_finished: false
+    }).get({
+      success: res => {
+        that.setData({
+          clockingMan: res.data
+        })
+      }
+    })
+  },
+  /**
+ * 监听函数
+ */
+  onWatch: function () {
+    var that = this;
+    var detailIndex = that.data.detailIndex
+    var match_all = that.data.match_all
+
+    db.collection('Participate').where({
+      _sport_id: that.data.sportId
+    })
+      .watch({
+
+        onChange: function (snapshot) {
+          console.log('docs\'s changed events', snapshot.docChanges)
+          console.log('query result snapshot after the event', snapshot.docs)
+          console.log('is init data', snapshot.type === 'init')
+          that.refresh()
+        },
+        onError: function (err) {
+          console.error('the watch closed because of error', err)
+        }
+      })
+  },
+  //发起打卡
+  startMark: function (e) {
+    var that = this
+    this.onWatch()
+    this.setData({
+      clockDetail: true,
+      pop_detail_release:false
+    })
+    this.setlocationS()
+
+    db.collection('Participate').where({
+      _sport_id: that.data.sportId,
+
+    }).get({
+      success: res => {
+        that.setData({
+          totalNum: res.data.length
+        })
+      },
+      fail: res => {
+        console('失败')
+      }
+    })
+    db.collection('Participate').where({
+      _sport_id: that.data.sportId,
+      _if_finished: true
+    }).get({
+      success: res => {
+        that.setData({
+          clockedMan: res.data
+        })
+      },
+      fail: res => {
+        console('失败')
+      }
+    })
+    db.collection('Participate').where({
+      _sport_id: that.data.sportId,
+      _if_finished: false
+    }).get({
+      success: res => {
+        that.setData({
+          clockingMan: res.data
+        })
+      },
+      fail: res => {
+        console('失败')
+      }
+    })
+  },
+
+  //发起人完成打卡
+  finish: function (e) {
+    var that = this
+    db.collection('Participate').where({
+      _sport_id: that.data.sportId
+    })
+      .watch({
+
+        onChange: function (snapshot) {
+
+          
+        },
+        onError: function (err) {
+          console.error('the watch closed because of error', err)
+        }
+      }).close()
+    that.setData({
+      clockDetail: false,
+      pop_detail_release: true,
+    })
+  },
+//参与者参与打卡
+  mark: function (e) {
+    this.setlocationP()
+  },
 
   onLoad: function(options) {
     var that = this
@@ -186,10 +473,11 @@ Page({
         success: res => {
           console.log(res.data)
           that.setData({
-            my_participate_detail: res.data
+            my_join_detail: res.data
           })
         }
       })
+    
   },
   onShow: function(options) {
     db.collection('person_message').doc('19762d645eae6142004ed6e32b6e4da4').get({
@@ -222,6 +510,7 @@ Page({
         windowHeight = res.windowHeight - statusBarHeight - titleBarHeight
         console.log('windowHeight: ' + res.windowHeight)
         that.setData({
+          windowWidth: res.windowWidth,
           windowHeight: res.windowHeight,
           statusBarHeight: statusBarHeight,
           titleBarHeight: titleBarHeight,
@@ -230,5 +519,14 @@ Page({
       },
     })
   },
-
+  onClose() {
+    console.log('详情页关闭')
+    this.setData({
+      pop_detail_release: false,
+      pop_detail_join: false,
+      
+      pop_btn_in: false,
+      pop_btn_start: false,
+    })
+  },
 })

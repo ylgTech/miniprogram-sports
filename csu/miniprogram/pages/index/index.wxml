@@ -69,11 +69,15 @@
 </view>
 
 
+
+
+
 <van-popup round show="{{ pop_detail }}" bind:close="onClose" class="popup-box">
   <view class="pop_detail" bindtap="pop_fade2">
     <view style="width:100%;text-align: center;font-size:40rpx;color: rgb(167, 164, 164);margin-top:30rpx;">活动详情</view>
     <view class="match_detail_1">
       <view class="match_detail_2">
+
 
         <image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/xueshan.jpg?sign=479889dcfd5d1b0ec705f12800aeb774&t=1588413106" style="width:160rpx;height:160rpx;" bindtap="pop_fade"></image>
         <view class="match_detail_2_title">{{match_all[detailIndex]._sport_title}}</view>
