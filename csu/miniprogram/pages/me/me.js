@@ -151,7 +151,7 @@ Page({
       timingFunction: 'ease',
       delay: 0
     });
-    animation_join.translateY(-375).step();
+    animation_join.translateY(-358).step();
     animation_join1.translateY(0).step();
     animation_join2.translateY(-70).opacity(0).step();
     animation_join3.translateY(0).opacity(1).step();
