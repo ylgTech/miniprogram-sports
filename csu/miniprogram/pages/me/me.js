@@ -70,10 +70,22 @@ Page({
       timingFunction: 'ease',
       delay: 0
     });
+    var animation_join4 = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+      delay: 0
+    });
+    var animation_join5 = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+      delay: 0
+    });
     animation_join.translateY(-428).step();
     animation_join1.translateY(0).step();
     animation_join2.translateY(-70).opacity(0).step();
     animation_join3.translateY(0).opacity(1).step();
+    animation_join4.translateY(-428).step();
+    animation_join5.translateY(0).step();
     that.setData({
       touch_times_join: touch_times_join + 1
     })
@@ -89,6 +101,7 @@ Page({
         })
       }, 1000)
       that.setData({
+        ani_join2:animation_join4.export(),
         ani_join: animation_join.export(),
         ani_join1: animation_join2.export()
       })
@@ -99,6 +112,7 @@ Page({
       })
 
       that.setData({
+        ani_join2:animation_join5.export(),
         ani_join: animation_join1.export(),
         ani_join1: animation_join3.export(),
       })
@@ -107,18 +121,65 @@ Page({
   release_hidden_change: function(e) { //控制我发起的
     var that = this
     var touch_times_release = that.data.touch_times_release
+    var animation_join = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+      delay: 0
+    });
+    var animation_join1 = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+      delay: 0
+    });
+    var animation_join2 = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+      delay: 0
+    });
+    var animation_join3 = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+      delay: 0
+    });
+    var animation_join4 = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+      delay: 0
+    });
+    var animation_join5 = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+      delay: 0
+    });
+    animation_join.translateY(-375).step();
+    animation_join1.translateY(0).step();
+    animation_join2.translateY(-70).opacity(0).step();
+    animation_join3.translateY(0).opacity(1).step();
+    animation_join4.translateY(-70).opacity(0).step();
+    animation_join5.translateY(0).opacity(1).step();
+    if (that.data.my_join==true){
+      that.setData({
+        my_join:false
+      })
+    }
     that.setData({
       touch_times_release: touch_times_release + 1
     })
     if (that.data.my_release == false) {
       that.setData({
-        my_release: true
+        my_release: true,
+        ani_join:animation_join.export(),
+        ani_join1:animation_join2.export(),
+        ani_join2:animation_join4.export(),
       })
 
 
     } else {
       this.setData({
-        my_release: false
+        my_release: false,
+        ani_join:animation_join1.export(),
+        ani_join1:animation_join3.export(),
+        ani_join2:animation_join5.export(),
       })
     }
   },

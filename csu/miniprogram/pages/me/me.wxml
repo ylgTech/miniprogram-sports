@@ -35,7 +35,7 @@
       </view>
     </view>
   </view>
-  <view class="btnitem" bindtap="join_hidden_change" animation="{{ani_join}}" id="join">
+  <view class="btnitem" bindtap="join_hidden_change" animation="{{ani_join2}}" id="join">
     我参加的 >>>
   </view>
   <view wx:if="{{my_join}}" style="width:100%;">
