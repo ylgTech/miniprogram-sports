@@ -4,7 +4,7 @@ const app = getApp()
 //用于获取屏幕信息 适配屏幕大小
 var windowHeight = 0;
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
-
+var join_top = 0;
 var qqmapsdk = new QQMapWX({
 
   key: 'ZVDBZ-VBUHQ-CRJ55-GRU7W-FDACJ-B4BMW'
@@ -41,15 +41,6 @@ Page({
   join_hidden_change: function(e) { //控制我参加
     var that = this
     var touch_times_join = that.data.touch_times_join
-    let query = wx.createSelectorQuery()
-    query.select('#join').boundingClientRect((rect) => {
-      let top = rect.top
-      this.setData({
-        join_height: top,
-      })
-    }).exec()
-    var join_height = -this.data.join_height + this.data.titleBarHeight
-    console.log(join_height)
     var animation_join = wx.createAnimation({
       duration: 1000,
       timingFunction: 'ease',
@@ -80,27 +71,32 @@ Page({
       timingFunction: 'ease',
       delay: 0
     });
-    animation_join.translateY(-428).step();
-    animation_join1.translateY(0).step();
-    animation_join2.translateY(-70).opacity(0).step();
-    animation_join3.translateY(0).opacity(1).step();
-    animation_join4.translateY(-428).step();
-    animation_join5.translateY(0).step();
-    that.setData({
-      touch_times_join: touch_times_join + 1
-    })
-    if (that.data.my_release==true){
-      that.setData({
-        my_release:false
-      })
-    }
-    if (that.data.my_join == false) {
-      setTimeout(function() {
+    const query = this.createSelectorQuery(); 
+      query.select(".btnitem_join").boundingClientRect(); 
+      query.selectViewport().scrollOffset();
+      query.exec((res) => {
+        var use = res[0].top-this.data.statusBarHeight;
+        animation_join.translateY(-use).step();
+        animation_join1.translateY(0).step();
+        animation_join2.translateY(-70).opacity(0).step();
+        animation_join3.translateY(0).opacity(1).step();
+        animation_join4.translateY(-use).step();
+        animation_join5.translateY(0).step();
         that.setData({
-          my_join: true
+          touch_times_join: touch_times_join + 1
         })
-      }, 1000)
-      that.setData({
+        if (that.data.my_release==true){
+          that.setData({
+            my_release:false
+          })
+        }
+        if (that.data.my_join == false) {
+          setTimeout(function() {
+            that.setData({
+              my_join: true
+            })
+          }, 1000)
+        that.setData({
         ani_join2:animation_join4.export(),
         ani_join: animation_join.export(),
         ani_join1: animation_join2.export()
@@ -117,6 +113,7 @@ Page({
         ani_join1: animation_join3.export(),
       })
     }
+    })
   },
   release_hidden_change: function(e) { //控制我发起的
     var that = this
@@ -151,41 +148,49 @@ Page({
       timingFunction: 'ease',
       delay: 0
     });
-    animation_join.translateY(-358).step();
-    animation_join1.translateY(0).step();
-    animation_join2.translateY(-70).opacity(0).step();
-    animation_join3.translateY(0).opacity(1).step();
-    animation_join4.translateY(-70).opacity(0).step();
-    animation_join5.translateY(0).opacity(1).step();
-    if (that.data.my_join==true){
-      that.setData({
-        my_join:false
-      })
-    }
-    that.setData({
-      touch_times_release: touch_times_release + 1
-    })
-    if (that.data.my_release == false) {
-      that.setData({
-        my_release: true,
-        ani_join:animation_join.export(),
-        ani_join1:animation_join2.export(),
-        ani_join2:animation_join4.export(),
-      })
-
-
-    } else {
-      this.setData({
-        my_release: false,
-        ani_join:animation_join1.export(),
-        ani_join1:animation_join3.export(),
-        ani_join2:animation_join5.export(),
-      })
-    }
+    const query = this.createSelectorQuery(); 
+      query.select(".btnitem_release").boundingClientRect(); 
+      query.selectViewport().scrollOffset();
+      query.exec((res) => {
+        var use = res[0].top-this.data.statusBarHeight;
+        animation_join.translateY(-use).step();
+        animation_join1.translateY(0).step();
+        animation_join2.translateY(-70).opacity(0).step();
+        animation_join3.translateY(0).opacity(1).step();
+        animation_join4.translateY(-70).opacity(0).step();
+        animation_join5.translateY(0).opacity(1).step();
+        that.setData({
+          touch_times_release: touch_times_release + 1
+        })
+        if (that.data.my_join==true){
+          that.setData({
+            my_join:false
+          })
+        }
+        if (that.data.my_release == false) {
+          setTimeout(function(){
+            that.setData({
+              my_release:true
+            })
+          },1000)
+          that.setData({
+            ani_join:animation_join.export(),
+            ani_join1:animation_join2.export(),
+            ani_join2:animation_join4.export(),
+          })
+        } else {
+          this.setData({
+            my_release: false,
+            ani_join:animation_join1.export(),
+            ani_join1:animation_join3.export(),
+            ani_join2:animation_join5.export(),
+          })
+        }
+    });
   },
   match_detail_release: function(e) { //控制release
     var that = this
-    console.log(e)
+    // console.log(e)
     this.setData({
       pop_btn_start: true,
       pop_detail_release: true,
@@ -589,5 +594,5 @@ Page({
       pop_btn_in: false,
       pop_btn_start: false,
     })
-  },
+  }
 })

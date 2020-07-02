@@ -113,6 +113,26 @@ page{
   background-image: linear-gradient(to right, rgba(245, 251, 254),#ffffff);
   padding-left: 60rpx;
 }
+.btnitem_release{
+  color: #343434;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  width: 100%;
+  height: 100rpx;
+  margin: 10rpx 0;
+  background-image: linear-gradient(to right, rgba(245, 251, 254),#ffffff);
+  padding-left: 60rpx;
+}
+.btnitem_join{
+  color: #343434;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  width: 100%;
+  height: 100rpx;
+  margin: 10rpx 0;
+  background-image: linear-gradient(to right, rgba(245, 251, 254),#ffffff);
+  padding-left: 60rpx;
+}
 .each-mes-1{
   width: 82%;
   background-color: #fff;
