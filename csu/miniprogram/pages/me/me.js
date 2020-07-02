@@ -75,7 +75,7 @@ Page({
       query.select(".btnitem_join").boundingClientRect(); 
       query.selectViewport().scrollOffset();
       query.exec((res) => {
-        var use = res[0].top-this.data.statusBarHeight;
+        var use = res[0].top;
         animation_join.translateY(-use).step();
         animation_join1.translateY(0).step();
         animation_join2.translateY(-70).opacity(0).step();
