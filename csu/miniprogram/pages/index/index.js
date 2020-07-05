@@ -477,6 +477,32 @@ Page({
     })
   },
 
+    tabbarOnChange: async function(pageInfo){
+        if (pageInfo.detail["title"] =="积分排行榜"){
+            var rc = await db.collection('account_info')
+                .field({
+                    nickName: true,
+                    score: true,
+                    avatar: true
+                })
+                .limit(10)
+                .orderBy('score', 'desc')
+                .get()
+                .catch(err => {
+                    console.log(err)
+                })
+            
+            var curRank = 1
+            for (var item in rc.data){
+                rc.data[item].rankNum = curRank++
+            }
+
+            this.setData({
+                rank: { ...rc.data }
+            })
+        }
+    },
+
 	//获取积分排行榜
     getScoreRank:async function(e){
         const rc = await db.collection('person_login').limit(10)
