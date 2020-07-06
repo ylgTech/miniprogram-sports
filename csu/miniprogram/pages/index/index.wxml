@@ -12,7 +12,7 @@
       </swiper-item>
     </block>
   </swiper>
-  <van-tabs active="{{ active }}" bind:change="onChange" bindtap="switchNav" class="tab-item" color="var(--blue)" swipeable="true">
+  <van-tabs active="{{ active }}" bind:change="tabbarOnChange" bindtap="switchNav" class="tab-item" color="var(--blue)" swipeable="true">
     <van-tab title="发布活动">
       <view class="van">
         <Calendar id="Calendar" bind:select="select"></Calendar>
@@ -40,16 +40,16 @@
             <text class="rank-grade">积分</text>
           </view>
           <view wx:for="{{rank}}" class="rank-bottom">
-            <image wx:if="{{item.rank < 4}}" class="item-img" src="../../images/index/{{item.imgSrc}}"></image>
-            <view wx:else class="item-id">{{item.rank}}</view>
+            <image wx:if="{{item.rankNum < 4}}" class="item-img" src="../../images/index/rank-{{item.rankNum}}.png"></image>
+            <view wx:else class="item-id">{{item.rankNum}}</view>
             <view class="item-mid">
               <van-image lazy-load use-loading-slot round src="{{item.avatar}}" width="40" height="40">
                 <van-loading slot="loading" type="spinner" size="20" vertical />
               </van-image>
-              <view class="item-name">{{item.name}}</view>
+              <view class="item-name">{{item.nickName}}</view>
             </view>
-            <view class="item-grade {{ item.rank < 4 ? 'item-grade-red' : 'item-grade-green' }}">
-              {{item.grade}}
+            <view class="item-grade {{ item.rankNum < 4 ? 'item-grade-red' : 'item-grade-green' }}">
+              {{item.score}}
             </view>
           </view>
         </view>
