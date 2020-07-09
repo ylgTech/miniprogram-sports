@@ -50,91 +50,6 @@ Page({
     imgUrls: [
       "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kalen-emsley-kGSapVfg8Kw-unsplash.jpg?sign=a076fa7a17b73ee4650a83c5244efbe9&t=1590280808", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/noah-buscher-jyQChhw-WbI-unsplash.jpg?sign=62de79f3fcb38cbc26c355f330d1a9af&t=1590280867", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kate-m-O0x4a5pJP0M-unsplash.jpg?sign=9404a6f424e10025bb52163812cbe87e&t=1590308897",
     ],
-    rank: [{
-        rank: 1,
-        name: '陈平安啊啊啊啊',
-        grade: 9999,
-        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
-        // 控制icon大小
-        width: 27,
-        height: 40,
-        imgSrc: 'first.png',
-      },
-      {
-        rank: 2,
-        name: '李凤仪',
-        grade: 9998,
-        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
-        // 控制icon大小
-        width: 27,
-        height: 40,
-        imgSrc: 'second.png',
-      },
-      {
-        rank: 3,
-        name: '曾欢送',
-        grade: 9997,
-        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
-        // 控制icon大小
-        width: 27,
-        height: 40,
-        imgSrc: 'third.png',
-      },
-      {
-        rank: 4,
-        name: '吴新罕',
-        grade: 9996,
-        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
-        // 控制icon大小
-        width: 27,
-        height: 40,
-      },
-      {
-        rank: 5,
-        name: '谢桥槮',
-        grade: 9995,
-        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
-        // 控制icon大小
-        width: 27,
-        height: 40,
-      },
-      {
-        rank: 6,
-        name: '张泽以',
-        grade: 9994,
-        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
-        // 控制icon大小
-        width: 27,
-        height: 40,
-      },
-      {
-        rank: 7,
-        name: '徐俊封',
-        grade: 9993,
-        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
-        // 控制icon大小
-        width: 27,
-        height: 40,
-      },
-      {
-        rank: 8,
-        name: '叶伏天',
-        grade: 9992,
-        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
-        // 控制icon大小
-        width: 27,
-        height: 40,
-      },
-      {
-        rank: 9,
-        name: '叶无尘',
-        grade: 9991,
-        avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
-        // 控制icon大小
-        width: 27,
-        height: 40,
-      },
-    ],
   },
   select: function(e) {
     this.setData({
@@ -503,34 +418,6 @@ Page({
         }
     },
 
-	//获取积分排行榜
-    getScoreRank:async function(e){
-        const rc = await db.collection('person_login').limit(10)
-            .orderBy('_rewardpoint', 'asc')
-            .get()
-            .then(res => {
-                console.log(res.data)
-            })
-            .catch(err => {
-                console.error(err)
-            })
-    },
-
-    //获取我的积分排名，需要接受一个参数，内含一个uid，指示用户的_id
-    getMyScoreRank: async function(usrinfo){
-        const rc = await db.collection('person_login')
-        .where({
-            "_id": usrinfo.uid,
-        })
-        .get()
-        .then(res => {
-            console.log(res.data)
-        })
-        .catch(err => {
-            console.error(err)
-        })
-    },
-
   //页面数据更新
   refresh: function(e) {
     console.log('数据更新')
@@ -621,12 +508,11 @@ Page({
       success: res => {
         app.appData.user_openid = res.result.openid
         console.log(app.appData.user_openid)
-        db.collection('person_login').where({
+        db.collection('account_info').where({
           _openid: res.result.openid
         }).get({
           success: res => {
             if (res.data.length != '0') {
-
               console.log('已经注册')
             } else {
               wx.navigateTo({
