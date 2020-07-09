@@ -37,6 +37,7 @@ Page({
     pop_btn_in: false,//控制打卡按钮
     pop_btn_start: false,//控制发起打卡按钮
     distance:[],
+    openid:'',
   },
   join_hidden_change: function(e) { //控制我参加
     var that = this
@@ -496,6 +497,8 @@ Page({
 
   onLoad: function(options) {
     var that = this
+    that.getOpenid();
+    that.getPageId();
     this.setData({
       AvatarUrl: "https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/testava.jpg?sign=6fdab6348eeeeecc9ae14d7c992abb03&t=1588086430",
 
@@ -526,7 +529,7 @@ Page({
       })
       .get({
         success: res => {
-          console.log(res.data)
+          // console.log(res.data)
           that.setData({
             my_release_detail: res.data
           })
@@ -537,7 +540,7 @@ Page({
       })
       .get({
         success: res => {
-          console.log(res.data)
+          // console.log(res.data)
           that.setData({
             my_join_detail: res.data
           })
@@ -574,7 +577,7 @@ Page({
           titleBarHeight = 48
         }
         windowHeight = res.windowHeight - statusBarHeight - titleBarHeight
-        console.log('windowHeight: ' + res.windowHeight)
+        // console.log('windowHeight: ' + res.windowHeight)
         that.setData({
           windowWidth: res.windowWidth,
           windowHeight: res.windowHeight,
@@ -593,6 +596,31 @@ Page({
       
       pop_btn_in: false,
       pop_btn_start: false,
+    })
+  },
+  getOpenid(){
+    let that=this;
+    wx.cloud.callFunction({
+      name:'getOpenid',
+      complete:res=>{
+        console.log(res.result.openid)
+        var openid=res.result.openid;
+        db.collection('account_info').where({
+          _openid:res.result.openid
+        }).get({
+          success: res => {
+            console.log(res)
+            that.setData({
+              username:res.data[0].nickName,
+              AvatarUrl:res.data[0].avatar,
+              score:res.data[0].score,
+            })
+          }
+        })
+        that.setData({
+          openid:openid
+        })
+      }
     })
   }
 })
