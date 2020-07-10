@@ -1,6 +1,6 @@
 <!--pages/me/me.wxml-->
 <view id="top" animation="{{ani_join}}">
-	<image src="{{AvatarUrl}}" mode="widthFix" class="top-img"></image>
+	<image src="{{AvatarUrl}}" class="top-img"></image>
 	<text id="username">{{username}}</text>
 	<view id="alterinfo">
 		<text space="nbsp">点击修改/编辑个人信息 </text>

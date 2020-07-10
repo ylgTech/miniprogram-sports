@@ -10,6 +10,9 @@ Page({
     windowWidth: 0,
     name: '',
     number: '',
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    nickname:'',
+    img:'',
   },
   mess_change: function (e) {
 
@@ -80,10 +83,10 @@ Page({
     setTimeout(function () {
       db.collection('account_info').add({
         data: {
-          avatar: "https://img.yzcdn.cn/vant/cat.jpeg",
+          avatar: that.data.img,
           csuid: that.data.number,
           isOfficial: false,
-          nickName: that.data.name,
+          nickName: that.data.nickname,
           //nickName is preserved to fill as the nickName of WeChat
           //However, to get the user's nickName
           //wx.login() is needed.
@@ -114,6 +117,19 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    // 查看是否授权
+    wx.getSetting({
+      success (res){
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function(res) {
+              console.log(res.userInfo)
+            }
+          })
+        }
+      }
+    })
     wx.getSystemInfo({
       success: function (res) {
         console.log('windowHeight: ' + res.windowHeight)
@@ -144,6 +160,13 @@ Page({
     })
   },
 
+  bindGetUserInfo (e) {
+    console.log(e.detail.userInfo)
+    this.setData({
+      nickname:e.detail.userInfo.nickName,
+      img:e.detail.userInfo.avatarUrl,
+      })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

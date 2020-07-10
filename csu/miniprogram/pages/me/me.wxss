@@ -19,7 +19,8 @@ page{
   align-items: center;
 }
 #top image{
-  width: 25%;
+  width:183rpx;
+  height: 183rpx;
   border-radius: 50%;
   border: 2px solid white;
   margin: 80rpx 0 40rpx 0;
