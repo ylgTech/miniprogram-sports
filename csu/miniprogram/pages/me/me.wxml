@@ -1,6 +1,6 @@
 <!--pages/me/me.wxml-->
 <view id="top" animation="{{ani_join}}">
-	<image src="{{AvatarUrl}}" class="top-img"></image>
+	<image bindlongpress='longpress' src="{{AvatarUrl}}" class="top-img" ></image>
 	<text id="username">{{username}}</text>
 	<view id="alterinfo">
 		<!-- <text space="nbsp">点击修改/编辑个人信息 </text>
@@ -41,9 +41,9 @@
 		</view>
 	</block>
 	<block wx:if="{{my_join==true}}">
-			<cu-custom class="btnitem_join" bindtap="join_hidden_change" animation="{{ani_join2}}" id="join" bgImage="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/jason-leung-Xaanw0s0pMk-unsplash.jpg?sign=168a1ba13d531cf147c740ac0d9ffaf2&t=1589678124">
-				<view slot="content">我参加的</view>
-			</cu-custom>
+		<cu-custom class="btnitem_join" bindtap="join_hidden_change" animation="{{ani_join2}}" id="join" bgImage="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/jason-leung-Xaanw0s0pMk-unsplash.jpg?sign=168a1ba13d531cf147c740ac0d9ffaf2&t=1589678124">
+			<view slot="content">我参加的</view>
+		</cu-custom>
 	</block>
 	<view wx:if="{{my_join}}" style="width:100%;">
 		<view wx:for="{{my_join_detail}}" class="each-mes-1" id="{{index}}" bindtap="match_detail_join" animation="{{ani_join}}">
@@ -137,7 +137,8 @@
 		<van-loading wx:if="{{load_show}}" type="spinner" color="#1989fa" />
 	</view>
 </van-popup>
-
+<!-- 验证码组件 -->
+<verifycode id='verifycode' title="请输入密码" />
 <van-popup round show="{{clockDetail}}" bind:close="onClose2">
 	<view style="width:{{ windowWidth*0.86}}px;height:{{ windowHeight*0.72}}px;">
 		<view class="text-top">打卡详情</view>

@@ -38,6 +38,7 @@ Page({
     pop_btn_start: false,//控制发起打卡按钮
     distance:[],
     openid:'',
+    rootpassword:'',
   },
   join_hidden_change: function(e) { //控制我参加
     var that = this
@@ -497,6 +498,7 @@ Page({
 
   onLoad: function(options) {
     var that = this
+    that.verifycode = that.selectComponent("#verifycode");
     that.getOpenid();
     that.getPageId();
     this.setData({
@@ -622,5 +624,29 @@ Page({
         })
       }
     })
-  }
+  },
+    /**
+   * 长按用户头像管理员登录，进入后台界面
+   */
+  longpress: function (e) {
+    var _this = this;
+    //1.显示密码输入框，获取输入
+    _this.verifycode.showView({
+      // phone: "15200000000",
+      inputSuccess: function (res) {
+        wx.showLoading({
+          title: '',
+        })
+
+        //调用组件关闭方法
+        _this.verifycode.closeView();
+        //设置数据
+        _this.setData({
+          rootpassword: res
+        });
+        console.log(rootpassword)
+      }
+    });
+  },
+
 })
