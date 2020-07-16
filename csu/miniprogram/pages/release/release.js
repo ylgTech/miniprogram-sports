@@ -14,6 +14,8 @@ Page({
     people: "",
     detail: "",
     time: "",
+    picture:"",
+    imgUrl:"",
     kind: "球类",
     peopleColumns: ['1-5人', '6-10人', '10-20人', '20人以上'],
     gradeColumns: ['易', '中', '难'],
@@ -81,9 +83,10 @@ Page({
       _name: that.data.author,
       _number: that.data.people,
       _introduction_detail: that.data.detail,
-      _destination: '南校操场',
+      _destination: that.data.location,
       _time: that.data.time,
       _kind: that.data.kind,
+      _picture:that.data.imgUrl[0],
     }
     // 检查是否所有必需信息已填
     if (postData._sport_title == "" ||
@@ -93,7 +96,8 @@ Page({
       postData._introduction_detail == "" ||
       postData._destination == "" ||
       postData._time == "" ||
-      postData._kind == "") {
+      postData._kind == ""||
+      postData._picture == "") {
       wx.showToast({
         title: '请填写必要信息',
         icon: 'none',
@@ -402,4 +406,56 @@ Page({
       })
     }, 500)
   },
+  //上传图片
+  doUpload:function(){
+    //选择图片
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType:['compressed'],
+      sourceType:['album','camera'],
+      success:function(res){
+        wx.showLoading({
+          title: '上传中',
+        })
+        const filePath=res.tempFilePaths;
+        that.setData({
+          imgUrl:filePath
+        })
+        const cloudPath = [];
+        filePath.forEach((item,i)=>{
+          cloudPath.push(that.data.count+'_'+i+filePath[i].match(/\.[^.]+?$/)[0])
+        })
+        console.log(cloudPath)
+        filePath.forEach((item,i)=>{
+          wx.cloud.uploadFile({
+            cloudPath:cloudPath[i],
+            filePath:filePath[i],
+            success:res=>{
+              console.log('[上传文件]成功：',cloudPath,res)
+              app.globalData.fileID=res.fileID
+              app.globalData.cloudPath=cloudPath
+              app.globalData.imagePath=filePath
+              that.setData({
+                picture:"已上传"
+              })
+            },
+            fail:e=>{
+              console.error('[上传文件]失败：',e)
+              wx.showToast({
+                title: '上传失败',
+                icon:'none',
+              })
+            },
+            complete:()=>{
+              wx.hideLoading()
+            }
+          })
+        })
+      },
+      fail:e=>{
+        console.error(e)
+      }
+    })
+  }
 })

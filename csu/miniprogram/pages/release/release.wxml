@@ -42,6 +42,9 @@
       <van-field label="活动地点" value="{{ location }}" bind:tap="onPickLocation" placeholder="点击获取地理位置" clickable required readonly use-button-slot>
         <van-button slot="button" size="small" type="info" icon="location-o" round plain>获取地理位置</van-button>
       </van-field>
+      <van-field label="封面图片" value="{{ picture }}" bind:tap="doUpload" placeholder="点击插入封面图片" clickable required readonly use-button-slot>
+        <van-button slot="button" size="small" type="info"  round plain>获取图片</van-button>
+      </van-field>
       <van-field label="活动名称" value="{{ title }}" bind:change="inputTitle" autosize required clearable placeholder="活动名称应简短明确" error="{{ error.title }}" />
       <van-field label="发起人" value="{{ author }}" bind:change="inputAuthor" autosize required clearable placeholder="请输入活动发起的组织或个人" error="{{ error.author }}" />
       <van-field label="活动人数" value="{{ people }}" bind:tap="onPickPeople" placeholder="请选择人数" required is-link readonly />

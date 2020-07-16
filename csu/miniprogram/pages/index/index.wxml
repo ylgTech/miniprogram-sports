@@ -21,7 +21,7 @@
           <!-- 出bug了 -->
           <text class="active-top">-推荐活动-</text>
           <view class="each-mes" wx:for="{{ match_all }}" id="{{index}}" bindtap="match_detail">
-            <image src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
+            <image src="{{item._picture}}" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
             <view class="content">
               <view style="font-weight:bold">{{item._sport_title}}</view>
               <view>{{item._introduction}}</view>
