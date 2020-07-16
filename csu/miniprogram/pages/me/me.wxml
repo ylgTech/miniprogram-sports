@@ -1,6 +1,8 @@
 <!--pages/me/me.wxml-->
 <view id="top" animation="{{ani_join}}">
-	<image bindlongpress='longpress' src="{{AvatarUrl}}" class="top-img" ></image>
+	<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindlongpress='longpress' bindtap="register">
+		<image src="{{AvatarUrl}}" class="top-img"></image>
+	</button>
 	<text id="username">{{username}}</text>
 	<view id="alterinfo">
 		<!-- <text space="nbsp">点击修改/编辑个人信息 </text>
@@ -136,8 +138,6 @@
 		<van-loading wx:if="{{load_show}}" type="spinner" color="#1989fa" />
 	</view>
 </van-popup>
-<!-- 验证码组件 -->
-<verifycode id='verifycode' title="请输入密码" />
 <van-popup round show="{{clockDetail}}" bind:close="onClose2">
 	<view style="width:{{ windowWidth*0.86}}px;height:{{ windowHeight*0.72}}px;">
 		<view class="text-top">打卡详情</view>

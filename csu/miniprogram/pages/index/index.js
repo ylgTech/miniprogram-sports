@@ -50,6 +50,7 @@ Page({
     imgUrls: [
       "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kalen-emsley-kGSapVfg8Kw-unsplash.jpg?sign=a076fa7a17b73ee4650a83c5244efbe9&t=1590280808", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/noah-buscher-jyQChhw-WbI-unsplash.jpg?sign=62de79f3fcb38cbc26c355f330d1a9af&t=1590280867", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kate-m-O0x4a5pJP0M-unsplash.jpg?sign=9404a6f424e10025bb52163812cbe87e&t=1590308897",
     ],
+    img:'',
   },
   select: function(e) {
     this.setData({
@@ -257,6 +258,7 @@ Page({
 
                       db.collection('Participate').doc(participateId).update({
                         data: {
+                          _picture:that.data.img,
                           _if_finished: true
                         },
                         success: res => {
@@ -451,7 +453,8 @@ Page({
     // this.setData({
     //   load_show: true
     // })
-    this.setlocationP()
+    that.doUpload()
+    that.setlocationP()
 
     // setTimeout(function() {
     //   that.setData({
@@ -481,6 +484,18 @@ Page({
    */
   onLoad: function(options) {
     var that = this
+    wx.getSetting({
+      success (res){
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function(res) {
+              console.log(res.userInfo)
+            }
+          })
+        }
+      }
+    })
     this.distance2(25.303650, 118.796950, 25.304098, 118.793869)
     wx.getSystemInfo({
       success: function(res) {
@@ -515,16 +530,15 @@ Page({
             if (res.data.length != '0') {
               console.log('已经注册')
             } else {
-              wx.navigateTo({
-                url: '../login/login',
-              })
+              // wx.navigateTo({
+              //   url: '../login/login',
+              // })
             }
           }
         })
       }
     })
   },
-
   /**
    * 监听函数
    */
@@ -599,6 +613,58 @@ Page({
       pop_btn: false,
       pop_btn_in: false,
       pop_btn_start: false,
+    })
+  },
+  //上传图片
+  doUpload:function(){
+    //选择图片
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType:['compressed'],
+      sourceType:['album','camera'],
+      success:function(res){
+        wx.showLoading({
+          title: '上传中',
+        })
+        const filePath=res.tempFilePaths;
+        that.setData({
+          img:filePath
+        })
+        const cloudPath = [];
+        filePath.forEach((item,i)=>{
+          cloudPath.push(that.data.count+'_'+i+filePath[i].match(/\.[^.]+?$/)[0])
+        })
+        console.log(cloudPath)
+        filePath.forEach((item,i)=>{
+          wx.cloud.uploadFile({
+            cloudPath:cloudPath[i],
+            filePath:filePath[i],
+            success:res=>{
+              console.log('[上传文件]成功：',cloudPath,res)
+              app.globalData.fileID=res.fileID
+              app.globalData.cloudPath=cloudPath
+              app.globalData.imagePath=filePath
+              that.setData({
+                picture:"已上传"
+              })
+            },
+            fail:e=>{
+              console.error('[上传文件]失败：',e)
+              wx.showToast({
+                title: '上传失败',
+                icon:'none',
+              })
+            },
+            complete:()=>{
+              wx.hideLoading()
+            }
+          })
+        })
+      },
+      fail:e=>{
+        console.error(e)
+      }
     })
   }
 })

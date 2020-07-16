@@ -8,109 +8,49 @@ Page({
   data: {
     windowHeight: 0,
     windowWidth: 0,
-    name: '',
-    number: '',
+    password: '',
+    username: '',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    nickname:'',
-    img:'',
   },
   mess_change: function (e) {
-
     console.log(e.detail.value)
     this.setData({
-      number: e.detail.value
+      username: e.detail.value
     })
   },
   mess_change2: function (e) {
     console.log(e.detail.value)
     this.setData({
-      name: e.detail.value
+      password: e.detail.value
     })
   },
-  register: async function (e) {
+  register: function (e) {
     var that = this
-    var regLowerCase = new RegExp('[a-z]', 'g');//判断用户输入的是否为小写字母
-    var regCapitalLetter = new RegExp('[A-Z]', 'g');//判断用户输入的是否为大写字母
-    var regNum = new RegExp('[0-9]', 'g');//判断用户输入的是否为数字
-    var rsLowerCase = regLowerCase.exec(that.data.number);
-    var rsCapitalLetter = regCapitalLetter.exec(that.data.number);
-    var rsNum = regNum.exec(that.data.number);
-    console.log(that.data.number.length)
-    if (!rsNum) {
-      wx.showToast({
-        title: '学号不为数字!',
-        icon: 'loading',
-      })
-      return
-    }
-    if (that.data.number.length != 10 && that.data.number.length != 9) {
-      wx.showToast({
-        title: '学号位数有误!',
-        icon: 'loading',
-      })
-      return
-    }
-    if (that.data.name == '') {
-      wx.showToast({
-        title: '用户名为空!',
-        icon: 'loading',
-      })
-      return
-    }
-    const rc = await db.collection('account_info')
-      .where(db.command.or([{
-        csuid: that.data.number,
-      },{
-        _openid: app.appData.user_openid,
-      }]))
-      .field({
-        csuid: true
-      })
-      .get()
-      .catch(err => {
-        wx.showToast({
-          title: '网络繁忙，请稍后再试吧！',
+   db.collection('Special_login').where({
+     _username:that.data.username,
+     _password:that.data.password,
+   }).get({
+     success:res=>{
+       console.log(res)
+       if(res.data.length!=0){
+        getApp().globalData.isOfi = true;
+        wx.switchTab({
+          url: '../me/me'
         })
-        return;
-      })
-    if (rc.data.length > 0) {
+       }else{
+        wx.showToast({
+          title: '请检查账号密码是否正确',
+          icon: 'none'
+       })
+       }
+     },
+    catch: res => {
       wx.showToast({
-        title: '该学工号或微信已注册，请核对或联系服务人员',
+        title: '网络繁忙，请稍后再试',
         icon: 'none'
-      })
-      return;
+     })
     }
-    setTimeout(function () {
-      db.collection('account_info').add({
-        data: {
-          avatar: that.data.img,
-          csuid: that.data.number,
-          isOfficial: false,
-          nickName: that.data.nickname,
-          //nickName is preserved to fill as the nickName of WeChat
-          //However, to get the user's nickName
-          //wx.login() is needed.
-          //So it is left same as realName now.
-          realName: that.data.name,
-          score: 0,
-        },
-        success: res => {
-          console.log(app.appData.user_openid)
-          wx.reLaunch({
-            url: '../index/index',
-          })
-          wx.showToast({
-            title: '注册成功!',
-          })
-        },
-        catch: res => {
-          wx.showToast({
-            title: '网络繁忙，请稍后再试',
-            icon: 'none'
-          })
-        }
-      })
-    }, 500);
+   })
   },
   /**
    * 生命周期函数--监听页面加载

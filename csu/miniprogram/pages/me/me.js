@@ -15,7 +15,8 @@ var qqmapsdk = new QQMapWX({
 Page({
   data: {
     AvatarUrl: 'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/avademo.png?sign=032b26657afd1c64dd19a5798feab256&t=1588086418',
-    username: '加载中',
+    username: '点击获取头像',
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     score: 0,
     logthree: [],
     //状态栏和标题栏的高度
@@ -501,13 +502,27 @@ Page({
   },
 
   onLoad: function(options) {
+    var isOfi = getApp().globalData.isOfi
     var that = this
+    // 查看是否授权
+    wx.getSetting({
+      success (res){
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function(res) {
+              console.log(res.userInfo)
+            }
+          })
+        }
+      }
+    })
     that.verifycode = that.selectComponent("#verifycode");
     that.getOpenid();
     that.getPageId();
-    this.setData({
+    that.setData({
       AvatarUrl: "https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/testava.jpg?sign=6fdab6348eeeeecc9ae14d7c992abb03&t=1588086430",
-
+      isOfi:isOfi,
       logthree: [{
         'date': '2.30',
         'proj': '步行10公里',
@@ -552,9 +567,27 @@ Page({
           })
         }
       })
-    
+      wx.cloud.callFunction({
+        // 需调用的云函数名
+        name: 'login',
+        // 成功回调
+        complete: res => {
+          app.appData.user_openid = res.result.openid
+          console.log(app.appData.user_openid)
+          db.collection('account_info').where({
+            _openid: res.result.openid
+          }).get({
+            success: res => {
+              if (res.data.length != '0') {
+                console.log('已经注册')
+              }
+            }
+          })
+        }
+      })
   },
   onShow: function(options) {
+    this.onLoad()
     db.collection('person_message').doc('19762d645eae6142004ed6e32b6e4da4').get({
       success: res => {
         that.setData({
@@ -566,6 +599,42 @@ Page({
     console.log('切换成功')
     console.log(app.appData.user_openid)
     this.getWindowHeight();
+  },
+  register: async function (e) {
+    var that = this
+    that.getOpenid()
+    db.collection('account_info').where({
+      _openid: that.data.openid
+    }).get({
+      success: res => {
+        if (res.data.length != '0') {
+          console.log('已经注册')
+        }else{
+          setTimeout(function () {
+            db.collection('account_info').add({
+              data: {
+                avatar: that.data.AvatarUrl,
+                nickName: that.data.username,
+                //nickName is preserved to fill as the nickName of WeChat
+                //However, to get the user's nickName
+                //wx.login() is needed.
+                //So it is left same as realName now.
+                score: 0,
+              },
+              success: res => {
+                console.log(app.appData.user_openid)
+              },
+              catch: res => {
+                wx.showToast({
+                  title: '网络繁忙，请稍后再试',
+                  icon: 'none'
+                })
+              }
+            })
+          }, 500);
+        }
+      }
+    })
   },
   /** 
    * 获取用户设备屏幕高度
@@ -629,63 +698,21 @@ Page({
       }
     })
   },
+  bindGetUserInfo (e) {
+    var that=this
+    console.log(e.detail.userInfo.nickName)
+   that.setData({
+      username:e.detail.userInfo.nickName,
+      AvatarUrl:e.detail.userInfo.avatarUrl,
+      })
+    that.getOpenid()
+  },
   /**
    * 长按用户头像管理员登录，进入后台界面
    */
   longpress: function (e) {
-    var _this = this;
-    //1.显示密码输入框，获取输入
-    _this.verifycode.showView({
-      // phone: "15200000000",
-      inputSuccess: function (res) {
-        //调用组件关闭方法
-        _this.verifycode.closeView();
-        //设置数据
-        _this.setData({
-          rootpassword: res
-        });
-            if (_this.data.rootpassword==passWord) {
-              _this.setData({
-                isOfi:true,
-              })
-              wx.showActionSheet({
-                itemList: ['发起活动', '审核音频', '更新通知'],
-                success: function (res) {
-                  // console.log(res.tapIndex);
-                  if (res.tapIndex == 0) {
-                    wx.navigateTo({
-                      url: '../release/release'
-                    })
-
-                  } else if (res.tapIndex == 1) {
-                    //4.如果选择上传视频
-                    wx.navigateTo({
-                      url: '../../addPackage/check/check'
-                    })
-                  } else {
-                    //5.如果选择更新通知
-                    wx.navigateTo({
-                      url: '../../addPackage/update_inform/update_inform'
-                    })
-                  }
-                }
-              })
-            } else {
-              //密码错误
-              wx.showToast({
-                title: '密码错误',
-                icon:'none',
-                duration:2000,
-              })
-            }
-          },
-          complete: function() {
-            setTimeout(() => {
-              wx.hideToast();
-              wx.hideLoading();
-            }, 1000)
-          }
-    });
-  },
-
+    wx.navigateTo({
+      url: '../login/login'
+    })
+  }
 })
