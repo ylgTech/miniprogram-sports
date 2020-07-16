@@ -4,6 +4,7 @@ const app = getApp()
 //用于获取屏幕信息 适配屏幕大小
 var windowHeight = 0;
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
+var passWord = require('../../configuration.js').passWord;
 var join_top = 0;
 var qqmapsdk = new QQMapWX({
 
@@ -38,7 +39,10 @@ Page({
     pop_btn_start: false,//控制发起打卡按钮
     distance:[],
     openid:'',
-    rootpassword:'',
+    rootpassword:null,
+    password:null,
+    try_time: 0,
+    isOfi:false,
   },
   join_hidden_change: function(e) { //控制我参加
     var that = this
@@ -625,7 +629,7 @@ Page({
       }
     })
   },
-    /**
+  /**
    * 长按用户头像管理员登录，进入后台界面
    */
   longpress: function (e) {
@@ -634,18 +638,53 @@ Page({
     _this.verifycode.showView({
       // phone: "15200000000",
       inputSuccess: function (res) {
-        wx.showLoading({
-          title: '',
-        })
-
         //调用组件关闭方法
         _this.verifycode.closeView();
         //设置数据
         _this.setData({
           rootpassword: res
         });
-        console.log(rootpassword)
-      }
+            if (_this.data.rootpassword==passWord) {
+              _this.setData({
+                isOfi:true,
+              })
+              wx.showActionSheet({
+                itemList: ['发起活动', '审核音频', '更新通知'],
+                success: function (res) {
+                  // console.log(res.tapIndex);
+                  if (res.tapIndex == 0) {
+                    wx.navigateTo({
+                      url: '../release/release'
+                    })
+
+                  } else if (res.tapIndex == 1) {
+                    //4.如果选择上传视频
+                    wx.navigateTo({
+                      url: '../../addPackage/check/check'
+                    })
+                  } else {
+                    //5.如果选择更新通知
+                    wx.navigateTo({
+                      url: '../../addPackage/update_inform/update_inform'
+                    })
+                  }
+                }
+              })
+            } else {
+              //密码错误
+              wx.showToast({
+                title: '密码错误',
+                icon:'none',
+                duration:2000,
+              })
+            }
+          },
+          complete: function() {
+            setTimeout(() => {
+              wx.hideToast();
+              wx.hideLoading();
+            }, 1000)
+          }
     });
   },
 

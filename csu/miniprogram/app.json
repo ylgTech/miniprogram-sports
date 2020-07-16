@@ -39,18 +39,6 @@
                 "text": "比赛项目"
             },
             {
-                "pagePath": "pages/release/release",
-                "iconPath": "images/tabBar/运动1.png",
-                "selectedIconPath": "images/tabBar/运动.png",
-                "text": "发起运动"
-            },
-            {
-                "pagePath": "pages/group/group-imprv",
-                "iconPath": "images/tabBar/小组1.png",
-                "selectedIconPath": "images/tabBar/小组2.png",
-                "text": "兴趣小组"
-            },
-            {
                 "pagePath": "pages/me/me",
                 "iconPath": "images/tabBar/我的1.png",
                 "selectedIconPath": "images/tabBar/我的2.png",
