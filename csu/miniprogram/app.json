@@ -1,50 +1,52 @@
 {
-    "pages": [
-        "pages/index/index",
-        "pages/release/release",
-        "pages/match/match",
-        "pages/me/me",
-        "pages/group/group-select-college",
-        "pages/group/group-imprv",
-        "pages/test/test",
-        "pages/login/login",
-        "pages/group-detail/group-detail"
-        
-    ],"window": {
-        "navigationStyle": "custom"
-    },
-    "usingComponents": {
-        "cu-custom":"/colorui/components/cu-custom"
-    },
-    "permission": {
-        "scope.userLocation": {
-            "desc": "你的位置信息将用于活力中南确定活动地点"
-        }
-    },
-    "tabBar": {
-        "selectedColor": "#8CAAE8",
-        "color": "#BFBFBF",
-        "backgroundColor": "#FFFFFF",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "iconPath": "images/tabBar/广场1.png",
-                "selectedIconPath": "images/tabBar/广场2.png",
-                "text": "活力广场"
-            },
-            {
-                "pagePath": "pages/match/match",
-                "iconPath": "images/tabBar/比赛1.png",
-                "selectedIconPath": "images/tabBar/比赛2.png",
-                "text": "比赛项目"
-            },
-            {
-                "pagePath": "pages/me/me",
-                "iconPath": "images/tabBar/我的1.png",
-                "selectedIconPath": "images/tabBar/我的2.png",
-                "text": "我的"
-            }
-        ]
-    },
-    "sitemapLocation": "sitemap.json"
+  "pages": [
+    "pages/index/index",
+    "pages/release/release",
+    "pages/match/match",
+    "pages/me/me",
+    "pages/group/group-select-college",
+    "pages/group/group-imprv",
+    "pages/test/test",
+    "pages/login/login",
+    "pages/group-detail/group-detail",
+    "components/create-project/create-project",
+    "components/show/show"
+  ],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于活力中南确定活动地点"
+    }
+  },
+  "tabBar": {
+    "selectedColor": "#8CAAE8",
+    "color": "#BFBFBF",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabBar/广场1.png",
+        "selectedIconPath": "images/tabBar/广场2.png",
+        "text": "活力广场"
+      },
+      {
+        "pagePath": "pages/match/match",
+        "iconPath": "images/tabBar/比赛1.png",
+        "selectedIconPath": "images/tabBar/比赛2.png",
+        "text": "比赛项目"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "images/tabBar/我的1.png",
+        "selectedIconPath": "images/tabBar/我的2.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
 }

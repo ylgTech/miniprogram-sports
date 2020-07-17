@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    match_all:[],
     imgUrls: [
       'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416',
       'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/%E4%BA%911.png?sign=f443bc28365fbb8703347ef5c8fc59ea&t=1588149416',
@@ -20,8 +21,11 @@ Page({
 
   },
   match_detail: function(e) {
-    this.setData({
-      pop_detail: true
+    var id = e.currentTarget.dataset.id;  // 获取点击的推文的数组下标
+    var url = this.data.match_all[id]._introduction;  // 通过id判断是哪个推文的链接
+    //跳转并传参
+    wx.navigateTo({
+      url: '../../components/show/show?name=photoTweets&url=' + url,
     })
     console.log('开启')
   },
@@ -57,11 +61,11 @@ Page({
    */
   onLoad: function(options) {
     var that = this
-    db.collection('sport').get({
+    db.collection('match').get({
       success: res => {
         console.log(res.data)
         that.setData({
-          match_all: res.data
+          match_all: res.data.reverse()
         })
       }
 

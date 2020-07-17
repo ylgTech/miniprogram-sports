@@ -58,8 +58,47 @@
 			</view>
 		</view>
 	</view>
-	<view class="btnitem" animation="{{ani_join1}}">
-		未完待续 >>>
+	<block wx:if="{{isOfi==false}}">
+		<view class="btnitem" animation="{{ani_join1}}">
+			未完待续 >>>
+		</view>
+	</block>
+	<block wx:if="{{isOfi==true}}">
+		<button bindtap="showModal" data-target="Modal" class="btnitem" animation="{{ani_join1}}">
+			其他功能 >>>
+		</button>
+	</block>
+	<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white justify-end">
+				<view class="content">其他功能</view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close text-blue"></text>
+				</view>
+			</view>
+			<view>
+				<view class="cu-list menu sm-border card-menu margin-top margin-bottom">
+					<view class="cu-item arrow">
+						<view class="content" bindtap="goto_release">
+							<image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/%E4%BD%93%E8%82%B2.png?sign=db095336392e77344f83676604215b9d&t=1594946801" class="png" mode="aspectFit"></image>
+							<text class="text-grey">发起运动</text>
+						</view>
+					</view>
+					<view class="cu-item arrow">
+						<view class="content" bindtap="goto_create">
+							<image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/%E4%BA%A4%E6%B5%81.png?sign=5a25306e467f42fd30e971dea0e3621f&t=1594946819" class="png" mode="aspectFit"></image>
+							<text class="text-grey">发起线下活动</text>
+						</view>
+					</view>
+					<view class="cu-item arrow">
+						<view class="content">
+							<image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/%E6%9C%80%E6%96%B0%E8%AF%BE%E7%A8%8B.png?sign=28b2bff9eed325bed1f4a556ef305238&t=1594946827" class="png" mode="aspectFit"></image>
+							<text class="text-grey">导出名单</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
 	</view>
 </view>
 

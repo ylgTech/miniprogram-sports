@@ -45,6 +45,26 @@ Page({
     try_time: 0,
     isOfi:false,
   },
+  goto_release:function(e){
+    wx.navigateTo({
+      url: '../release/release'
+    })
+ },
+ goto_create:function(e){
+  wx.navigateTo({
+    url: '../../components/create-project/create-project'
+  })
+},
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
   join_hidden_change: function(e) { //控制我参加
     var that = this
     var touch_times_join = that.data.touch_times_join

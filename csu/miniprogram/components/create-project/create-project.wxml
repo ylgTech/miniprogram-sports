@@ -1,0 +1,71 @@
+<!--pages/release/release.wxml-->
+<cu-custom bgImage="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/clem-onojeghuo--YMhg0KYgVc-unsplash.jpg?sign=4859d1228316a0416bb4eb9ed09afffa&t=1589677703" isBack="{{true}}">
+  <view slot="content">创建线下活动</view>
+</cu-custom>
+<view class="body">
+  <view class="form">
+    <van-cell-group>
+      <van-field label="封面图片" value="{{ picture }}" bind:tap="doUpload" placeholder="点击插入封面图片" clickable required readonly use-button-slot>
+        <van-button slot="button" size="small" type="info"  round plain>获取图片</van-button>
+      </van-field>
+      <van-field label="推文标题" value="{{ title }}" bind:change="inputTitle" autosize required clearable placeholder="请输入推文标题" error="{{ error.title }}" />
+      <van-field label="推文地址" value="{{ intro }}" bind:change="inputIntro" placeholder="请点击推文右上角。。。并复制链接" required  autosize clearable />
+      <van-field label="推文描述" value="{{ detail }}" bind:change="inputDetail" placeholder="请描述推文" required  autosize clearable />
+    </van-cell-group>
+
+    <button class="cu-btn line-blue round lg shadow button" bindtap="submit">
+      <text wx:if='{{ loading }}' class="cuIcon-loading2 iconfont-spin"> </text>
+      <text wx:else class="cuIcon-upload"> </text> 提交</button>
+
+    <!-- popup -->
+    <view class="cu-modal {{modalName=='DialogPlus'?'show':''}}">
+      <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+          <view class="content">添加活动类别</view>
+          <view class="action" bindtap="hidePlus">
+            <text class="cuIcon-close text-red"></text>
+          </view>
+        </view>
+        <view class="padding-xl">
+          <van-field value="{{ addkind }}" placeholder="请输入活动类别" border="{{ false }}" bind:change="inputKind" />
+        </view>
+        <view class="cu-bar bg-white justify-end">
+          <view class="action">
+            <button class="cu-btn line-blue text-blue" bindtap="hidePlus">取消</button>
+            <button class="cu-btn bg-blue margin-left" bindtap="addPlus">确定</button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <van-popup show="{{ showPeople }}" position="bottom" custom-style="max-height: 80%;" bind:close="onClose">
+      <van-picker title="人数" columns="{{ peopleColumns }}" bind:confirm="onConfirmPeople" bind:cancel="onClose" show-toolbar />
+    </van-popup>
+    <van-popup show="{{ showGrade }}" position="bottom" custom-style="max-height: 80%;" bind:close="onClose">
+      <van-picker title="等级" columns="{{ gradeColumns }}" bind:confirm="onConfirmGrade" bind:cancel="onClose" show-toolbar />
+    </van-popup>
+
+    <van-popup show="{{ showTime }}" position="bottom" custom-style="height: 70%;" bind:close="onClose" round>
+      <view class='containt'>
+        <scroll-view class="scroll-view_H" scroll-x>
+          <view class='list' style='width:{{ width }}rpx'>
+            <view bindtap="select" wx:for="{{ calendar }}" wx:key="calendar" wx:for-item="item" wx:for-index="index" data-index="{{ index }}" class='listItem {{index==currentIndex? "current":""}}'>
+              <text class='name'>{{ item.week }}</text>
+              <text class='date'>{{ item.date }}</text>
+            </view>
+          </view>
+        </scroll-view>
+        <view class='time'>
+          <view wx:for="{{ timeArr }}" wx:for="timeArr" wx:key="timeArr" wx:for-item="timeItem" wx:for-index="timeIndex" data-Tindex="{{ timeIndex }}" bindtap='selectTime' class='listItem {{ currentTime==timeIndex? "current":"" }}'>
+            <text>{{ timeItem.time }}</text>
+            <text>{{ timeItem.status }}</text>
+          </view>
+        </view>
+        <view class='operate'>
+          <button class='del'>删除</button>
+          <button bindtap="onConfirmTime" class='save'>保存</button>
+        </view>
+      </view>
+    </van-popup>
+
+  </view>
+</view>
