@@ -50,6 +50,12 @@ Page({
       url: '../release/release'
     })
  },
+ goto_print:function(e){
+  getApp().globalData.isOfi = true;
+        wx.switchTab({
+          url: '../match/match'
+        })
+ },
  goto_create:function(e){
   wx.navigateTo({
     url: '../../components/create-project/create-project'
@@ -725,6 +731,7 @@ Page({
       username:e.detail.userInfo.nickName,
       AvatarUrl:e.detail.userInfo.avatarUrl,
       })
+    getApp().globalData.userInfo=e.detail.userInfo;
     that.getOpenid()
   },
   /**

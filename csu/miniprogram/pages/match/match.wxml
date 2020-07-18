@@ -1,23 +1,25 @@
-<image class='background' src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/background.png?sign=9209779092806cc733c84ee4bfc526cc&t=1588148134" mode="aspectFill" ></image>
+<image class='background' src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/background.png?sign=9209779092806cc733c84ee4bfc526cc&t=1588148134" mode="aspectFill"></image>
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" previous-margin="6rpx" next-margin="6rpx" style="margin-top:15px;">
-  <block wx:for="{{imgUrls}}">
-    <swiper-item>
-      <image style="display:block;width:92%;margin:0 auto;border-radius:20rpx;" src="{{item}}" class="slide-image" mode="widthFix" width="430rpx" height="150rpx" />
-    </swiper-item>
-  </block>
+	<block wx:for="{{imgUrls}}">
+		<swiper-item>
+			<image style="display:block;width:92%;margin:0 auto;border-radius:20rpx;" src="{{item}}" class="slide-image" mode="widthFix" width="430rpx" height="150rpx" />
+		</swiper-item>
+	</block>
 </swiper>
 <view class="container">
-  <view class="time" style="margin-top:16rpx;">时间显示</view>
-  <view class="each-mes" wx:for="{{match_all}}" bindtap="match_detail" data-id='{{index}}'>
-    <view class="pop_detail" wx:if="{{pop_detail}}" bindtap="pop_fade2">
-
-      <button  bindtap="pop_fade" class="pop_btn">报名参加</button>
-    </view>
-
-    <image src="{{item._picture}}" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
-    <view class="content">
-      <view style="font-weight:bold">{{item._sport_title}}</view>
-      <view>{{item._introduction_detail}}</view>
-    </view>
-  </view>
+	<view class="time" style="margin-top:16rpx;">时间显示</view>
+	<view class="each-mes" wx:for="{{match_all}}" bindtap="match_detail" data-id='{{index}}'>
+		<image src="{{item._picture}}" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
+		<view class="content">
+			<view style="font-weight:bold">{{item._sport_title}}</view>
+			<view>{{item._introduction_detail}}</view>
+			<block wx:if="{{isOfi==false}}">
+				<button class="cu-btn bg-blue round shadow" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" catchtap="match_par" data-id='{{index}}'>报名参加</button>
+			</block>
+			<block wx:if="{{isOfi==true}}">
+				<button class="cu-btn bg-blue round shadow" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" catchtap="match_par" data-id='{{index}}'>导出报表</button>
+        <button class="cu-btn bg-red round shadow" data-id='{{index}}' catchtap="delete">删除</button>
+			</block>
+		</view>
+	</view>
 </view>

@@ -101,7 +101,6 @@ Page({
         data: postData,
         success: res => {
           console.log("成功添加运动信息！")
-
         }
       })
       wx.showToast({
@@ -118,6 +117,31 @@ Page({
         }
       })
     }, 1000)
+  },
+  create:function(e){
+    console.log('in create')
+    db.collection('match').where({
+      _sport_title: that.data.title,
+      _introduction: that.data.intro,
+      _introduction_detail: that.data.detail,
+      _picture:that.data.imgUrl[0],
+    }).get({
+      success:res=>{
+        console.log(res)
+        wx.cloud.callFunction({
+          name: "create",
+          data:{
+             name:res.data[0]._id
+            },
+          success(res) {
+            console.log('创建成功',res.data[0]._id)
+          },
+          fail(res) {
+            console.log('创建失败',res.data[0]._id)
+          }
+        })
+      }
+    })
   },
   inputKind(e) {
     // this.data.error.title = e.detail == "" ? true : false
