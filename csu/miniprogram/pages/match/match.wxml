@@ -1,13 +1,13 @@
 <image class='background' src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/background.png?sign=9209779092806cc733c84ee4bfc526cc&t=1588148134" mode="aspectFill"></image>
-<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" previous-margin="6rpx" next-margin="6rpx" style="margin-top:15px;">
+<!-- <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" previous-margin="6rpx" next-margin="6rpx" style="margin-top:15px;">
 	<block wx:for="{{imgUrls}}">
 		<swiper-item>
 			<image style="display:block;width:92%;margin:0 auto;border-radius:20rpx;" src="{{item}}" class="slide-image" mode="widthFix" width="430rpx" height="150rpx" />
 		</swiper-item>
 	</block>
-</swiper>
+</swiper> -->
 <view class="container">
-	<view class="time" style="margin-top:16rpx;">时间显示</view>
+	<!-- <view class="time" style="margin-top:16rpx;">时间显示</view> -->
 	<view class="each-mes" wx:for="{{match_all}}" bindtap="match_detail" data-id='{{index}}'>
 		<image src="{{item._picture}}" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
 		<view class="content">
@@ -17,8 +17,10 @@
 				<button class="cu-btn bg-blue round shadow" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" catchtap="match_par" data-id='{{index}}'>报名参加</button>
 			</block>
 			<block wx:if="{{isOfi==true}}">
-				<button class="cu-btn bg-blue round shadow" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" catchtap="match_par" data-id='{{index}}'>导出报表</button>
-        <button class="cu-btn bg-red round shadow" data-id='{{index}}' catchtap="delete">删除</button>
+				<view class="delete-get">
+					<button class="cu-btn bg-blue round shadow mar" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" catchtap="match_par" data-id='{{index}}'>导出报表</button>
+					<button class="cu-btn bg-red round shadow mar" data-id='{{index}}' catchtap="delete">删除</button>
+				</view>
 			</block>
 		</view>
 	</view>

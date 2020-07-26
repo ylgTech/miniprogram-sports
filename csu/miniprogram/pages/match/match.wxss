@@ -108,7 +108,6 @@ page {
   margin-top: 50rpx;
   width: 100%;
   height: 100vh;
-  background-color: rgb(249,249,249);
   border-radius: 100rpx 0 0 0;
   z-index: 5;
 }
@@ -136,4 +135,13 @@ page {
   width: 350rpx;
   height: 200rpx;
   margin-left: 20rpx;
+}
+.delete-get{
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+}
+.mar{
+  margin: 15rpx;
 }
