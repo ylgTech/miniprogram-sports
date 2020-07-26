@@ -1,7 +1,9 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 
-cloud.init()
+cloud.init({
+  env: "energycsu-x8fn6"
+})
 
 //操作excel用的类库
 const xlsx = require('node-xlsx');

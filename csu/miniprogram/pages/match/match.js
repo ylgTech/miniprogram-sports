@@ -53,7 +53,8 @@ Page({
         })
       }
     })
-    this.onLoad()
+    this.onLoad();
+    this.onShow();
   },
   getOpenid(){
     let that=this;
