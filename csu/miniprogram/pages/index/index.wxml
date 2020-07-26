@@ -113,7 +113,7 @@
       </view>
     </view>
     <button wx:if="{{pop_btn}}" class="pop_btn" bindtap="pop_fade">报名参加</button>
-    <button wx:if="{{pop_btn_in}}" class="pop_btn" bindtap="mark">打卡</button>
+    <button wx:if="{{pop_btn_in}}" class="pop_btn" bindtap="mark">上传照片进行打卡</button>
     <button wx:if="{{pop_btn_start}}" class="pop_btn" bindtap="startMark">发起打卡</button>
     <van-loading wx:if="{{load_show}}" type="spinner" color="#1989fa" />
   </view>
