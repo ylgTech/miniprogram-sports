@@ -8,6 +8,7 @@
       <van-field label="封面图片" value="{{ picture }}" bind:tap="doUpload" placeholder="点击插入封面图片" clickable required readonly use-button-slot>
         <van-button slot="button" size="small" type="info"  round plain>获取图片</van-button>
       </van-field>
+      <image style="width:100%" src="{{imgUrl}}"></image>
       <van-field label="推文标题" value="{{ title }}" bind:change="inputTitle" autosize required clearable placeholder="请输入推文标题" error="{{ error.title }}" />
       <van-field label="推文地址" value="{{ intro }}" bind:change="inputIntro" placeholder="请点击推文右上角。。。并复制链接" required  autosize clearable />
       <van-field label="推文描述" value="{{ detail }}" bind:change="inputDetail" placeholder="请描述推文" required  autosize clearable />

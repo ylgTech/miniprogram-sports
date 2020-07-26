@@ -12,7 +12,7 @@ page {
 }
 
 .slide-image {
-  height: 35vh;
+  height: 25vh;
   width: 90vw;
   margin-top: 15px;
   margin-left: 15px;
@@ -22,7 +22,7 @@ page {
 }
 
 .swiper {
-  height: 40vh;
+  height: 30vh;
 }
 
 .background {

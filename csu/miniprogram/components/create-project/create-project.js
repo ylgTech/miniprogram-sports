@@ -10,7 +10,7 @@ Page({
     intro: "",
     detail: "",
     picture:"",
-    imgUrl:"",
+    imgUrl:"https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/1.jpg?sign=aefe7511f2365d559f373af6d045e2f6&t=1595732807",
     kind: "球类",
     peopleColumns: ['1-5人', '6-10人', '10-20人', '20人以上'],
     gradeColumns: ['易', '中', '难'],
@@ -76,7 +76,7 @@ Page({
       _sport_title: that.data.title,
       _introduction: that.data.intro,
       _introduction_detail: that.data.detail,
-      _picture:that.data.imgUrl[0],
+      _picture:that.data.imgUrl,
     }
     // 检查是否所有必需信息已填
     if (postData._sport_title == "" ||
@@ -415,53 +415,41 @@ Page({
   },
   //上传图片
   doUpload:function(){
-    //选择图片
-    var that = this;
+    let that = this;
+    let openid = getApp().globalData.openid || wx.getStorageSync('openid');
     wx.chooseImage({
-      count: 1,
-      sizeType:['compressed'],
-      sourceType:['album','camera'],
-      success:function(res){
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
         wx.showLoading({
           title: '上传中',
-        })
-        const filePath=res.tempFilePaths;
-        that.setData({
-          imgUrl:filePath
-        })
-        const cloudPath = [];
-        filePath.forEach((item,i)=>{
-          cloudPath.push(that.data.count+'_'+i+filePath[i].match(/\.[^.]+?$/)[0])
-        })
-        console.log(cloudPath)
-        filePath.forEach((item,i)=>{
-          wx.cloud.uploadFile({
-            cloudPath:cloudPath[i],
-            filePath:filePath[i],
-            success:res=>{
-              console.log('[上传文件]成功：',cloudPath,res)
-              app.globalData.fileID=res.fileID
-              app.globalData.cloudPath=cloudPath
-              app.globalData.imagePath=filePath
-            },
-            fail:e=>{
-              console.error('[上传文件]失败：',e)
-              wx.showToast({
-                title: '上传失败',
-                icon:'none',
-              })
-            },
-            complete:()=>{
-              that.setData({
-                picture:"已上传"
-              }),
-              wx.hideLoading()
-            }
-          })
-        })
-      },
-      fail:e=>{
-        console.error(e)
+        });
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        let filePath = res.tempFilePaths[0];
+        const name = Math.random() * 1000000;
+        const cloudPath = name + filePath.match(/\.[^.]+?$/)[0]
+        wx.cloud.uploadFile({
+          cloudPath,//云存储图片名字
+          filePath,//临时路径
+          success: res => {
+            console.log('[上传图片] 成功：', res)
+            that.setData({
+              bigImg: res.fileID,//云存储图片路径,可以把这个路径存到集合，要用的时候再取出来
+            });
+            let fileID = res.fileID;
+            //把图片存到users集合表
+            that.setData({
+              imgUrl:fileID,
+              picture:"已上传,点击修改"
+            })
+          },
+           fail: e => {
+            console.error('[上传图片] 失败：', e)
+          },
+          complete: () => {
+            wx.hideLoading()
+          }
+        });
       }
     })
   }
