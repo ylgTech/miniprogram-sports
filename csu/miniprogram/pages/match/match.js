@@ -186,6 +186,7 @@ Page({
   onLoad: function(options) {
     var isOfi = getApp().globalData.isOfi
     var that = this
+    console.log("ofi"+that.data.isOfi)
     wx.cloud.callFunction({
       name: "getUsers",
       success(res) {
@@ -280,7 +281,7 @@ getFileUrl(fileID) {
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.onLoad();
   },
 
   /**
