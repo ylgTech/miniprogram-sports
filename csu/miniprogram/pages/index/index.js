@@ -3,6 +3,7 @@ const db = wx.cloud.database()
 const app = getApp()
 const _ = db.command
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
+var util = require('../../utils/util.js');
 
 var qqmapsdk = new QQMapWX({
 
@@ -107,7 +108,17 @@ Page({
 
     console.log('开启')
   },
-
+  formSubmit(e){
+    var _this=this;
+    qqmapsdk.reverseGeocoder({
+      location:'',
+      success:function(res){
+        console.log(res);
+      },fail:function(error){
+        console.error(error)
+      }
+    })
+  },
   //参与运动点击事件
   pop_fade: function(e) {
     var that = this
@@ -226,9 +237,8 @@ Page({
       type: 'wgs84',
       success(res) {
         console.log(res)
-
         latitude1 = res.latitude,
-          longitude1 = res.longitude
+        longitude1 = res.longitude
         db.collection('sport').where({
           _id: that.data.sportId
         }).get().then(res => {
@@ -450,11 +460,13 @@ Page({
   //参与打卡
   mark: function(e) {
     var that = this
+    that.formSubmit();
+    that.getTime();
     // this.setData({
     //   load_show: true
     // })
     that.doUpload()
-    if(img==null){
+    if(this.data.img==null){
       wx.showToast({
         title: '上传图片失败',
         icon:'none',
@@ -659,5 +671,9 @@ Page({
         });
       }
     })
+  },
+  getTime:function(){
+    var time = util.formatTime(new Date());
+    console.log("时间"+time)
   }
 })
