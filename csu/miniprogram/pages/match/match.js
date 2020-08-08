@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isOfi:true,
+    isOfi:false,
     username:'',
     AvatarUrl:'',
     openid:'',

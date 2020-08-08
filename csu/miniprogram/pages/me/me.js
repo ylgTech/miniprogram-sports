@@ -52,8 +52,8 @@ Page({
  },
  goto_print:function(e){
   getApp().globalData.isOfi = true;
-        wx.switchTab({
-          url: '../match/match',
+        wx.navigateTo({
+          url: '../../components/mymatch/mymatch',
           success:function(e){
             var page = getCurrentPages().pop();
             if (page == undefined || page == null) return;

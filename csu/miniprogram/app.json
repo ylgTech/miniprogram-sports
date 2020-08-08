@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "components/mymatch/mymatch",
+    "components/create-project/create-project",
     "pages/release/release",
     "pages/match/match",
     "pages/me/me",
@@ -9,7 +11,6 @@
     "pages/test/test",
     "pages/login/login",
     "pages/group-detail/group-detail",
-    "components/create-project/create-project",
     "components/show/show"
   ],
   "window": {

@@ -502,6 +502,7 @@ Page({
    */
   onLoad: function(options) {
     var that = this
+    that.formSubmit();
     wx.getSetting({
       success (res){
         if (res.authSetting['scope.userInfo']) {
