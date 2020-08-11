@@ -11,15 +11,13 @@
     
     "pages/login/login",
     "pages/group-detail/group-detail",
-<<<<<<< HEAD
-    "components/create-project/create-project",
-    "components/show/show",
+
     "pages/execl",
     "pages/execl/execl",
-    "pages/execlUpload/execlUpload"
-=======
+    "pages/execlUpload/execlUpload",
+
     "components/show/show"
->>>>>>> 5462bc4e69abb9d9f845916a581b797192260a98
+
   ],
   "window": {
     "navigationStyle": "custom"

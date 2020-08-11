@@ -9,10 +9,10 @@
 <view class="container">
 	<!-- <view class="time" style="margin-top:16rpx;">时间显示</view> -->
 	<view class="each-mes" wx:for="{{match_all}}" bindtap="match_detail" data-id='{{index}}'>
-		<image src="{{item._picture}}" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
+		<image src="{{item.picture}}" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
 		<view class="content">
-			<view style="font-weight:bold">{{item._sport_title}}</view>
-			<view>{{item._introduction_detail}}</view>
+			<view style="font-weight:bold">{{item.name}}</view>
+			<view>{{item.introduction}}</view>
 			<block wx:if="{{isOfi==false}}">
 				<button class="cu-btn bg-blue round shadow" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" catchtap="match_par" data-id='{{index}}'>报名参加</button>
 			</block>

@@ -26,9 +26,9 @@ Page({
   },
   register: function (e) {
     var that = this
-   db.collection('Special_login').where({
-     _username:that.data.username,
-     _password:that.data.password,
+   db.collection('Root').where({
+     username:that.data.username,
+     password:that.data.password,
    }).get({
      success:res=>{
        console.log(res)
