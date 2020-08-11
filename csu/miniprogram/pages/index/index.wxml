@@ -21,10 +21,10 @@
           <!-- 出bug了 -->
           <text class="active-top">-推荐活动-</text>
           <view class="each-mes" wx:for="{{ match_all }}" id="{{index}}" bindtap="match_detail">
-            <image src="{{item._picture}}" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
+            <image src="{{item.picture}}" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
             <view class="content">
-              <view style="font-weight:bold">{{item._sport_title}}</view>
-              <view>{{item._introduction}}</view>
+              <view style="font-weight:bold">{{item.name}}</view>
+              <view>{{item.description}}</view>
             </view>
           </view>
           <!--<view>Selected:{{selectVal}}</view>-->
@@ -79,9 +79,9 @@
       <view class="match_detail_2">
 
 
-        <image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%B0%8F%E7%BB%84%E8%AF%A6%E6%83%85%E9%A1%B5img/xueshan.jpg?sign=479889dcfd5d1b0ec705f12800aeb774&t=1588413106" style="width:160rpx;height:160rpx;" bindtap="pop_fade"></image>
-        <view class="match_detail_2_title">{{match_all[detailIndex]._sport_title}}</view>
-        <view class="match_detail_2_intro">{{match_all[detailIndex]._introduction}}</view>
+        <image src="{{match_all[detailIndex].picture}}" style="width:160rpx;height:160rpx;" bindtap="pop_fade"></image>
+        <view class="match_detail_2_title">{{match_all[detailIndex].name}}</view>
+        <view class="match_detail_2_intro">{{match_all[detailIndex].description}}</view>
       </view>
       <view class="match_detail_3">
         <view class="match_detail_3_left">发起者</view>
@@ -89,27 +89,27 @@
       </view>
       <view class="match_detail_3">
         <view class="match_detail_3_left">时间</view>
-        <view class="match_detail_3_right">{{match_all[detailIndex]._time}}</view>
+        <view class="match_detail_3_right">{{match_all[detailIndex].time}}</view>
       </view>
       <view class="match_detail_3">
         <view class="match_detail_3_left">地点</view>
-        <view class="match_detail_3_right">{{match_all[detailIndex]._destination}}</view>
+        <view class="match_detail_3_right">{{match_all[detailIndex].address}}</view>
       </view>
       <view class="match_detail_3">
         <view class="match_detail_3_left">参与人数</view>
-        <view class="match_detail_3_right">{{match_all[detailIndex]._number}}</view>
+        <view class="match_detail_3_right">{{match_all[detailIndex].number}}</view>
       </view>
-      <view class="match_detail_3">
+      <!-- <view class="match_detail_3">
         <view class="match_detail_3_left">运动等级</view>
-        <view class="match_detail_3_right">1</view>
+        <view class="match_detail_3_right">{{match_all[detailIndex].number}}</view>
       </view>
       <view class="match_detail_3">
         <view class="match_detail_3_left">运动简介</view>
         <view class="match_detail_3_right">1</view>
-      </view>
+      </view> -->
       <view class="match_detail_4">
         <view class="match_detail_4_left">活动描述</view>
-        <view class="match_detail_4_right">{{match_all[detailIndex]._introduction_detail}}</view>
+        <view class="match_detail_4_right">{{match_all[detailIndex].introduction}}</view>
       </view>
     </view>
     <button wx:if="{{pop_btn}}" class="pop_btn" bindtap="pop_fade">报名参加</button>

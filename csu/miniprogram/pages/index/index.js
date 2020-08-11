@@ -66,7 +66,7 @@ Page({
   match_detail: function(e) {
     var that = this
     db.collection('Participate').where({
-        _sport_id: that.data.match_all[e.currentTarget.id]._id,
+        activity_id: that.data.match_all[e.currentTarget.id]._id,
         _openid: app.appData.user_openid
       })
       .get({
@@ -126,11 +126,10 @@ Page({
     var match_all = that.data.match_all
     db.collection('Participate').add({
       data: {
-        _if_finished: false,
-        _sport_id: match_all[detailIndex]._id,
-        _sport_title: match_all[detailIndex]._sport_title,
-        _sport_introduction: match_all[detailIndex]._introduction,
-        _sport_openid: match_all[detailIndex]._openid
+        // _if_finished: false,
+        activity_id: match_all[detailIndex]._id,
+        status:'sign pu',
+        user_id:''
       },
       success: {}
     })
@@ -526,7 +525,10 @@ Page({
         })
       }
     })
-    db.collection('sport').get({
+    db.collection('Activity').where({
+      type: 'offline',
+    
+    }).get({
       success: res => {
         console.log(res.data)
         that.setData({
