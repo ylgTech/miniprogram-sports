@@ -8,10 +8,16 @@
     "pages/me/me",
     "pages/group/group-select-college",
     "pages/group/group-imprv",
-    "pages/test/test",
+    
     "pages/login/login",
     "pages/group-detail/group-detail",
+
+    "pages/execl",
+    "pages/execl/execl",
+    "pages/execlUpload/execlUpload",
+
     "components/show/show"
+
   ],
   "window": {
     "navigationStyle": "custom"

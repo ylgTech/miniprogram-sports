@@ -78,26 +78,28 @@ Page({
       loading: true
     })
     let postData = {
-      _sport_title: that.data.title,
-      _introduction: that.data.intro,
+      name: that.data.title,
+      description: that.data.intro,
       _name: that.data.author,
-      _number: that.data.people,
-      _introduction_detail: that.data.detail,
-      _destination: that.data.location,
-      _time: that.data.time,
-      _kind: that.data.kind,
-      _picture:that.data.imgUrl,
+      number: that.data.people,
+      introduction: that.data.detail,
+      address: that.data.location,
+      time: that.data.time,
+      kind: that.data.kind,
+      picture:that.data.imgUrl,
+      status:'',
+      type:'offline'
     }
     // 检查是否所有必需信息已填
-    if (postData._sport_title == "" ||
-      postData._introduction == "" ||
+    if (postData.name == "" ||
+      postData.description == "" ||
       postData._name == "" ||
-      postData._number == "" ||
-      postData._introduction_detail == "" ||
-      postData._destination == "" ||
-      postData._time == "" ||
-      postData._kind == ""||
-      postData._picture == "") {
+      postData.number == "" ||
+      postData.introduction == "" ||
+      postData.address == "" ||
+      postData.time == "" ||
+      postData.kind == ""||
+      postData.picture == "") {
       wx.showToast({
         title: '请填写必要信息',
         icon: 'none',
@@ -112,7 +114,7 @@ Page({
       that.setData({
         loading: false
       })
-      db.collection('sport').add({
+      db.collection('Activity').add({
         data: postData,
         success: res => {
           console.log("成功添加运动信息！")

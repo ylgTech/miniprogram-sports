@@ -1,28 +1,12 @@
-// pages/test/test.js
+// pages/execl/execl.js
 Page({
 
   /**
    * 页面的初始数据
    */
-  /**
- * 页面的初始数据
- */
   data: {
-    degs: 0,
-    degss: 0,
-    degsss: 0,
-    subords: [
-      { name: '张三', pay: '300.00' },
-      { name: '李四', pay: '400.00' },
-      { name: 'Marry', pay: '200.00' },
-      { name: '龙霸天', pay: '300.00' },
-    ],
-    show: true
+
   },
-  onClose() {
-    this.setData({ close: false });
-  },
-  
 
   /**
    * 生命周期函数--监听页面加载

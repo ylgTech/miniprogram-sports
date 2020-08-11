@@ -210,7 +210,10 @@ Page({
         }
       }
     })
-    db.collection('match').get({
+    db.collection('Activity').where({
+      type: 'online',
+     
+    }).get({
       success: res => {
         console.log(res.data)
         that.setData({

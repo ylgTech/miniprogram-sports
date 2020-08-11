@@ -73,16 +73,17 @@ Page({
       loading: true
     })
     let postData = {
-      _sport_title: that.data.title,
-      _introduction: that.data.intro,
-      _introduction_detail: that.data.detail,
-      _picture:that.data.imgUrl,
+      name: that.data.title,
+      linkAddress: that.data.intro,
+      introduction: that.data.detail,
+      picture:that.data.imgUrl,
+      type:'online'
     }
     // 检查是否所有必需信息已填
-    if (postData._sport_title == "" ||
-      postData._introduction == "" ||
-      postData._introduction_detail == "" ||
-      postData._picture == "") {
+    if (postData.name == "" ||
+      postData.linkAddress == "" ||
+      postData.introduction == "" ||
+      postData.picture == "") {
       wx.showToast({
         title: '请填写必要信息',
         icon: 'none',
@@ -97,7 +98,7 @@ Page({
       that.setData({
         loading: false
       })
-      db.collection('match').add({
+      db.collection('Activity').add({
         data: postData,
         success: res => {
           console.log("成功添加运动信息！")
@@ -120,11 +121,11 @@ Page({
   },
   create:function(e){
     console.log('in create')
-    db.collection('match').where({
-      _sport_title: that.data.title,
-      _introduction: that.data.intro,
-      _introduction_detail: that.data.detail,
-      _picture:that.data.imgUrl[0],
+    db.collection('Activity').where({
+      name: that.data.title,
+      linkAddress: that.data.intro,
+      introduction: that.data.detail,
+      picture:that.data.imgUrl[0],
     }).get({
       success:res=>{
         console.log(res)
