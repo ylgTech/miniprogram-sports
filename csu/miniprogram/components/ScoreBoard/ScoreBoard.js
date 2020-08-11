@@ -44,7 +44,15 @@ Component({
     },
 
     detail() {
-      console.log('view detail')
+      if (this.data.logs && this.data.logs.length != 0) {
+        wx.navigateTo({
+          url: '../../pages/score-history/score-history',
+        })
+      } else {
+        wx.switchTab({
+          url: '../../pages/index/index',
+        })
+      }
     }
   }
 

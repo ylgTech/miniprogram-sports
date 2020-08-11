@@ -4,6 +4,7 @@
     "pages/index/index",
     "components/mymatch/mymatch",
     "components/create-project/create-project",
+    "pages/score-history/score-history",
     "pages/release/release",
     "pages/match/match",
     "pages/group/group-select-college",

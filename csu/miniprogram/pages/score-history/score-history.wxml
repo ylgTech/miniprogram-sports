@@ -1,0 +1,4 @@
+  <cu-custom bgImage="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/renee-fisher-esKpVtcVIso-unsplash.jpg?sign=e1ac00f0c7ff11ea88fc5b767e0eab40&t=1589678546" isBack="{{true}}">
+  	<view slot="backText">返回</view>
+  	<view slot="content">积分详情</view>
+  </cu-custom>
