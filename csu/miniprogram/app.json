@@ -1,18 +1,17 @@
 {
   "pages": [
+    "pages/me/me",
     "pages/index/index",
     "components/mymatch/mymatch",
     "components/create-project/create-project",
     "pages/release/release",
     "pages/match/match",
-    "pages/me/me",
     "pages/group/group-select-college",
     "pages/group/group-imprv",
     
     "pages/login/login",
     "pages/group-detail/group-detail",
-
-    "pages/execl",
+    
     "pages/execl/execl",
     "pages/execlUpload/execlUpload",
 

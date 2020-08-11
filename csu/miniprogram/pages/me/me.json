@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "board": "../../components/ScoreBoard/ScoreBoard",
     "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index",
     "verifycode": "../../components/verifycode/verifycode"
   }

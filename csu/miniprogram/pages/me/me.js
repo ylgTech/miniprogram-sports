@@ -18,7 +18,6 @@ Page({
     username: '点击获取头像',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     score: 0,
-    logthree: [],
     //状态栏和标题栏的高度
     windowHeight: 0,
     statusBarHeight: 0,
@@ -57,7 +56,6 @@ Page({
           success:function(e){
             var page = getCurrentPages().pop();
             if (page == undefined || page == null) return;
-            page.onLoad();
           }
         })
  },
@@ -554,19 +552,6 @@ Page({
     that.setData({
       AvatarUrl: "https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/testava.jpg?sign=6fdab6348eeeeecc9ae14d7c992abb03&t=1588086430",
       isOfi:isOfi,
-      logthree: [{
-        'date': '2.30',
-        'proj': '步行10公里',
-        'change': '+10'
-      }, {
-        'date': '3.32',
-        'proj': '长跑5公里',
-        'change': '+15'
-      }, {
-        'date': '4.31',
-        'proj': '步行10公里',
-        'change': '+10'
-      }]
     })
     db.collection('person_message').doc('19762d645eae6142004ed6e32b6e4da4').get({
       success: res => {

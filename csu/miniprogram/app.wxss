@@ -3,6 +3,12 @@
 @import "colorui/main.wxss";
 @import "colorui/icon.wxss";
 
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+}
+
 .container {
   display: flex;
   flex-direction: column;

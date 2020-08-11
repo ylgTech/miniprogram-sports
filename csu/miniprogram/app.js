@@ -2,7 +2,9 @@
 App({
   onLaunch: function () {
     // color-ui
-    this.globalData = {}
+    this.globalData = {
+      user_id: 'dev_test'
+    }
     wx.getSystemInfo({
       success: e => {
         this.globalData.StatusBar = e.statusBarHeight;

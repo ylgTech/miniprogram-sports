@@ -1,0 +1,15 @@
+<!--components/ScoreBoard/ScoreBoard.wxml-->
+<view class="container">
+	<view class="score">
+		积分
+		<text>{{ score }}</text>
+	</view>
+	<view class="div"></view>
+	<view class="log" bindtap="detail">
+		<view class="logitem" wx:for="{{ logs }}" wx:key="index">
+			<text>{{ item.time }}</text>
+			<text style="width: 7em;">{{ item.activity_name }}</text>
+			<text>+{{ item.score }}</text>
+		</view>
+	</view>
+</view>
