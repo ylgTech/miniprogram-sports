@@ -15,11 +15,11 @@
   <van-tabs active="{{ active }}" bind:change="tabbarOnChange" bindtap="switchNav" class="tab-item" color="var(--blue)" swipeable="true">
     <van-tab title="发布活动">
       <view class="van">
-        <Calendar id="Calendar" bind:select="select"></Calendar>
+        <!-- <Calendar id="Calendar" bind:select="select"></Calendar> -->
         <view style='width:90%;margin:0 auto;text-align:center;padding:30rpx 20rpx;border:1rpx dashed #fff;'>
           <!--<button type='default' bindtap='toggleType'>切换周视图</button>-->
           <!-- 出bug了 -->
-          <text class="active-top">-推荐活动-</text>
+          <!-- <text class="active-top">-推荐活动-</text> -->
           <view class="each-mes" wx:for="{{ match_all }}" id="{{index}}" bindtap="match_detail">
             <image src="{{item._picture}}" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
             <view class="content">
