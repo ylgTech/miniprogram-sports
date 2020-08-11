@@ -1,6 +1,6 @@
 <!--pages/me/me.wxml-->
 <view id="top" animation="{{ani_join}}">
-	<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindlongpress='longpress' bindtap="register">
+	<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindlongpress='longpress' bindtap="register" class="btn-img">
 		<image src="{{AvatarUrl}}" class="top-img"></image>
 	</button>
 	<text id="username">{{username}}</text>

@@ -6,10 +6,15 @@
 	</view>
 	<view class="div"></view>
 	<view class="log" bindtap="detail">
-		<view class="logitem" wx:for="{{ logs }}" wx:key="index">
-			<text>{{ item.time }}</text>
-			<text style="width: 7em;">{{ item.activity_name }}</text>
-			<text>+{{ item.score }}</text>
-		</view>
+		<block wx:if="{{ logs.length != 0 }}">
+			<view class="logitem" wx:for="{{ logs }}" wx:key="index">
+				<text>{{ item.time }}</text>
+				<text style="width: 7em;">{{ item.activity_name }}</text>
+				<text>+{{ item.score }}</text>
+			</view>
+		</block>
+		<block wx:else>
+			<view>你还没有参加任何比赛哦~</view>
+		</block>
 	</view>
 </view>
