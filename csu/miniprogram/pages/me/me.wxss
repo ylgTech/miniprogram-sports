@@ -316,3 +316,10 @@ page{
   right: 7%;
   bottom: 5%;
 }
+.btn-img {
+  background-color: rgba(0, 0, 0, 0);
+  border:none;
+}
+btn-img::after{
+  border: none;
+}
