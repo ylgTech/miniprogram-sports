@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "components/mymatch/mymatch",
+    "components/create-project/create-project",
     "pages/release/release",
     "pages/match/match",
     "pages/me/me",
@@ -9,11 +11,15 @@
     
     "pages/login/login",
     "pages/group-detail/group-detail",
+<<<<<<< HEAD
     "components/create-project/create-project",
     "components/show/show",
     "pages/execl",
     "pages/execl/execl",
     "pages/execlUpload/execlUpload"
+=======
+    "components/show/show"
+>>>>>>> 5462bc4e69abb9d9f845916a581b797192260a98
   ],
   "window": {
     "navigationStyle": "custom"
