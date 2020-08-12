@@ -52,7 +52,7 @@ Page({
     imgUrls: [
       "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kalen-emsley-kGSapVfg8Kw-unsplash.jpg?sign=a076fa7a17b73ee4650a83c5244efbe9&t=1590280808", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/noah-buscher-jyQChhw-WbI-unsplash.jpg?sign=62de79f3fcb38cbc26c355f330d1a9af&t=1590280867", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kate-m-O0x4a5pJP0M-unsplash.jpg?sign=9404a6f424e10025bb52163812cbe87e&t=1590308897",
     ],
-    img:null,
+    img:'https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/1.jpg?sign=aefe7511f2365d559f373af6d045e2f6&t=1595732807',
   },
   select: function(e) {
     this.setData({
@@ -469,6 +469,9 @@ Page({
     var lastTime
     var diff
     var nowTime
+    if(that.data.imgUrlPre != that.data.img)
+    {
+
     that.formSubmit();
     that.getTime();
     
@@ -509,7 +512,12 @@ Page({
       }
     })
     
-   
+  }else{
+    wx.showToast({
+          title: '请点击预览图上传图片',
+          icon:'none',
+    })
+  }
     
 
 
