@@ -45,7 +45,11 @@ Page({
     imgUrls: [
       "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kalen-emsley-kGSapVfg8Kw-unsplash.jpg?sign=a076fa7a17b73ee4650a83c5244efbe9&t=1590280808", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/noah-buscher-jyQChhw-WbI-unsplash.jpg?sign=62de79f3fcb38cbc26c355f330d1a9af&t=1590280867", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kate-m-O0x4a5pJP0M-unsplash.jpg?sign=9404a6f424e10025bb52163812cbe87e&t=1590308897",
     ],
-    img: 'https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/1.jpg?sign=aefe7511f2365d559f373af6d045e2f6&t=1595732807',
+
+    img:'https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/1.jpg?sign=aefe7511f2365d559f373af6d045e2f6&t=1595732807',
+    activityScore:10,
+    queryUid:'',
+
   },
   select: function (e) {
     this.setData({
@@ -99,7 +103,8 @@ Page({
     this.setData({
       pop_detail: true,
       detailIndex: e.currentTarget.id,
-      activity_id: that.data.match_all[e.currentTarget.id]._id
+      activity_id: that.data.match_all[e.currentTarget.id]._id,
+      activity_name: that.data.match_all[e.currentTarget.id].name,
     })
     this.setData({
       sportId: that.data.match_all[e.currentTarget.id]._id
@@ -466,55 +471,182 @@ Page({
     var lastTime
     var diff
     var nowTime
-    if (that.data.imgUrlPre != that.data.img) {
 
-      that.formSubmit();
-      that.getTime();
+        if(that.data.imgUrlPre != that.data.img)
+    {
 
-      db.collection('Participate').doc(that.data.participateId).get({
-        success: res => {
-          lastTime = new Date(res.data.markTime)
-          console.log('上次' + lastTime)
-          nowTime = new Date().getTime()
-          diff = (nowTime - lastTime) / (1000 * 60 * 60)
-          console.log(diff + '小时')
-          if (diff > 8) {
-            wx.showLoading({
-              title: '上传中',
-            });
-            db.collection('Participate').doc(that.data.participateId).update({
-              data: {
-                imgs: db.command.push(that.data.imgUrlPre),
-                markTime: that.data.markTime
+    that.formSubmit();
+    that.getTime();
+    
+    db.collection('Score').where({
+      _openid: app.appData.user_openid,
+      activity_name: that.data.activity_name
+    }).get({
+      success:res=>{
+        console.log('测试：')
+        console.log(res)
+        if(res.data.length!= 0)
+        {
+        let timeStr = res.data[res.data.length-1].time
+        lastTime = new Date(timeStr)
+        console.log('上次'+lastTime)
+        let nowtime = util.formatTime(new Date());
+    
+        let nowTime = nowtime.substring(0,10)
+        nowTime = new Date(nowTime)
+        console.log('现在'+nowTime)
+        diff = (nowTime - lastTime)/(1000*60*60)
+        console.log(diff+'小时')
+        // 同一天打卡diff = 8好像 待验证
+        if(diff != 8){
+          wx.showLoading({
+            title: '上传中',
+          });
+          db.collection('Score').add({
+            data:{
+              picture: that.data.imgUrlPre,
+              time:that.data.markTime,
+              score:that.data.activityScore,
+              activity_name: that.data.activity_name,
+              user_id:'dev_test'
+            },
+            success:res=>{
+              console.log('打卡成功')
+              wx.hideLoading({
+                success: (res) => {},
+              })
+              wx.showToast({
+                title: '打卡成功',
+                icon:'success', 
+              })
+              db.collection('User').doc(that.data.queryUid).update({
+                data:{
+                  score:db.command.inc(that.data.activityScore)
+                },
+                success:res=>{
+                  console.log('用户积分更新成功')
+                },
+                fail:res=>{
+                  console.log('用户积分更新失败')
+                  console.error(res)
+                }
+              })
+            },
+            fail:res=>{
+              console.log('打卡失败')
+            },
+            complete: () => {
+              wx.hideLoading()
+            }
+          })
+        }else{
+          wx.showToast({
+            title: '当日请勿重复打卡',
+            icon:'none'
+          })
+        }
+      }else{
+        wx.showLoading({
+          title: '上传中',
+        });
+        db.collection('Score').add({
+          data:{
+            picture: that.data.imgUrlPre,
+            time:that.data.markTime,
+            score:that.data.activityScore,
+            activity_name: that.data.activity_name,
+            user_id:'dev_test'
+          },
+          success:res=>{
+            console.log('打卡成功')
+            wx.hideLoading({
+              success: (res) => {},
+            })
+            wx.showToast({
+              title: '打卡成功',
+              icon:'success', 
+            })
+            db.collection('User').doc(that.data.queryUid).update({
+              data:{
+                score:db.command.inc(that.data.activityScore)
               },
-              success: res => {
-                console.log('打卡更新成功')
-                wx.hideLoading({
-                  success: (res) => {},
-                })
-                wx.showToast({
-                  title: '打卡成功',
-                  icon: 'success',
-
-                })
+              success:res=>{
+                console.log('用户积分更新成功')
+              },
+              fail:res=>{
+                console.log('用户积分更新失败')
               }
             })
-          } else {
-            wx.showToast({
-              title: '当日请勿重复打卡',
-              icon: 'none'
-            })
+          },
+          fail:res=>{
+            console.log('打卡失败')
+          },
+          complete: () => {
+            wx.hideLoading()
           }
-        }
-      })
+        })
+        
+      }
+      }
+    })
+    
+  }else{
+    wx.showToast({
+          title: '请点击预览图上传图片',
+          icon:'none',
+    })
+  }
 
-    } else {
-      wx.showToast({
-        title: '请点击预览图上传图片',
-        icon: 'none',
-      })
-    }
+  //   if(that.data.imgUrlPre != that.data.img)
+  //   {
 
+  //   that.formSubmit();
+  //   that.getTime();
+    
+  //   db.collection('Participate').doc(that.data.participateId).get({
+  //     success:res=>{
+  //       lastTime = new Date(res.data.markTime)
+  //       console.log('上次'+lastTime)
+  //       nowTime=new Date().getTime()
+  //       diff = (nowTime - lastTime)/(1000*60*60)
+  //       console.log(diff+'小时')
+  //       if(diff > 8){
+  //         wx.showLoading({
+  //           title: '上传中',
+  //         });
+  //         db.collection('Participate').doc(that.data.participateId).update({
+  //           data:{
+  //             imgs: db.command.push(that.data.imgUrlPre),
+  //             markTime:that.data.markTime
+  //           },
+  //           success:res=>{
+  //             console.log('打卡更新成功')
+  //             wx.hideLoading({
+  //               success: (res) => {},
+  //             })
+  //             wx.showToast({
+  //               title: '打卡成功',
+  //               icon:'success',
+                
+  //             })
+  //           }
+  //         })
+  //       }else{
+  //         wx.showToast({
+  //           title: '当日请勿重复打卡',
+  //           icon:'none'
+  //         })
+  //       }
+  //     }
+  //   })
+    
+  // }else{
+  //   wx.showToast({
+  //         title: '请点击预览图上传图片',
+  //         icon:'none',
+  //   })
+  // }
+    
 
 
 
@@ -558,6 +690,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+   
     that.formSubmit();
     wx.getSetting({
       success(res) {
@@ -604,6 +737,19 @@ Page({
       success: res => {
         app.appData.user_openid = res.result.openid
         console.log(app.appData.user_openid)
+        db.collection('User').where({
+          _openid: app.appData.user_openid
+        }).get({
+          success:res=>{
+            that.setData({
+              queryUid:res.data[0]._id
+            })
+            console.log('我的openid:'+app.appData.user_openid+'我的quid:'+res.data[0]._id)
+          },
+          fail:res=>{
+            console.error
+          }
+        })
         db.collection('account_info').where({
           _openid: res.result.openid
         }).get({
@@ -619,6 +765,7 @@ Page({
         })
       }
     })
+    
   },
   /**
    * 监听函数
@@ -737,12 +884,17 @@ Page({
   },
   getTime: function () {
     var time = util.formatTime(new Date());
+    
+    var subTime = time.substring(0,10)
+    
     var that = this
     var lastTime
     var delta
     console.log("时间" + time)
     this.setData({
-      markTime: time
+
+      markTime:subTime
+
     })
     // db.collection('Participate').doc(that.data.participateId).get({
     //   success:res=>{
