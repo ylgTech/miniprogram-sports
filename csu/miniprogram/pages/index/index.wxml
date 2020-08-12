@@ -73,7 +73,7 @@
 
 
 <van-popup round show="{{ pop_detail }}" bind:close="onClose" class="popup-box">
-  <view class="pop_detail" bindtap="pop_fade2">
+  <view class="pop_detail" bindtap="pop_fade2" style="height:{{windowHeight*0.72}}px">
     <view style="width:100%;text-align: center;font-size:40rpx;color: rgb(167, 164, 164);margin-top:30rpx;">活动详情</view>
     <view class="match_detail_1">
       <view class="match_detail_2">
@@ -111,6 +111,9 @@
         <view class="match_detail_4_left">活动描述</view>
         <view class="match_detail_4_right">{{match_all[detailIndex].introduction}}</view>
       </view>
+    </view>
+    <view class="img-contain" bindtap="doUpload">
+    <image  src="{{imgUrlPre}}" mode="widthFix"></image>
     </view>
     <button wx:if="{{pop_btn}}" class="pop_btn" bindtap="pop_fade">报名参加</button>
     <button wx:if="{{pop_btn_in}}" class="pop_btn" bindtap="mark">上传照片进行打卡</button>
