@@ -48,6 +48,7 @@ Page({
     lastMonth: 'lastMonth',
     nextMonth: 'nextMonth',
     selectVal: '',
+    imgUrlPre:'https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/1.jpg?sign=aefe7511f2365d559f373af6d045e2f6&t=1595732807',
     imgUrls: [
       "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kalen-emsley-kGSapVfg8Kw-unsplash.jpg?sign=a076fa7a17b73ee4650a83c5244efbe9&t=1590280808", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/noah-buscher-jyQChhw-WbI-unsplash.jpg?sign=62de79f3fcb38cbc26c355f330d1a9af&t=1590280867", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kate-m-O0x4a5pJP0M-unsplash.jpg?sign=9404a6f424e10025bb52163812cbe87e&t=1590308897",
     ],
@@ -74,33 +75,38 @@ Page({
           if (res.data.length != 0) {
 
             that.setData({
-              pop_btn_in: true
+              pop_btn_in: true,
+              pop_btn: false
             })
           }
+          that.setData({
+            participateId:res.data[0]._id
+          })
         }
       })
-    db.collection('Participate').where({
-        _sport_id: that.data.match_all[e.currentTarget.id]._id,
-        _sport_openid: app.appData.user_openid
-      })
-      .get({
-        success: res => {
-          if (res.data.length != 0) {
+    // db.collection('Participate').where({
+    //     _sport_id: that.data.match_all[e.currentTarget.id]._id,
+    //     _sport_openid: app.appData.user_openid
+    //   })
+    //   .get({
+    //     success: res => {
+    //       if (res.data.length != 0) {
 
-            that.setData({
-              pop_btn_start: true
-            })
-          }
-        }
-      })
-    if (that.data.pop_btn_start == false && that.data.pop_btn_in == false) {
+    //         that.setData({
+    //           pop_btn_start: true
+    //         })
+    //       }
+    //     }
+    //   })
+    if ( that.data.pop_btn_in == false) {
       that.setData({
         pop_btn: true
       })
     }
     this.setData({
       pop_detail: true,
-      detailIndex: e.currentTarget.id
+      detailIndex: e.currentTarget.id,
+      activity_id: that.data.match_all[e.currentTarget.id]._id
     })
     this.setData({
       sportId: that.data.match_all[e.currentTarget.id]._id
@@ -459,20 +465,67 @@ Page({
   //参与打卡
   mark: function(e) {
     var that = this
+    var length
+    var lastTime
+    var diff
+    var nowTime
     that.formSubmit();
     that.getTime();
+    
+    db.collection('Participate').doc(that.data.participateId).get({
+      success:res=>{
+        lastTime = new Date(res.data.markTime)
+        console.log('上次'+lastTime)
+        nowTime=new Date().getTime()
+        diff = (nowTime - lastTime)/(1000*60*60)
+        console.log(diff+'小时')
+        if(diff > 8){
+          wx.showLoading({
+            title: '上传中',
+          });
+          db.collection('Participate').doc(that.data.participateId).update({
+            data:{
+              imgs: db.command.push(that.data.imgUrlPre),
+              markTime:that.data.markTime
+            },
+            success:res=>{
+              console.log('打卡更新成功')
+              wx.hideLoading({
+                success: (res) => {},
+              })
+              wx.showToast({
+                title: '打卡成功',
+                icon:'success',
+                
+              })
+            }
+          })
+        }else{
+          wx.showToast({
+            title: '当日请勿重复打卡',
+            icon:'none'
+          })
+        }
+      }
+    })
+    
+   
+    
+
+
+    
     // this.setData({
     //   load_show: true
     // })
-    that.doUpload()
-    if(this.data.img==null){
-      wx.showToast({
-        title: '上传图片失败',
-        icon:'none',
-      })
-    }else{
-      that.setlocationP()
-    }
+    // that.doUpload()
+    // if(this.data.img==null){
+    //   wx.showToast({
+    //     title: '上传图片失败',
+    //     icon:'none',
+    //   })
+    // }else{
+    //   that.setlocationP()
+    // }
     // setTimeout(function() {
     //   that.setData({
 
@@ -631,9 +684,9 @@ Page({
     console.log('详情页关闭')
     this.setData({
       pop_detail: false,
-      pop_btn: false,
-      pop_btn_in: false,
-      pop_btn_start: false,
+      // pop_btn: false,
+      // pop_btn_in: false,
+      // pop_btn_start: false,
     })
   },
   //上传图片
@@ -662,7 +715,7 @@ Page({
             let fileID = res.fileID;
             //把图片存到users集合表
             that.setData({
-              img:fileID,
+              imgUrlPre:fileID,
             })
           },
            fail: e => {
@@ -677,6 +730,23 @@ Page({
   },
   getTime:function(){
     var time = util.formatTime(new Date());
+    var that = this
+    var lastTime
+    var delta
     console.log("时间"+time)
+    this.setData({
+      markTime:time
+    })
+    // db.collection('Participate').doc(that.data.participateId).get({
+    //   success:res=>{
+    //     lastTime =res.data.markTime
+    //     console.log('上次'+lastTime)
+    //     console.log('这次'+time)
+    //     delta= time - lastTime
+    //     console.log(delta)
+    //   }
+    // })
   }
+
+
 })
