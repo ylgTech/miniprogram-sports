@@ -46,7 +46,7 @@
               <van-image lazy-load use-loading-slot round src="{{item.avatar}}" width="40" height="40">
                 <van-loading slot="loading" type="spinner" size="20" vertical />
               </van-image>
-              <view class="item-name">{{item.nickName}}</view>
+              <view class="item-name">{{item.username}}</view>
             </view>
             <view class="item-grade {{ item.rankNum < 4 ? 'item-grade-red' : 'item-grade-green' }}">
               {{item.score}}
