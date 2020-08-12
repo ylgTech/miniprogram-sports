@@ -23,7 +23,7 @@ Page({
     statusBarHeight: 0,
     titleBarHeight: 0,
     detailIndex: 0,
-    sportId:'',
+    sportId: '',
     my_release: false, //控制我发起的
     my_release_detail: ["try"], //控制我发起的
     my_join: false, //控制我我参加的
@@ -34,36 +34,36 @@ Page({
     pop_detail_join: false, //控制我参加
     join_height: '', //我参加的需要移动距离
     none_height: '', //未完待续需要移动距离
-    clockDetail:false,//控制打卡详情页
-    pop_btn_in: false,//控制打卡按钮
-    pop_btn_start: false,//控制发起打卡按钮
-    distance:[],
-    openid:'',
-    rootpassword:null,
-    password:null,
+    clockDetail: false, //控制打卡详情页
+    pop_btn_in: false, //控制打卡按钮
+    pop_btn_start: false, //控制发起打卡按钮
+    distance: [],
+    openid: '',
+    rootpassword: null,
+    password: null,
     try_time: 0,
-    isOfi:false,
+    isOfi: false,
   },
-  goto_release:function(e){
+  goto_release: function (e) {
     wx.navigateTo({
       url: '../release/release'
     })
- },
- goto_print:function(e){
-  getApp().globalData.isOfi = true;
-        wx.navigateTo({
-          url: '../../components/mymatch/mymatch',
-          success:function(e){
-            var page = getCurrentPages().pop();
-            if (page == undefined || page == null) return;
-          }
-        })
- },
- goto_create:function(e){
-  wx.navigateTo({
-    url: '../../components/create-project/create-project'
-  })
-},
+  },
+  goto_print: function (e) {
+    getApp().globalData.isOfi = true;
+    wx.navigateTo({
+      url: '../../components/mymatch/mymatch',
+      success: function (e) {
+        var page = getCurrentPages().pop();
+        if (page == undefined || page == null) return;
+      }
+    })
+  },
+  goto_create: function (e) {
+    wx.navigateTo({
+      url: '../../components/create-project/create-project'
+    })
+  },
   showModal(e) {
     this.setData({
       modalName: e.currentTarget.dataset.target
@@ -74,7 +74,7 @@ Page({
       modalName: null
     })
   },
-  join_hidden_change: function(e) { //控制我参加
+  join_hidden_change: function (e) { //控制我参加
     var that = this
     var touch_times_join = that.data.touch_times_join
     var animation_join = wx.createAnimation({
@@ -107,51 +107,51 @@ Page({
       timingFunction: 'ease',
       delay: 0
     });
-    const query = this.createSelectorQuery(); 
-      query.select(".btnitem_join").boundingClientRect(); 
-      query.selectViewport().scrollOffset();
-      query.exec((res) => {
-        var use = res[0].top;
-        animation_join.translateY(-use).step();
-        animation_join1.translateY(0).step();
-        animation_join2.translateY(-70).opacity(0).step();
-        animation_join3.translateY(0).opacity(1).step();
-        animation_join4.translateY(-use).step();
-        animation_join5.translateY(0).step();
+    const query = this.createSelectorQuery();
+    query.select(".btnitem_join").boundingClientRect();
+    query.selectViewport().scrollOffset();
+    query.exec((res) => {
+      var use = res[0].top;
+      animation_join.translateY(-use).step();
+      animation_join1.translateY(0).step();
+      animation_join2.translateY(-70).opacity(0).step();
+      animation_join3.translateY(0).opacity(1).step();
+      animation_join4.translateY(-use).step();
+      animation_join5.translateY(0).step();
+      that.setData({
+        touch_times_join: touch_times_join + 1
+      })
+      if (that.data.my_release == true) {
         that.setData({
-          touch_times_join: touch_times_join + 1
+          my_release: false
         })
-        if (that.data.my_release==true){
+      }
+      if (that.data.my_join == false) {
+        setTimeout(function () {
           that.setData({
-            my_release:false
+            my_join: true
           })
-        }
-        if (that.data.my_join == false) {
-          setTimeout(function() {
-            that.setData({
-              my_join: true
-            })
-          }, 1000)
+        }, 1000)
         that.setData({
-        ani_join2:animation_join4.export(),
-        ani_join: animation_join.export(),
-        ani_join1: animation_join2.export()
-      })
-    } else {
+          ani_join2: animation_join4.export(),
+          ani_join: animation_join.export(),
+          ani_join1: animation_join2.export()
+        })
+      } else {
 
-      that.setData({
-        my_join: false
-      })
+        that.setData({
+          my_join: false
+        })
 
-      that.setData({
-        ani_join2:animation_join5.export(),
-        ani_join: animation_join1.export(),
-        ani_join1: animation_join3.export(),
-      })
-    }
+        that.setData({
+          ani_join2: animation_join5.export(),
+          ani_join: animation_join1.export(),
+          ani_join1: animation_join3.export(),
+        })
+      }
     })
   },
-  release_hidden_change: function(e) { //控制我发起的
+  release_hidden_change: function (e) { //控制我发起的
     var that = this
     var touch_times_release = that.data.touch_times_release
     var animation_join = wx.createAnimation({
@@ -184,47 +184,47 @@ Page({
       timingFunction: 'ease',
       delay: 0
     });
-    const query = this.createSelectorQuery(); 
-      query.select(".btnitem_release").boundingClientRect(); 
-      query.selectViewport().scrollOffset();
-      query.exec((res) => {
-        var use = res[0].top-this.data.statusBarHeight;
-        animation_join.translateY(-use).step();
-        animation_join1.translateY(0).step();
-        animation_join2.translateY(-70).opacity(0).step();
-        animation_join3.translateY(0).opacity(1).step();
-        animation_join4.translateY(-70).opacity(0).step();
-        animation_join5.translateY(0).opacity(1).step();
+    const query = this.createSelectorQuery();
+    query.select(".btnitem_release").boundingClientRect();
+    query.selectViewport().scrollOffset();
+    query.exec((res) => {
+      var use = res[0].top - this.data.statusBarHeight;
+      animation_join.translateY(-use).step();
+      animation_join1.translateY(0).step();
+      animation_join2.translateY(-70).opacity(0).step();
+      animation_join3.translateY(0).opacity(1).step();
+      animation_join4.translateY(-70).opacity(0).step();
+      animation_join5.translateY(0).opacity(1).step();
+      that.setData({
+        touch_times_release: touch_times_release + 1
+      })
+      if (that.data.my_join == true) {
         that.setData({
-          touch_times_release: touch_times_release + 1
+          my_join: false
         })
-        if (that.data.my_join==true){
+      }
+      if (that.data.my_release == false) {
+        setTimeout(function () {
           that.setData({
-            my_join:false
+            my_release: true
           })
-        }
-        if (that.data.my_release == false) {
-          setTimeout(function(){
-            that.setData({
-              my_release:true
-            })
-          },1000)
-          that.setData({
-            ani_join:animation_join.export(),
-            ani_join1:animation_join2.export(),
-            ani_join2:animation_join4.export(),
-          })
-        } else {
-          this.setData({
-            my_release: false,
-            ani_join:animation_join1.export(),
-            ani_join1:animation_join3.export(),
-            ani_join2:animation_join5.export(),
-          })
-        }
+        }, 1000)
+        that.setData({
+          ani_join: animation_join.export(),
+          ani_join1: animation_join2.export(),
+          ani_join2: animation_join4.export(),
+        })
+      } else {
+        this.setData({
+          my_release: false,
+          ani_join: animation_join1.export(),
+          ani_join1: animation_join3.export(),
+          ani_join2: animation_join5.export(),
+        })
+      }
     });
   },
-  match_detail_release: function(e) { //控制release
+  match_detail_release: function (e) { //控制release
     var that = this
     // console.log(e)
     this.setData({
@@ -236,11 +236,11 @@ Page({
       sportId: that.data.my_release_detail[e.currentTarget.id]._id
     })
 
-    
+
     console.log('开启')
   },
 
-  match_detail_join: function(e) { //控制join
+  match_detail_join: function (e) { //控制join
     var that = this
     console.log(e)
     this.setData({
@@ -430,16 +430,16 @@ Page({
     })
   },
   /**
- * 监听函数
- */
+   * 监听函数
+   */
   onWatch: function () {
     var that = this;
     var detailIndex = that.data.detailIndex
     var match_all = that.data.match_all
 
     db.collection('Participate').where({
-      _sport_id: that.data.sportId
-    })
+        _sport_id: that.data.sportId
+      })
       .watch({
 
         onChange: function (snapshot) {
@@ -459,7 +459,7 @@ Page({
     this.onWatch()
     this.setData({
       clockDetail: true,
-      pop_detail_release:false
+      pop_detail_release: false
     })
     this.setlocationS()
 
@@ -508,13 +508,13 @@ Page({
   finish: function (e) {
     var that = this
     db.collection('Participate').where({
-      _sport_id: that.data.sportId
-    })
+        _sport_id: that.data.sportId
+      })
       .watch({
 
         onChange: function (snapshot) {
 
-          
+
         },
         onError: function (err) {
           console.error('the watch closed because of error', err)
@@ -525,21 +525,21 @@ Page({
       pop_detail_release: true,
     })
   },
-//参与者参与打卡
+  //参与者参与打卡
   mark: function (e) {
     this.setlocationP()
   },
 
-  onLoad: function(options) {
+  onLoad: function (options) {
     var isOfi = getApp().globalData.isOfi
     var that = this
     // 查看是否授权
     wx.getSetting({
-      success (res){
+      success(res) {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
-            success: function(res) {
+            success: function (res) {
               console.log(res.userInfo)
             }
           })
@@ -551,7 +551,7 @@ Page({
     that.getPageId();
     that.setData({
       AvatarUrl: "https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/testava.jpg?sign=6fdab6348eeeeecc9ae14d7c992abb03&t=1588086430",
-      isOfi:isOfi,
+      isOfi: isOfi,
     })
     db.collection('person_message').doc('19762d645eae6142004ed6e32b6e4da4').get({
       success: res => {
@@ -583,26 +583,27 @@ Page({
           })
         }
       })
-      wx.cloud.callFunction({
-        // 需调用的云函数名
-        name: 'login',
-        // 成功回调
-        complete: res => {
-          app.appData.user_openid = res.result.openid
-          console.log(app.appData.user_openid)
-          db.collection('account_info').where({
-            _openid: res.result.openid
-          }).get({
-            success: res => {
-              if (res.data.length != '0') {
-                console.log('已经注册')
-              }
+    wx.cloud.callFunction({
+      // 需调用的云函数名
+      name: 'login',
+      // 成功回调
+      complete: res => {
+        app.appData.user_openid = res.result.openid
+        console.log(app.appData.user_openid)
+        db.collection('account_info').where({
+          _openid: res.result.openid
+        }).get({
+          success: res => {
+            if (res.data.length != '0') {
+              console.log('已经注册')
             }
-          })
-        }
-      })
+          }
+        })
+      }
+    })
+    console.log('openid1' + that.data.openid)
   },
-  onShow: function(options) {
+  onShow: function (options) {
     this.onLoad()
     db.collection('person_message').doc('19762d645eae6142004ed6e32b6e4da4').get({
       success: res => {
@@ -613,7 +614,7 @@ Page({
       }
     })
     console.log('切换成功')
-    console.log(app.appData.user_openid)
+    console.log('openid2' + app.appData.user_openid)
     this.getWindowHeight();
   },
   register: async function (e) {
@@ -625,7 +626,7 @@ Page({
       success: res => {
         if (res.data.length != '0') {
           console.log('已经注册')
-        }else{
+        } else {
           setTimeout(function () {
             db.collection('account_info').add({
               data: {
@@ -655,10 +656,10 @@ Page({
   /** 
    * 获取用户设备屏幕高度
    */
-  getWindowHeight: function() {
+  getWindowHeight: function () {
     var that = this
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         var statusBarHeight = res.statusBarHeight;
         var titleBarHeight;
         // 确定titleBar高度（区分安卓和苹果
@@ -684,44 +685,58 @@ Page({
     this.setData({
       pop_detail_release: false,
       pop_detail_join: false,
-      
+
       pop_btn_in: false,
       pop_btn_start: false,
     })
   },
-  getOpenid(){
-    let that=this;
+  getOpenid() {
+    let that = this;
     wx.cloud.callFunction({
-      name:'getOpenid',
-      complete:res=>{
+      name: 'getOpenid',
+      complete: res => {
         console.log(res.result.openid)
-        var openid=res.result.openid;
+        var openid = res.result.openid;
         db.collection('account_info').where({
-          _openid:res.result.openid
+          _openid: res.result.openid
         }).get({
           success: res => {
             console.log(res)
             that.setData({
-              username:res.data[0].nickName,
-              AvatarUrl:res.data[0].avatar,
-              score:res.data[0].score,
+              username: res.data[0].nickName,
+              AvatarUrl: res.data[0].avatar,
+              score: res.data[0].score,
             })
           }
         })
         that.setData({
-          openid:openid
+          openid: openid
+        })
+        db.collection('User').where({
+          _open_id: openid,
+        }).get({
+          success: res => {
+            console.log(res)
+            app.globalData.user_id = res.data[0].uid;
+            app.globalData.score = res.data[0].score;
+          },
+          fail: res => {
+            console.log('查找失败')
+          }
         })
       }
     })
   },
-  bindGetUserInfo (e) {
-    var that=this
+  bindGetUserInfo(e) {
+    var that = this
+    var score = app.globalData.score
     console.log(e.detail.userInfo.nickName)
-   that.setData({
-      username:e.detail.userInfo.nickName,
-      AvatarUrl:e.detail.userInfo.avatarUrl,
-      })
-    getApp().globalData.userInfo=e.detail.userInfo;
+    that.setData({
+      username: e.detail.userInfo.nickName,
+      AvatarUrl: e.detail.userInfo.avatarUrl,
+      score: score,
+    })
+    getApp().globalData.userInfo = e.detail.userInfo;
     that.getOpenid()
   },
   /**
