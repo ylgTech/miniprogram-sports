@@ -28,8 +28,5 @@ App({
     }
 
   },
-  appData: {
-    user_openid: null,
-    
-  }
+  
 })

@@ -65,7 +65,7 @@ Page({
     var that = this
     db.collection('Participate').where({
         activity_id: that.data.match_all[e.currentTarget.id]._id,
-        _openid: app.appData.user_openid
+        _openid: app.globalData.user_openid
       })
       .get({
         success: res => {
@@ -264,7 +264,7 @@ Page({
 
                   db.collection('Participate').where({
                     _sport_id: that.data.sportId,
-                    _openid: app.appData.user_openid
+                    _openid: app.globalData.user_openid
                   }).get({
                     success: function (res) {
                       var participateId = res.data[0]._id
@@ -479,7 +479,7 @@ Page({
     that.getTime();
     
     db.collection('Score').where({
-      _openid: app.appData.user_openid,
+      _openid: app.globalData.user_openid,
       activity_name: that.data.activity_name
     }).get({
       success:res=>{
@@ -497,8 +497,8 @@ Page({
         console.log('现在'+nowTime)
         diff = (nowTime - lastTime)/(1000*60*60)
         console.log(diff+'小时')
-        // 同一天打卡diff = 8好像 待验证
-        if(diff != 8){
+        // 同一天打卡diff = 0
+        if(diff != 0){
           wx.showLoading({
             title: '上传中',
           });
@@ -508,7 +508,8 @@ Page({
               time:that.data.markTime,
               score:that.data.activityScore,
               activity_name: that.data.activity_name,
-              user_id:'dev_test'
+              user_id:app.globalData.user_id,
+              
             },
             success:res=>{
               console.log('打卡成功')
@@ -555,7 +556,7 @@ Page({
             time:that.data.markTime,
             score:that.data.activityScore,
             activity_name: that.data.activity_name,
-            user_id:'dev_test'
+            user_id:app.globalData.user_id
           },
           success:res=>{
             console.log('打卡成功')
@@ -735,16 +736,16 @@ Page({
 
       // 成功回调
       success: res => {
-        app.appData.user_openid = res.result.openid
-        console.log(app.appData.user_openid)
+        app.globalData.user_openid = res.result.openid
+        console.log(app.globalData.user_openid)
         db.collection('User').where({
-          _openid: app.appData.user_openid
+          _openid: app.globalData.user_openid
         }).get({
           success:res=>{
             that.setData({
               queryUid:res.data[0]._id
             })
-            console.log('我的openid:'+app.appData.user_openid+'我的quid:'+res.data[0]._id)
+            console.log('我的openid:'+app.globalData.user_openid+'我的quid:'+res.data[0]._id)
           },
           fail:res=>{
             console.error
