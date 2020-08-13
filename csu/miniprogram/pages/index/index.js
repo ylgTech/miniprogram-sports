@@ -46,9 +46,9 @@ Page({
       "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kalen-emsley-kGSapVfg8Kw-unsplash.jpg?sign=a076fa7a17b73ee4650a83c5244efbe9&t=1590280808", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/noah-buscher-jyQChhw-WbI-unsplash.jpg?sign=62de79f3fcb38cbc26c355f330d1a9af&t=1590280867", "https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/kate-m-O0x4a5pJP0M-unsplash.jpg?sign=9404a6f424e10025bb52163812cbe87e&t=1590308897",
     ],
 
-    img:'https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/1.jpg?sign=aefe7511f2365d559f373af6d045e2f6&t=1595732807',
-    activityScore:10,
-    queryUid:'',
+    img: 'https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/1.jpg?sign=aefe7511f2365d559f373af6d045e2f6&t=1595732807',
+    activityScore: 10,
+    queryUid: '',
 
   },
   select: function (e) {
@@ -463,235 +463,212 @@ Page({
       }
     })
   },
-
-  //参与打卡
   mark: function (e) {
     var that = this
-    var length
-    var lastTime
-    var diff
-    var nowTime
-
-        if(that.data.imgUrlPre != that.data.img)
-    {
-
-    that.formSubmit();
-    that.getTime();
-    
-    db.collection('Score').where({
-      _openid: app.globalData.user_openid,
-      activity_name: that.data.activity_name
-    }).get({
-      success:res=>{
-        console.log('测试：')
-        console.log(res)
-        if(res.data.length!= 0)
-        {
-        let timeStr = res.data[res.data.length-1].time
-        lastTime = new Date(timeStr)
-        console.log('上次'+lastTime)
-        let nowtime = util.formatTime(new Date());
-    
-        let nowTime = nowtime.substring(0,10)
-        nowTime = new Date(nowTime)
-        console.log('现在'+nowTime)
-        diff = (nowTime - lastTime)/(1000*60*60)
-        console.log(diff+'小时')
-        // 同一天打卡diff = 0
-        if(diff != 0){
-          wx.showLoading({
-            title: '上传中',
-          });
-          db.collection('Score').add({
-            data:{
-              picture: that.data.imgUrlPre,
-              time:that.data.markTime,
-              score:that.data.activityScore,
-              activity_name: that.data.activity_name,
-              user_id:app.globalData.user_id,
-              
-            },
-            success:res=>{
-              console.log('打卡成功')
-              wx.hideLoading({
-                success: (res) => {},
-              })
-              wx.showToast({
-                title: '打卡成功',
-                icon:'success', 
-              })
-              db.collection('User').doc(that.data.queryUid).update({
-                data:{
-                  score:db.command.inc(that.data.activityScore)
-                },
-                success:res=>{
-                  console.log('用户积分更新成功')
-                },
-                fail:res=>{
-                  console.log('用户积分更新失败')
-                  console.error(res)
-                }
-              })
-            },
-            fail:res=>{
-              console.log('打卡失败')
-            },
-            complete: () => {
-              wx.hideLoading()
-            }
-          })
-        }else{
-          wx.showToast({
-            title: '当日请勿重复打卡',
-            icon:'none'
-          })
-        }
-      }else{
-        wx.showLoading({
-          title: '上传中',
-        });
-        db.collection('Score').add({
-          data:{
-            picture: that.data.imgUrlPre,
-            time:that.data.markTime,
-            score:that.data.activityScore,
-            activity_name: that.data.activity_name,
-            user_id:app.globalData.user_id
-          },
-          success:res=>{
-            console.log('打卡成功')
-            wx.hideLoading({
-              success: (res) => {},
-            })
+    if (that.data.imgUrlPre != that.data.img) {
+      that.formSubmit();
+      that.getTime();
+      db.collection('Score').where({
+        _openid: app.globalData.user_openid,
+        activity_name: that.data.activity_name,
+        time: that.data.markTime,
+      }).get({
+        success: res => {
+          if (res.data.length != 0) {
             wx.showToast({
-              title: '打卡成功',
-              icon:'success', 
+              title: '当日请勿重复打卡',
+              icon: 'none'
             })
-            db.collection('User').doc(that.data.queryUid).update({
-              data:{
-                score:db.command.inc(that.data.activityScore)
+          } else {
+            wx.showLoading({
+              title: '上传中',
+            });
+            db.collection('Score').add({
+              data: {
+                picture: that.data.imgUrlPre,
+                time: that.data.markTime,
+                score: that.data.activityScore,
+                activity_name: that.data.activity_name,
+                user_id: app.globalData.user_id,
               },
-              success:res=>{
-                console.log('用户积分更新成功')
+              success: res => {
+                console.log('打卡成功')
+                wx.hideLoading({
+                  success: (res) => {},
+                })
+                wx.showToast({
+                  title: '打卡成功',
+                  icon: 'success',
+                })
+                db.collection('User').doc(that.data.queryUid).update({
+                  data: {
+                    score: db.command.inc(that.data.activityScore)
+                  },
+                  success: res => {
+                    console.log('用户积分更新成功')
+                  },
+                  fail: res => {
+                    console.log('用户积分更新失败')
+                    console.error(res)
+                  }
+                })
               },
-              fail:res=>{
-                console.log('用户积分更新失败')
+              fail: res => {
+                console.log('打卡失败')
+              },
+              complete: () => {
+                wx.hideLoading()
               }
             })
-          },
-          fail:res=>{
-            console.log('打卡失败')
-          },
-          complete: () => {
-            wx.hideLoading()
           }
-        })
-        
-      }
-      }
-    })
-    
-  }else{
-    wx.showToast({
-          title: '请点击预览图上传图片',
-          icon:'none',
-    })
-  }
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '请点击预览图上传图片',
+        icon: 'none',
+      })
+    }
+  },
 
-  //   if(that.data.imgUrlPre != that.data.img)
-  //   {
+  //参与打卡
+  // mark: function (e) {
+  //   var that = this
+  //   var length
+  //   var lastTime
+  //   var diff
+  //   var nowTime
+  //   if (that.data.imgUrlPre != that.data.img) {
 
-  //   that.formSubmit();
-  //   that.getTime();
-    
-  //   db.collection('Participate').doc(that.data.participateId).get({
-  //     success:res=>{
-  //       lastTime = new Date(res.data.markTime)
-  //       console.log('上次'+lastTime)
-  //       nowTime=new Date().getTime()
-  //       diff = (nowTime - lastTime)/(1000*60*60)
-  //       console.log(diff+'小时')
-  //       if(diff > 8){
-  //         wx.showLoading({
-  //           title: '上传中',
-  //         });
-  //         db.collection('Participate').doc(that.data.participateId).update({
-  //           data:{
-  //             imgs: db.command.push(that.data.imgUrlPre),
-  //             markTime:that.data.markTime
-  //           },
-  //           success:res=>{
-  //             console.log('打卡更新成功')
-  //             wx.hideLoading({
-  //               success: (res) => {},
+  //     that.formSubmit();
+  //     that.getTime();
+
+  //     db.collection('Score').where({
+  //       _openid: app.globalData.user_openid,
+  //       activity_name: that.data.activity_name,
+
+  //     }).get({
+  //       success: res => {
+  //         console.log('测试：')
+  //         console.log(res)
+  //         if (res.data.length != 0) {
+  //           let timeStr = res.data[res.data.length - 1].time
+  //           lastTime = new Date(timeStr)
+  //           console.log('上次' + lastTime)
+  //           let nowtime = util.formatTime(new Date());
+
+  //           let nowTime = nowtime.substring(0, 10)
+  //           nowTime = new Date(nowTime)
+  //           console.log('现在' + nowTime)
+  //           diff = (nowTime - lastTime) / (1000 * 60 * 60)
+  //           console.log(diff + '小时')
+  //           // 同一天打卡diff = 0
+  //           if (diff != 0) {
+  //             wx.showLoading({
+  //               title: '上传中',
+  //             });
+  //             db.collection('Score').add({
+  //               data: {
+  //                 picture: that.data.imgUrlPre,
+  //                 time: that.data.markTime,
+  //                 score: that.data.activityScore,
+  //                 activity_name: that.data.activity_name,
+  //                 user_id: app.globalData.user_id,
+
+  //               },
+  //               success: res => {
+  //                 console.log('打卡成功')
+  //                 wx.hideLoading({
+  //                   success: (res) => {},
+  //                 })
+  //                 wx.showToast({
+  //                   title: '打卡成功',
+  //                   icon: 'success',
+  //                 })
+  //                 db.collection('User').doc(that.data.queryUid).update({
+  //                   data: {
+  //                     score: db.command.inc(that.data.activityScore)
+  //                   },
+  //                   success: res => {
+  //                     console.log('用户积分更新成功')
+  //                   },
+  //                   fail: res => {
+  //                     console.log('用户积分更新失败')
+  //                     console.error(res)
+  //                   }
+  //                 })
+  //               },
+  //               fail: res => {
+  //                 console.log('打卡失败')
+  //               },
+  //               complete: () => {
+  //                 wx.hideLoading()
+  //               }
   //             })
+  //           } else {
   //             wx.showToast({
-  //               title: '打卡成功',
-  //               icon:'success',
-                
+  //               title: '当日请勿重复打卡',
+  //               icon: 'none'
   //             })
   //           }
-  //         })
-  //       }else{
-  //         wx.showToast({
-  //           title: '当日请勿重复打卡',
-  //           icon:'none'
-  //         })
+  //         } else {
+  //           wx.showLoading({
+  //             title: '上传中',
+  //           });
+  //           db.collection('Score').add({
+  //             data: {
+  //               picture: that.data.imgUrlPre,
+  //               time: that.data.markTime,
+  //               score: that.data.activityScore,
+  //               activity_name: that.data.activity_name,
+  //               user_id: app.globalData.user_id
+  //             },
+  //             success: res => {
+  //               console.log('打卡成功')
+  //               wx.hideLoading({
+  //                 success: (res) => {},
+  //               })
+  //               wx.showToast({
+  //                 title: '打卡成功',
+  //                 icon: 'success',
+  //               })
+  //               db.collection('User').doc(that.data.queryUid).update({
+  //                 data: {
+  //                   score: db.command.inc(that.data.activityScore)
+  //                 },
+  //                 success: res => {
+  //                   console.log('用户积分更新成功')
+  //                 },
+  //                 fail: res => {
+  //                   console.log('用户积分更新失败')
+  //                 }
+  //               })
+  //             },
+  //             fail: res => {
+  //               console.log('打卡失败')
+  //             },
+  //             complete: () => {
+  //               wx.hideLoading()
+  //             }
+  //           })
+
+  //         }
   //       }
-  //     }
-  //   })
-    
-  // }else{
-  //   wx.showToast({
-  //         title: '请点击预览图上传图片',
-  //         icon:'none',
-  //   })
-  // }
-    
+  //     })
 
-
-
-    // this.setData({
-    //   load_show: true
-    // })
-    // that.doUpload()
-    // if(this.data.img==null){
-    //   wx.showToast({
-    //     title: '上传图片失败',
-    //     icon:'none',
-    //   })
-    // }else{
-    //   that.setlocationP()
-    // }
-    // setTimeout(function() {
-    //   that.setData({
-
-    //     load_show: false
-    //   })
-    //   wx.showToast({
-    //     title: '打卡成功', //提示文字
-    //     duration: 800, //显示时长
-    //     mask: true, //是否显示透明蒙层，防止触摸穿透，默认：false  
-    //     icon: 'success', //图标，支持"success"、"loading"  
-    //     success: function() {
-    //       setTimeout(function() {
-    //         that.setData({
-    //           pop_detail: false,
-
-    //         })
-    //       }, 800)
-    //     }, //接口调用成功
-    //     fail: function() {}, //接口调用失败的回调函数  
-    //     complete: function() {} //接口调用结束的回调函数  
-    //   })
-    // }, 1500)
-  },
+  //   } else {
+  //     wx.showToast({
+  //       title: '请点击预览图上传图片',
+  //       icon: 'none',
+  //     })
+  //   }
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this
-   
+
     that.formSubmit();
     wx.getSetting({
       success(res) {
@@ -741,13 +718,13 @@ Page({
         db.collection('User').where({
           _openid: app.globalData.user_openid
         }).get({
-          success:res=>{
+          success: res => {
             that.setData({
-              queryUid:res.data[0]._id
+              queryUid: res.data[0]._id
             })
-            console.log('我的openid:'+app.globalData.user_openid+'我的quid:'+res.data[0]._id)
+            console.log('我的openid:' + app.globalData.user_openid + '我的quid:' + res.data[0]._id)
           },
-          fail:res=>{
+          fail: res => {
             console.error
           }
         })
@@ -766,7 +743,7 @@ Page({
         })
       }
     })
-    
+
   },
   /**
    * 监听函数
@@ -885,16 +862,16 @@ Page({
   },
   getTime: function () {
     var time = util.formatTime(new Date());
-    
-    var subTime = time.substring(0,10)
-    
+
+    var subTime = time.substring(0, 10)
+
     var that = this
     var lastTime
     var delta
     console.log("时间" + time)
     this.setData({
 
-      markTime:subTime
+      markTime: subTime
 
     })
     // db.collection('Participate').doc(that.data.participateId).get({
