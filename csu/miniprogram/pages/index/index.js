@@ -479,6 +479,9 @@ Page({
               title: '当日请勿重复打卡',
               icon: 'none'
             })
+            that.setData({
+              pop_detail:false,
+            })
           } else {
             wx.showLoading({
               title: '上传中',
@@ -495,6 +498,9 @@ Page({
                 console.log('打卡成功')
                 wx.hideLoading({
                   success: (res) => {},
+                })
+                that.setData({
+                  pop_detail:false,
                 })
                 wx.showToast({
                   title: '打卡成功',
