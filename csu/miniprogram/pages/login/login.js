@@ -34,6 +34,7 @@ Page({
        console.log(res)
        if(res.data.length!=0){
         getApp().globalData.isOfi = true;
+        getApp().globalData.root_id = that.data.username;
         wx.switchTab({
           url: '../me/me'
         })

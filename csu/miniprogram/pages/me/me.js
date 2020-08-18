@@ -533,6 +533,9 @@ Page({
   onLoad: function (options) {
     var isOfi = getApp().globalData.isOfi
     var that = this
+    that.setData({
+      isOfi:isOfi,
+    })
     // 查看是否授权
     wx.getSetting({
       success(res) {

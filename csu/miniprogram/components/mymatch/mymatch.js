@@ -15,8 +15,8 @@ Page({
    */
   onLoad: function (options) {
     var that=this
-    db.collection('match').where({
-        _openid: app.appData.user_openid
+    db.collection('Activity').where({
+        root_id: app.appData.root_id,
       })
       .get({
         success: res => {
