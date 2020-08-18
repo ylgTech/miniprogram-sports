@@ -14,7 +14,7 @@ var qqmapsdk = new QQMapWX({
 
 Page({
   data: {
-    AvatarUrl: 'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/avademo.png?sign=032b26657afd1c64dd19a5798feab256&t=1588086418',
+    AvatarUrl: 'https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/testava.jpg?sign=6fdab6348eeeeecc9ae14d7c992abb03&t=1588086430',
     username: '点击获取头像',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     score: 0,
@@ -549,10 +549,6 @@ Page({
     that.verifycode = that.selectComponent("#verifycode");
     that.getOpenid();
     that.getPageId();
-    that.setData({
-      AvatarUrl: "https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/testava.jpg?sign=6fdab6348eeeeecc9ae14d7c992abb03&t=1588086430",
-      isOfi: isOfi,
-    })
     db.collection('person_message').doc('19762d645eae6142004ed6e32b6e4da4').get({
       success: res => {
         that.setData({
@@ -614,7 +610,6 @@ Page({
       }
     })
     console.log('切换成功')
-    console.log('openid2' + app.appData.user_openid)
     this.getWindowHeight();
   },
   register: async function (e) {
