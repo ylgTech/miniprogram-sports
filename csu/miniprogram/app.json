@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/execlDownload/execlDownload",
+    "pages/execlUpload/execlUpload",
     "pages/me/me",
     "pages/index/index",
     "components/mymatch/mymatch",
@@ -15,7 +15,6 @@
     "pages/group-detail/group-detail",
     
     "pages/execl/execl",
-    "pages/execlUpload/execlUpload",
 
     "components/show/show"
 

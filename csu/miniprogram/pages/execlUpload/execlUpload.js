@@ -2,13 +2,13 @@
 Page({
   //选择excel表格
   chooseExcel(){
-    let that = this
+    let that = this;
+    console.log("开始读取文件...");
     wx.chooseMessageFile({
       count:1,
       type: 'file',
       success(res){
-        let path = res.tmpFiles[0].path;
-        console.log("选择excel成功",path)
+        let path = res.tempFiles[0].path;
         that.uploadExcel(path)
       }
     })
@@ -16,22 +16,27 @@ Page({
 
   //2.上传excel表格到云存储
   uploadExcel(path){
-    let that = this
+    console.log("选择成功", typeof(path));
+    console.log("地址为", path);
+    console.log("开始上传");
+    let that = this;
     wx.cloud.uploadFile({
-      cloudPath:new Date().getTime+".xls",
-      filePaht:path,
-      sucess : res => {
-        console.log("上传成功", res.fileID)
-        that.deal(res.fileID)
+      cloudPath:new Date().getTime()+".xls",
+      filePath: path,
+      success : res => {
+        console.log("上传成功", res.fileID);
+        that.deal(res.fileID);
       },
       fail : err =>{
-        console.log("上传失败",err)
+        // console.log(typeof(filePath),filePath);
+        console.log("上传失败",err);
       }
     })
   },
 
   //3.解析excel数据并上传到云数据库
   deal(fileID){
+    console.log("上传成功", fileID)
     wx.cloud.callFunction({
       name: "excelUpload",
       data:{
