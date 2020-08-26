@@ -12,6 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('下载execl页面');
     let that = this;
     //读取users表数据
     wx.cloud.callFunction({

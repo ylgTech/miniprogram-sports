@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/execlDownload/execlDownload",
     "pages/me/me",
     "pages/index/index",
     "components/mymatch/mymatch",
