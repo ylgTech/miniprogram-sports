@@ -29,12 +29,23 @@ exports.main = async(event, context) => {
       if (rowId > 0 && row) { //第一行是表格标题，所有我们要从第2行开始读
         //3，把解析到的数据存到excelList数据表里
         
-        const promise = db.collection('User')
+        let openid;
+        db.collection('User').where({uid:row[0]})
+        .get({
+          success:  
+          function(res)//{openid = res.data[0]._openid}
+            {console.log(res.data);}
+        });
+
+
+        const promise = db.collection('Score')
           .add({
             data: {
-              _open_id: '不知道'+rowId, 
-              score: 99999, 
-              uid: row[0]
+              _openid: openid, 
+              score: row[1], 
+              user_id: row[0],
+              time: new Date().getTime(),
+              activity_name: '还没有弄好'
             }
           })
         tasks.push(promise)
