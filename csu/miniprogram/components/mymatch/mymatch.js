@@ -137,5 +137,8 @@ Page({
         })
       }
     })
-  }
+  },
+  itemclick: function (item) {
+    console.log(item)
+  },
 })
