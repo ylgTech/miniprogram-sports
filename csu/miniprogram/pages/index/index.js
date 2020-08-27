@@ -412,7 +412,7 @@ Page({
     if (pageInfo.detail["title"] == "积分排行榜") {
       var rc = await db.collection('User')
         .field({
-          username: true,
+          nickName: true,
           score: true,
           avatar: true
         })
