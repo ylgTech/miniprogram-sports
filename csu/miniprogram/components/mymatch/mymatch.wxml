@@ -1,3 +1,6 @@
+<cu-custom  bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="content">我发起的</view>
+</cu-custom>
 <image class='background' src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/background.png?sign=9209779092806cc733c84ee4bfc526cc&t=1588148134" mode="aspectFill"></image>
 <view class="container">
 	<view class="each-mes" wx:for="{{match}}">
