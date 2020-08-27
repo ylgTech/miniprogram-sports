@@ -19,12 +19,12 @@ exports.main = async(event, context) => {
     let dataCVS = '参赛名单.xlsx'
     //2，定义存储数据的
     let alldata = [];
-    let row = ['uid']; //表属性
+    let row = ['user_id']; //表属性
     alldata.push(row);
 
     for (let key in userdata) {
       let arr = [];
-      arr.push(userdata[key].uid);
+      arr.push(userdata[key].user_id);
       
       alldata.push(arr)
     }

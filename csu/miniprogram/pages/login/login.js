@@ -34,7 +34,7 @@ Page({
        console.log(res)
        if(res.data.length!=0){
         getApp().globalData.isOfi = true;
-        getApp().globalData.root_id = that.data.username;
+        getApp().globalData.root_id = res.data._id;
         wx.switchTab({
           url: '../me/me'
         })
@@ -86,8 +86,7 @@ Page({
       name: 'login',
       // 成功回调
       complete: res => {
-        app.appData.user_openid = res.result.openid
-        console.log(app.appData.user_openid)
+        app.globalData.user_openid = res.result.openid
         db.collection('account_info').where({
           _openid: res.result.openid
         }).get({

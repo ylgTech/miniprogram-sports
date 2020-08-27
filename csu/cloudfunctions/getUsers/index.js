@@ -7,5 +7,6 @@ cloud.init({
 
 // 云函数入口函数
 exports.main = async(event, context) => {
-  return await cloud.database().collection('User').get();
+  let {activity_id} = event;
+  return await cloud.database().collection('Participate').where({activity_id:activity_id}).get();
 }
