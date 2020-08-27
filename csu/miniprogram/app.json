@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/execlDownload/execlDownload",
     "pages/me/me",
     "pages/index/index",
     "components/mymatch/mymatch",
@@ -10,7 +9,7 @@
     "pages/match/match",
     "pages/group/group-select-college",
     "pages/group/group-imprv",
-    
+    "pages/execlDownload/execlDownload",
     "pages/login/login",
     "pages/group-detail/group-detail",
     

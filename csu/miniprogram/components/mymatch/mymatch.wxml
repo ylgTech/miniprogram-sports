@@ -1,13 +1,13 @@
 <image class='background' src="https://6665-feifeiniubi-cmo2o-1301607192.tcb.qcloud.la/background.png?sign=9209779092806cc733c84ee4bfc526cc&t=1588148134" mode="aspectFill"></image>
 <view class="container">
 	<view class="each-mes" wx:for="{{match}}">
-		<image src="{{item._picture}}" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
+		<image src="{{item.picture}}" style="width:250rpx;height:150rpx;margin-left:30rpx;"></image>
 		<view class="content">
 			<view style="font-weight:bold">{{item._sport_title}}</view>
 			<view>{{item._introduction_detail}}</view>
 			<view class="delete-get">
-				<button class="cu-btn bg-blue round shadow mar">111</button>
-				<button class="cu-btn bg-red round shadow mar">222</button>
+				<button class="cu-btn bg-blue round shadow mar" bindtap="copyFileUrl">导出报名表</button>
+				<!-- <button class="cu-btn bg-red round shadow mar">222</button> -->
 			</view>
 		</view>
 	</view>

@@ -85,6 +85,12 @@
 							<text class="text-grey">我发起的比赛</text>
 						</view>
 					</view>
+					<view class="cu-item arrow">
+						<view class="content" bindtap="chooseExcel">
+							<image src="https://656e-energycsu-x8fn6-1301628535.tcb.qcloud.la/%E5%9B%BE%E7%89%87/%E6%9C%80%E6%96%B0%E8%AF%BE%E7%A8%8B.png?sign=28b2bff9eed325bed1f4a556ef305238&t=1594946827" class="png" mode="aspectFit"></image>
+							<text class="text-grey">上传积分表</text>
+						</view>
+					</view>
 				</view>
 			</view>
 		</view>
