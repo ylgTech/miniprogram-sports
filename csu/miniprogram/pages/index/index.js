@@ -703,7 +703,7 @@ Page({
       }
     })
     db.collection('Activity').where({
-      type: 'offline',
+      type: 'online',
 
     }).get({
       success: res => {

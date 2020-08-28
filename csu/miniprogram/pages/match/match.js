@@ -211,7 +211,7 @@ Page({
       }
     })
     db.collection('Activity').where({
-      type: 'online',
+      type: 'offline',
      
     }).get({
       success: res => {

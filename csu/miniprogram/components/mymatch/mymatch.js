@@ -147,4 +147,7 @@ Page({
       }
     })
   },
+  itemclick_upload:function(item){
+    console.log(item)
+  }
 })
