@@ -534,7 +534,7 @@ Page({
     var isOfi = getApp().globalData.isOfi
     var that = this
     that.setData({
-      isOfi:isOfi,
+      isOfi: isOfi,
     })
     // 查看是否授权
     wx.getSetting({
@@ -618,22 +618,27 @@ Page({
   register: async function (e) {
     var that = this
     that.getOpenid()
-    db.collection('account_info').where({
+    db.collection('User').where({
       _openid: that.data.openid
     }).get({
       success: res => {
+        console.log(res.data)
         if (res.data.length != '0') {
           console.log('已经注册')
-        } else {
-          setTimeout(function () {
-            db.collection('account_info').add({
+          db.collection('User').doc('res.data._id').update({
               data: {
                 avatar: that.data.AvatarUrl,
                 nickName: that.data.username,
-                //nickName is preserved to fill as the nickName of WeChat
-                //However, to get the user's nickName
-                //wx.login() is needed.
-                //So it is left same as realName now.
+              }
+            })
+            .then(console.log)
+            .catch(console.error)
+        } else {
+          setTimeout(function () {
+            db.collection('User').add({
+              data: {
+                avatar: that.data.AvatarUrl,
+                nickName: that.data.username,
                 score: 0,
               },
               success: res => {
@@ -746,21 +751,32 @@ Page({
     })
   },
   //选择excel表格
+<<<<<<< HEAD
   chooseExcel(){
     console.log("上传文件");
+=======
+  chooseExcel() {
+>>>>>>> 41a3e2b5bcae64412a482c2580189d379e2caa26
     let that = this
     wx.chooseMessageFile({
-      count:1,
+      count: 1,
       type: 'file',
+<<<<<<< HEAD
       success(res){
         let path = res.tempFiles[0].path;
         console.log("选择excel成功",path)
+=======
+      success(res) {
+        let path = res.tmpFiles[0].path;
+        console.log("选择excel成功", path)
+>>>>>>> 41a3e2b5bcae64412a482c2580189d379e2caa26
         that.uploadExcel(path)
       }
     })
   },
 
   //2.上传excel表格到云存储
+<<<<<<< HEAD
   uploadExcel(path){
     let that = this;
     wx.cloud.uploadFile({
@@ -773,22 +789,35 @@ Page({
       fail : err =>{
         // console.log(typeof(filePath),filePath);
         console.log("上传失败",err);
+=======
+  uploadExcel(path) {
+    let that = this
+    wx.cloud.uploadFile({
+      cloudPath: new Date().getTime + ".xls",
+      filePaht: path,
+      sucess: res => {
+        console.log("上传成功", res.fileID)
+        that.deal(res.fileID)
+      },
+      fail: err => {
+        console.log("上传失败", err)
+>>>>>>> 41a3e2b5bcae64412a482c2580189d379e2caa26
       }
     })
   },
 
   //3.解析excel数据并上传到云数据库
-  deal(fileID){
+  deal(fileID) {
     wx.cloud.callFunction({
       name: "excelUpload",
-      data:{
+      data: {
         fileID: fileID
       },
       success(res) {
         console.log("解析并上传成功", res)
       },
       fail(res) {
-        console.log("解析失败",res)
+        console.log("解析失败", res)
       }
     })
   },

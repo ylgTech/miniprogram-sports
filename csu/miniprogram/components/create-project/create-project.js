@@ -1,5 +1,6 @@
 // pages/release/release.js
 const db = wx.cloud.database()
+const app = getApp()
 Page({
 
   /**
@@ -74,10 +75,11 @@ Page({
     })
     let postData = {
       name: that.data.title,
+      root_id:app.globalData.root_id,
       linkAddress: that.data.intro,
       introduction: that.data.detail,
       picture:that.data.imgUrl,
-      type:'online'
+      type:'offline',
     }
     // 检查是否所有必需信息已填
     if (postData.name == "" ||
