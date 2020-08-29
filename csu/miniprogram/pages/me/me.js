@@ -43,7 +43,8 @@ Page({
     password: null,
     try_time: 0,
     isOfi: false,
-  },
+    my_userid:'',
+    },
   goto_release: function (e) {
     wx.navigateTo({
       url: '../release/release'
@@ -634,12 +635,14 @@ Page({
             .then(console.log)
             .catch(console.error)
         } else {
+          that.getUserId();
           setTimeout(function () {
             db.collection('User').add({
               data: {
                 avatar: that.data.AvatarUrl,
                 nickName: that.data.username,
                 score: 0,
+                user_id:that.data.user_id,
               },
               success: res => {
                 console.log(app.globalData.user_openid)
@@ -700,7 +703,7 @@ Page({
       complete: res => {
         console.log(res.result.openid)
         var openid = res.result.openid;
-        db.collection('account_info').where({
+        db.collection('User').where({
           _openid: res.result.openid
         }).get({
           success: res => {
@@ -709,6 +712,7 @@ Page({
               username: res.data[0].nickName,
               AvatarUrl: res.data[0].avatar,
               score: res.data[0].score,
+              my_userid:res.data[0].user_id,
             })
           }
         })
@@ -750,5 +754,22 @@ Page({
       url: '../login/login'
     })
   },
- 
+  getUserId: function () {
+    var that = this;
+    var tmp = Math.floor(Math.random() * 1000 + 1000);
+    console.log(tmp);
+    db.collection('User').where({
+      user_id: tmp
+    }).get({
+      success: res => {
+        if (res.data.length === 0) {
+          that.setData({
+            user_id: tmp
+          })
+        } else {
+          getUserId();
+        }
+      }
+    })
+  },
 })
