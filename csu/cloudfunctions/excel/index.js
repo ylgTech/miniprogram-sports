@@ -21,10 +21,22 @@ exports.main = async(event, context) => {
     let alldata = [];
     let row = ['user_id']; //表属性
     alldata.push(row);
+    //const db = cloud.database();
 
     for (let key in userdata) {
+      //let user_name;
+      let user_id = userdata[key].user_id;
+      /*
+      db.collection('User').where({uid:user_id})
+      .get({
+        success:  
+        function(res){user_name = res.data[0].nickName}
+          //{console.log(res.data);}
+      });
+      */
       let arr = [];
-      arr.push(userdata[key].user_id);
+      arr.push(user_id);
+      // arr.push(user_name);
       
       alldata.push(arr)
     }

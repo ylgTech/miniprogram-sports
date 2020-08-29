@@ -8,8 +8,26 @@ Page({
    */
   data: {
     match: [],
+    user_id : null
   },
 
+  getUserId: function() {
+    var that = this;
+    var tmp = Math.floor(Math.random()*1000 + 1000);
+    console.log(tmp);
+    db.collection('User').where({user_id:tmp}).get({
+      success: res=>{
+        if(res.data.length === 0)
+        {
+          that.setData({
+            user_id : tmp
+          })
+        }else{
+          getUserId();
+        }
+      }
+    }) 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -100,6 +118,7 @@ Page({
   //获取云存储文件下载地址，这个地址有效期一天
   getFileUrl(fileID) {
     let that = this;
+    console.log("开始下载");
     wx.cloud.getTempFileURL({
       fileList: [fileID],
       success: res => {
@@ -147,7 +166,58 @@ Page({
       }
     })
   },
+   //选择excel表格
+   chooseExcel(item) {
+    let that = this
+    wx.chooseMessageFile({
+      count: 1,
+      type: 'file',
+      success(res) {
+        let path = res.tempFiles[0].path;
+        that.uploadExcel(path,item)
+        console.log("选择excel成功", path)
+      }
+    })
+  },
+
+  //2.上传excel表格到云存储
+  uploadExcel(path,item) {
+    let that = this
+    wx.cloud.uploadFile({
+      cloudPath:new Date().getTime()+".xls",
+      filePath: path,
+      success : res => {
+        console.log("上传成功", res.fileID);
+        that.deal(res.fileID,item);
+      },
+      fail : err =>{
+        // console.log(typeof(filePath),filePath);
+        console.log("上传失败",err);
+      }
+    })
+  },
+
+  //3.解析excel数据并上传到云数据库
+  deal(fileID,item) {
+    console.log("开始解析");
+    wx.cloud.callFunction({
+      name: "excelUpload",
+      data: {
+        fileID: fileID,
+        activity_name : item.currentTarget.dataset.item.name
+      },
+      success(res) {
+        console.log("解析并上传成功", res)
+      },
+      fail(res) {
+        console.log("解析失败", res)
+      }
+    })
+    console.log("解析完毕");
+  },
   itemclick_upload:function(item){
-    console.log(item)
+    let that = this;
+    console.log(item);
+    that.chooseExcel(item);
   }
 })

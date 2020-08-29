@@ -3,11 +3,14 @@ cloud.init({
   env: "energycsu-x8fn6"
 })
 var xlsx = require('node-xlsx');
-const db = cloud.database()
+
+const db = cloud.database();
 
 exports.main = async(event, context) => {
+  
   let {
-    fileID
+    fileID,
+    activity_name
   } = event
   //1,通过fileID下载云存储里的excel文件
   const res = await cloud.downloadFile({
@@ -29,23 +32,18 @@ exports.main = async(event, context) => {
       if (rowId > 0 && row) { //第一行是表格标题，所有我们要从第2行开始读
         //3，把解析到的数据存到excelList数据表里
         
-        let openid;
-        db.collection('User').where({uid:row[0]})
-        .get({
-          success:  
-          function(res)//{openid = res.data[0]._openid}
-            {console.log(res.data);}
-        });
+        const res = await db.collection('User').where({uid:row[0]}).get();
 
+        
 
         const promise = db.collection('Score')
           .add({
             data: {
-              _openid: openid, 
+             _openid: res.result.data[0]._openid, 
               score: row[1], 
               user_id: row[0],
               time: new Date().getTime(),
-              activity_name: '还没有弄好'
+              activity_name: activity_name
             }
           })
         tasks.push(promise)
